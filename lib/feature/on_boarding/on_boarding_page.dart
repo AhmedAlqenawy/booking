@@ -1,3 +1,5 @@
+import 'package:booking/feature/RegisterScreen/presentation/Register_Screen.dart';
+import 'package:booking/feature/login/presentation/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -206,7 +208,7 @@ class OnBoarding extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (BuildContext context) => const OnBoarding(),
+                    builder: (BuildContext context) => const LoginScreen(),
                   ),
                 );
               },
@@ -222,7 +224,7 @@ class OnBoarding extends StatelessWidget {
                  Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (BuildContext context) => const OnBoarding(),
+                    builder: (BuildContext context) => const RegisterScreen(),
                   ),
                 );
               },
