@@ -1,4 +1,7 @@
-
+import 'package:booking/feature/allhotels/data/repository/hotel_repo_impl.dart';
+import 'package:booking/feature/allhotels/domian/repository/auth_repository.dart';
+import 'package:booking/feature/filtter/data/repository/filtter_repo_impl.dart';
+import 'package:booking/feature/filtter/domian/repository/filtter_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
@@ -18,6 +21,8 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   sl.registerFactory(() => AppBloc(
+        filtterRepository: sl(),
+        hotelsRepository: sl(),
         repository: sl(),
       ));
 
@@ -52,4 +57,10 @@ Future<void> init() async {
   //* external
 
   sl.registerLazySingleton(() => InternetConnectionChecker());
+
+  sl.registerLazySingleton<HotelsRepository>(
+      () => HotelsRepositoryImplementation(dioHelper: sl()));
+
+  sl.registerLazySingleton<FiltterRepository>(
+      () => FiltterRepositoryImplementation(dioHelper: sl()));
 }
