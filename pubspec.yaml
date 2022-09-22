@@ -34,6 +34,23 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  dio: ^4.0.6
+  get_it: ^7.2.0
+  dartz: ^0.10.1
+  flutter_bloc: ^8.0.1
+  #Google Fonts
+  google_fonts: ^3.0.1
+  #for responsive app
+  flutter_screenutil: ^5.5.3+2
+  introduction_screen: ^3.0.2
+  internet_connection_checker: ^0.0.1+4
+  equatable: ^2.0.5
+  flutter_rating_bar: ^4.0.1
+  intl: ^0.17.0
+  cached_network_image: ^3.2.1
+  carousel_slider: ^4.1.1
+  smooth_page_indicator: ^1.0.0+2
+  fluttertoast: ^8.0.7
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +75,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/img/
+    - assets/img/onboarding/
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
@@ -72,6 +92,10 @@ flutter:
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
+  fonts:
+    - family: Pacifico Regular
+      fonts:
+        - asset: assets/fonts/Pacifico-Regular.ttf
   # example:
   # fonts:
   #   - family: Schyler
