@@ -1,4 +1,5 @@
 import 'package:booking/feature/hotels/presentation/screens/get_booking_screen.dart';
+import 'package:booking/feature/login/presentation/login.dart';
 import 'package:flutter/material.dart';
 
 import '../../feature/about/presentation/pages/about_page.dart';
@@ -14,13 +15,15 @@ class Routes {
   static const String onBoarding = '/onBoarding';
   static const String about = '/AboutPage';
   static const String editAbout = '/EditAbout';
+  static const String login = '/login';
 
   static Map<String, WidgetBuilder> get routes {
     return {
-      home: (context) => const HomePage(),
-      bookingStatus: (context) => const GetBookingScreen(),
       splash: (context) => const SplashPage(),
       onBoarding: (context) => const OnBoarding(),
+      login: (context) => const LoginScreen(),
+      home: (context) => const HomePage(),
+      bookingStatus: (context) => const GetBookingScreen(),
       about: (context) => const AboutPage(),
       editAbout: (context) => const EditAbout(),
     };
