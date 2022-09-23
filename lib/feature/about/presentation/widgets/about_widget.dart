@@ -37,7 +37,7 @@ class _AboutWidgetState extends State<AboutWidget> {
       builder: (context, state) {
         ProfileModel? profileModel = AppBloc.get(context).profileModel;
         return profileModel == null
-            ? CircularProgressIndicator()
+            ? const Center(child: CircularProgressIndicator())
             : Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Column(

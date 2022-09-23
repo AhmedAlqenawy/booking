@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.blue,
             ),
             routes: Routes.routes,
-            initialRoute: Routes.splash,
+            initialRoute: Routes.about,
           ),
         ));
   }
