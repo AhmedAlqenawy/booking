@@ -46,6 +46,21 @@ class AppBloc extends Cubit<AppStates> {
     );
   }
 
+  void updateProfile(String name, String email) async {
+    emit(UpdateProfileLoadingState());
+    final response = await repository.updateProfile(token: token,name:name,email: email);
+
+    response.fold(
+      (l) {
+        emit(ErrorState(exception: l));
+      },
+      (r) {
+        profileModel = r;
+        emit(UserUpdateProfileSuccessState());
+      },
+    );
+  }
+
   void userLogin(email, password) async {
     emit(UserLoginLoadingState());
     print('$email + omniaaaaaaa');

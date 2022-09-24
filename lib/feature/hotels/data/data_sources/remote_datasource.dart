@@ -1,4 +1,4 @@
-import 'package:booking/feature/hotels/domain/entities/trip.dart';
+import 'package:dartz/dartz.dart';
 
 import '../../../../core/util/constants.dart';
 import '../../../../core/util/network/remote/dio_helper.dart';
@@ -9,6 +9,9 @@ abstract class RemoteDataSource {
   Future<TripModel> getCanceledBooking();
   Future<TripModel> getCompletedBooking();
   Future<TripModel> getUpcommingBooking();
+  Future<Unit> createBooking({required int hotelId, required int userId});
+  Future<Unit> updateBookingStatus(
+      {required int bookingId, required String type});
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -53,5 +56,32 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     final booking = TripModel.fromJson(response['data']);
 
     return booking;
+  }
+
+  @override
+  Future<Unit> createBooking(
+      {required int hotelId, required int userId}) async {
+    final response = await dioHelper.post(
+        endPoint: createBookingEndPoint,
+        data: {
+          'user_id': userId,
+          'hotel_id': hotelId,
+        },
+        token: token);
+    return Future.value(unit);
+  }
+
+  @override
+  Future<Unit> updateBookingStatus(
+      {required int bookingId, required String type}) async {
+    final response = await dioHelper.post(
+        endPoint: updateBookingEndPoint,
+        data: {
+          'booking_id': bookingId,
+          'type': type,
+        },
+        token: token);
+        
+    return Future.value(unit);
   }
 }

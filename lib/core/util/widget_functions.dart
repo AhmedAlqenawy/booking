@@ -43,3 +43,7 @@ line(h, w, color, {hasDecoration = false, buttonPadding = 0.0}) {
     color: color,
   );
 }
+navigateTo({required BuildContext context,required Widget widget})=> Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>widget));

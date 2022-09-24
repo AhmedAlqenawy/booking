@@ -1,9 +1,11 @@
-import 'package:booking/feature/hotels/presentation/widgets/canceled_booking_item.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/util/widget_functions.dart';
 import '../cubit/hotels_cubit.dart';
+import '../widgets/canceled_booking_item.dart';
+import 'booking_details_screen.dart';
 class CanceledBookingScreen extends StatelessWidget {
   const CanceledBookingScreen({super.key, });
   @override
@@ -16,20 +18,28 @@ class CanceledBookingScreen extends StatelessWidget {
         print(state);
       }, builder: (context, state) {
         var cubit = BlocProvider.of<HotelsCubit>(context);
-                print(cubit. canceledBooking.length);
 
-      if (cubit. completedBooking!.isNotEmpty) {
+      if(state is GetCompletedBookingLoadingState ){
+          return const Center(child: CircularProgressIndicator(),);
+        }
+        if (cubit. canceledBooking.isNotEmpty) {
           return ListView.separated(
             itemBuilder: (BuildContext context, int index) =>
-                CanceledBookingItem(
-              images: cubit. canceledBooking[index].hotel.hotelImages!,
-              price: cubit. canceledBooking[index].hotel.price!,
-              hotelName: cubit. canceledBooking[index].hotel.name!,
-              hotelRate:cubit. canceledBooking[index].hotel.rate!,
-              hotelAddress: cubit. canceledBooking[index].hotel.address!,
-              startDate: cubit. canceledBooking[index].createdAt,
-              endDate: cubit. canceledBooking[index].updatedAt,
-            ),
+                InkWell(onTap: ()=>navigateTo(
+                  context: context,
+                  widget: BookingDetailsScreen(
+                      bookingId: cubit.upCommingBooking[index].id,
+                      hotel: cubit.upCommingBooking[index].hotel)),
+                  child: CanceledBookingItem(
+                              images: cubit. canceledBooking[index].hotel.hotelImages!,
+                              price: cubit. canceledBooking[index].hotel.price!,
+                              hotelName: cubit. canceledBooking[index].hotel.name!,
+                              hotelRate:cubit. canceledBooking[index].hotel.rate!,
+                              hotelAddress: cubit. canceledBooking[index].hotel.address!,
+                              startDate: cubit. canceledBooking[index].createdAt,
+                              endDate: cubit. canceledBooking[index].updatedAt,
+                            ),
+                ),
             itemCount: cubit. canceledBooking.length,
             separatorBuilder: (BuildContext context, int index) =>
                 const SizedBox(
@@ -38,7 +48,7 @@ class CanceledBookingScreen extends StatelessWidget {
           );
         } else {
           return Center(
-            child: CircularProgressIndicator(),
+            child: Text('No Trips'),
           );
         }
       }),
