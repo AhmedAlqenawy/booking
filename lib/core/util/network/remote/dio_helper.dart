@@ -125,15 +125,23 @@ extension on DioHelper {
 
       if (r.data['status']['type'] == '0') {
         dynamic title = r.data['status']['title'];
-
+        print(title);
         throw PrimaryServerException(
-          message: title is String ? title : r.data['status']['title']['ar'],
+          message: title == null
+              ? ''
+              : title is String
+                  ? title
+                  : r.data['status']['title']['ar'],
           code: r.statusCode ?? 500,
-          error: title is String ? title : r.data['status']['title']['en'],
+          error: title == null
+              ? ''
+              : title is String
+                  ? title
+                  : r.data['status']['title']['en'],
         );
+      } else {
+        return r.data;
       }
-
-      return r.data;
     } on DioError catch (e) {
       debugPrint("Error_Message => ${e.message}");
       debugPrint("Error_Error => ${e.error.toString()}");
@@ -141,16 +149,8 @@ extension on DioHelper {
 
       throw PrimaryServerException(
         code: 100,
-        error:  e.error.toString(),
+        error: e.error.toString(),
         message: e.message,
-      );
-    } catch (e) {
-      PrimaryServerException exception = e as PrimaryServerException;
-
-      throw PrimaryServerException(
-        code: exception.code,
-        error: exception.error,
-        message: exception.message,
       );
     }
   }

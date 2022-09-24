@@ -24,7 +24,8 @@ class MyFormLogin extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 20.0,left: 20),
       child: Container(
-        height: 47,
+        clipBehavior: Clip.hardEdge,
+        height: 45,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.white54),
           borderRadius: BorderRadius.circular(30),
@@ -37,6 +38,7 @@ class MyFormLogin extends StatelessWidget {
                 offset: Offset(0,3))
           ],),
         child: TextFormField(
+          maxLines: 1,
           obscureText: isPassword,
           controller: controller,
           keyboardType: type,
@@ -48,7 +50,22 @@ class MyFormLogin extends StatelessWidget {
             return null;
           },
           decoration: InputDecoration(
-            border: InputBorder.none,
+
+              errorMaxLines: 1,
+              disabledBorder: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(4)),
+                borderSide: BorderSide(
+                  width: 1,
+                  color: Color(0xffE5E5E5),
+                ),
+              ),
+              errorBorder:const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  borderSide: BorderSide(
+                    width: 1,
+                    color: Colors.red,
+                  )),
+              border: InputBorder.none,
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 20.0,
             ),

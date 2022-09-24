@@ -1,9 +1,10 @@
-import 'package:booking/feature/hotels/presentation/cubit/hotels_cubit.dart';
-import 'package:booking/feature/hotels/presentation/screens/upcomming_booking_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../cubit/hotels_cubit.dart';
 import 'canceled_booking_screen.dart';
 import 'completed_booking_screen.dart';
+import 'upcomming_booking_screen.dart';
+
 
 class GetBookingScreen extends StatelessWidget {
   const GetBookingScreen({super.key});
@@ -81,7 +82,7 @@ class GetBookingScreen extends StatelessWidget {
               ),
             ),
            
-               const Expanded(
+                const Expanded(
                 child: TabBarView(children: [
                   UpCommingBookingScreen(
                       ),

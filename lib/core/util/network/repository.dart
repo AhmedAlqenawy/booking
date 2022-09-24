@@ -14,7 +14,10 @@ abstract class Repository {
   });
 
   Future<Either<PrimaryServerException, ProfileModel>> getProfile(
-      {String? token});
+      {String? token, });
+
+  Future<Either<PrimaryServerException, ProfileModel>> updateProfile(
+      {String? token,String? name, String? email});
 }
 
 class RepositoryImplementation extends Repository {
@@ -24,12 +27,36 @@ class RepositoryImplementation extends Repository {
     required this.dioHelper,
   });
 
-  Future<Either<PrimaryServerException, ProfileModel>> getProfile({  String? token})async {
+  @override
+  Future<Either<PrimaryServerException, ProfileModel>> getProfile(
+      {String? token}) async {
     return basicErrorHandling<ProfileModel>(
       onSuccess: () async {
         final response = await dioHelper.get(
           token: token,
           endPoint: profileEndPoint,
+        );
+
+        return ProfileModel.fromJson(response);
+      },
+      onPrimaryServerException: (e) async {
+        return e;
+      },
+    );
+  }
+
+  @override
+  Future<Either<PrimaryServerException, ProfileModel>> updateProfile(
+      {String? token,String? name, String? email}) async {
+    return basicErrorHandling<ProfileModel>(
+      onSuccess: () async {
+        final response = await dioHelper.post(
+          token: token,
+          query:{
+            'name':name,
+            'email':email
+            },
+          endPoint: updateProfileEndPoint,
         );
 
         return ProfileModel.fromJson(response);

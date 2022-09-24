@@ -1,9 +1,10 @@
-import 'package:booking/feature/hotels/presentation/widgets/completed_booking_item.dart';
-import 'package:booking/feature/hotels/presentation/widgets/images_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/util/widget_functions.dart';
 import '../cubit/hotels_cubit.dart';
+import '../widgets/completed_booking_item.dart';
+import 'booking_details_screen.dart';
 
 class CompletedBookingScreen extends StatelessWidget {
   const CompletedBookingScreen({
@@ -20,37 +21,39 @@ class CompletedBookingScreen extends StatelessWidget {
       }, builder: (context, state) {
         var cubit = BlocProvider.of<HotelsCubit>(context);
 
-        if (cubit.completedBooking!.isNotEmpty) {
+        if (state is GetCompletedBookingLoadingState) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (cubit.completedBooking.isNotEmpty) {
           return ListView.separated(
             itemBuilder: (BuildContext context, int index) => InkWell(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ImagesSlider(
-                          images: cubit
-                              .completedBooking![index].hotel.hotelImages!)),
-                );
+                navigateTo(
+                    context: context,
+                    widget: BookingDetailsScreen(
+                        bookingId: cubit.upCommingBooking[index].id,
+                        hotel: cubit.upCommingBooking[index].hotel));
               },
               child: CompletedBookingItem(
-                images: cubit.completedBooking![index].hotel.hotelImages!,
-                price: cubit.completedBooking![index].hotel.price!,
-                hotelName: cubit.completedBooking![index].hotel.name!,
-                hotelRate: cubit.completedBooking![index].hotel.rate!,
-                hotelAddress: cubit.completedBooking![index].hotel.address!,
-                startDate: cubit.completedBooking![index].createdAt,
-                endDate: cubit.completedBooking![index].updatedAt,
+                images: cubit.completedBooking[index].hotel.hotelImages!,
+                price: cubit.completedBooking[index].hotel.price!,
+                hotelName: cubit.completedBooking[index].hotel.name!,
+                hotelRate: cubit.completedBooking[index].hotel.rate!,
+                hotelAddress: cubit.completedBooking[index].hotel.address!,
+                startDate: cubit.completedBooking[index].createdAt,
+                endDate: cubit.completedBooking[index].updatedAt,
               ),
             ),
-            itemCount: cubit.completedBooking!.length,
+            itemCount: cubit.completedBooking.length,
             separatorBuilder: (BuildContext context, int index) =>
                 const SizedBox(
               height: 12,
             ),
           );
         } else {
-          return Center(
-            child: CircularProgressIndicator(),
+          return const Center(
+            child: Text('No Trips'),
           );
         }
       }),
