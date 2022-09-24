@@ -1,9 +1,11 @@
 import 'package:booking/core/util/blocs/app/states.dart';
+import 'package:booking/core/util/network/local/Cach_Helper.dart';
 import 'package:booking/feature/about/model/profile_model.dart';
 import 'package:booking/feature/allhotels/domian/entity/hotel_model.dart';
 import 'package:booking/feature/allhotels/domian/repository/auth_repository.dart';
 import 'package:booking/feature/filtter/domian/entity/filtter_hotel_model.dart';
 import 'package:booking/feature/filtter/domian/repository/filtter_repository.dart';
+import 'package:booking/feature/models/register_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
@@ -15,8 +17,7 @@ class AppBloc extends Cubit<AppStates> {
   final Repository repository;
   final HotelsRepository hotelsRepository;
   final FiltterRepository filtterRepository;
-  String? token =
-      "mEbHlHnNAvI6mB15T4ZBzN19Y8Un5GxChAfLkYzugI2GhEXUcKiogp6BxLuH";
+  String? token = CacheHelper.getData(key: 'token');
   AppBloc({
     required this.repository,
     required this.hotelsRepository,
@@ -26,6 +27,8 @@ class AppBloc extends Cubit<AppStates> {
   static AppBloc get(context) => BlocProvider.of<AppBloc>(context);
 
   LoginModel? loginModel;
+
+  RegisterModel? registerModel;
 
   ProfileModel? profileModel;
 
@@ -65,8 +68,8 @@ class AppBloc extends Cubit<AppStates> {
     emit(UserLoginLoadingState());
     print('$email + omniaaaaaaa');
     final response = await repository.login(
-      email: email.text,
-      password: password.text,
+      email: email,
+      password: password,
     );
 
     response.fold(
@@ -77,6 +80,31 @@ class AppBloc extends Cubit<AppStates> {
         loginModel = r;
 
         emit(UserLoginSuccessState());
+      },
+    );
+  }
+
+  void userSignUp(email, password,Fname,ConfirmPassword) async {
+    emit(UserRegisterLoadingState());
+    print('$email + omniaaaaaaa');
+    print('$password + omniaaaaaaa');
+    print('$Fname + omniaaaaaaa');
+    print('$ConfirmPassword + omniaaaaaaa');
+    final response = await repository.register(
+      name: Fname,
+      email: email,
+      password: password,
+      configPassword: ConfirmPassword,
+    );
+
+    response.fold(
+          (l) {
+        emit(ErrorState(exception: l));
+      },
+          (s) {
+         registerModel = s ;
+
+        emit(UserRegisterSuccessState());
       },
     );
   }

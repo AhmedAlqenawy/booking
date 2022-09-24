@@ -21,7 +21,7 @@ class Routes {
     return {
       splash: (context) => const SplashPage(),
       onBoarding: (context) => const OnBoarding(),
-      login: (context) => const LoginScreen(),
+      login: (context) =>  LoginScreen(),
       home: (context) => const HomePage(),
       bookingStatus: (context) => const GetBookingScreen(),
       about: (context) => const AboutPage(),

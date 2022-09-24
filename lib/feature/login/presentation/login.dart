@@ -13,17 +13,13 @@ import '../../../core/util/widgets/Icon_Botton.dart';
 import '../../../core/util/widgets/default_button.dart';
 import '../../../core/util/widgets/my_form.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+   LoginScreen({Key? key}) : super(key: key);
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController controller_email = TextEditingController();
+
   TextEditingController controller_password = TextEditingController();
 
   @override
@@ -78,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         alignment: Alignment.topLeft,
                         child: Text(
                           'Login',
-                          style: TextStyle(fontFamily: 'AbrilFatface',fontWeight: FontWeight.bold, fontSize: 20),
+                          style: TextStyle(fontFamily: 'AbrilFatface',fontWeight: FontWeight.w200, fontSize: 20),
                         ),
                       ),
                     ),
@@ -191,13 +187,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: 350, onTap: () {
                         if (_formKey.currentState!.validate()) {
                           AppBloc.get(context).userLogin(
-                              controller_email,controller_password
+                              controller_email.text,controller_password.text
                           );
 
                         }
-                        AppBloc.get(context).userLogin(
-                          controller_email,controller_password
-                        );
+
                       },
                       ),
                     ),
