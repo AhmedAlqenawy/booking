@@ -1,54 +1,64 @@
-import 'package:bloc/bloc.dart';
-import 'package:booking/feature/hotels/domain/entities/trip.dart';
-import 'package:booking/feature/hotels/domain/use_cases/get_canceled_usecase.dart';
-import 'package:booking/feature/hotels/domain/use_cases/get_completed_usecase.dart';
-import 'package:booking/feature/hotels/domain/use_cases/get_upcoming_usecase.dart';
+
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/error/failure.dart';
+import '../../domain/entities/trip.dart';
+import '../../domain/use_cases/create_booking_usecase.dart';
+import '../../domain/use_cases/get_canceled_usecase.dart';
+import '../../domain/use_cases/get_completed_usecase.dart';
+import '../../domain/use_cases/get_upcoming_usecase.dart';
+import '../../domain/use_cases/update_booking_state_usecase.dart';
 
 part 'hotels_state.dart';
 
 class HotelsCubit extends Cubit<HotelsState> {
-  HotelsCubit(this.getCancelledUseCase, this.getCompletedUseCase,
-      this.getUpCommingUseCase)
+  HotelsCubit(
+      this.getCancelledUseCase,
+      this.getCompletedUseCase,
+      this.getUpCommingUseCase,
+      this.createBookingUseCase,
+      this.updateBookingUsecase)
       : super(HotelsInitial());
   final GetCancelledUseCase getCancelledUseCase;
   final GetCompletedUseCase getCompletedUseCase;
   final GetUpCommingUseCase getUpCommingUseCase;
+  final CreateBookingUseCase createBookingUseCase;
+  final UpdateBookingUsecase updateBookingUsecase;
+
   List<Data> upCommingBooking = [];
-  List<Data>? completedBooking ;
+  List<Data> completedBooking =[];
   List<Data> canceledBooking = [];
   getAllCanceledBooking() async {
-     canceledBooking = [];
-    emit(GetBookingLoadingState());
+    canceledBooking = [];
+    emit(GetCompletedBookingLoadingState());
     final Either<Failure, Trip> tripList = await getCancelledUseCase();
     tripList.fold(
         (failure) => GetBookingErrorState(_getFailureErrorMessage(failure)),
         (bookings) {
-          canceledBooking.addAll(bookings.data!);
-          print(canceledBooking);
+      canceledBooking.addAll(bookings.data!);
+      print(canceledBooking);
       emit(GetBookingLoadedState(trip: bookings));
     });
   }
+
   getAllCompletedBooking() async {
-     completedBooking =[];
+    completedBooking = [];
     emit(GetCompletedBookingLoadingState());
     final Either<Failure, Trip> tripList = await getCompletedUseCase();
     tripList.fold(
         (failure) => GetBookingErrorState(_getFailureErrorMessage(failure)),
         (bookings) {
-      completedBooking!.addAll(bookings.data!);
-     
-print(completedBooking!.length);
+      completedBooking.addAll(bookings.data!);
+
       emit(GetCompletedBookingLoadedState(trip: bookings));
     });
   }
 
   getAllUpcommingBooking() async {
-     upCommingBooking = [];
-  emit(GetCompletedBookingLoadingState());
+    upCommingBooking = [];
+    emit(GetCompletedBookingLoadingState());
     final Either<Failure, Trip> tripList = await getUpCommingUseCase();
     tripList.fold(
         (failure) => GetBookingErrorState(_getFailureErrorMessage(failure)),
@@ -59,33 +69,37 @@ print(completedBooking!.length);
     });
   }
 
-  HotelsState _mapFailureOrHotelBookingToState(Either<Failure, Trip> either) {
-    // upCommingBooking =[];
-    return either.fold(
-        (failure) => GetBookingErrorState(_getFailureErrorMessage(failure)),
-        (bookings) {
-      if (bookings.data![0].type == 'upcomming') {
-        upCommingBooking.addAll(bookings.data!);
-      } else if (bookings.data![0].type == 'completed') {
-        completedBooking!.addAll(bookings.data!);
-      } else if (bookings.data![0].type == 'cancelled') {
-        canceledBooking.addAll(bookings.data!);
-      }
+  String _getFailureErrorMessage(Failure failure) {
+    switch (failure.runtimeType) {
+      case ServerFailure:
+        return 'AppStrings.serverError';
+      case EmptyCasheFailure:
+        return 'AppStrings.cashError';
+      case OfflineFailure:
+        return 'AppStrings.offlineErrpr';
+      default:
+        return 'AppStrings.unexpectedError';
+    }
+  }
 
-      return GetBookingLoadedState(trip: bookings);
+  createBooking({required int hotelId, required int userId}) async {
+    final Either<Failure, Unit> response =
+        await createBookingUseCase(hotelId: hotelId, userId: userId);
+    response.fold(
+        (failure) => CreateBookingErrorState(_getFailureErrorMessage(failure)),
+        (message) {
+
+      emit(CreateBookingSuccessState());
     });
   }
-}
+  updateBookingStatus({required int bookingId, required String type}) async {
+    final Either<Failure, Unit> response =
+        await updateBookingUsecase(bookingId: bookingId, type: type);
+    response.fold(
+        (failure) => UpdateBookingErrorState(_getFailureErrorMessage(failure)),
+        (message) {
 
-String _getFailureErrorMessage(Failure failure) {
-  switch (failure.runtimeType) {
-    case ServerFailure:
-      return 'AppStrings.serverError';
-    case EmptyCasheFailure:
-      return 'AppStrings.cashError';
-    case OfflineFailure:
-      return 'AppStrings.offlineErrpr';
-    default:
-      return 'AppStrings.unexpectedError';
+      emit(UpdateBookingSuccessState());
+    });
   }
 }
