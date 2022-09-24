@@ -1,3 +1,4 @@
+import 'package:booking/core/util/blocs/app/cubit.dart';
 import 'package:booking/core/util/widgets/formField/search_text_filed.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,9 @@ class SearchWidget extends StatelessWidget {
           backgroundColor: Colors.teal,
           onPressed: () {},
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              AppBloc.get(context).searchHotel(address: controller.text);
+            },
             icon: const Icon(Icons.search),
           ),
         ),

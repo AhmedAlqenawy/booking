@@ -118,6 +118,24 @@ class AppBloc extends Cubit<AppStates> {
     });
   }
 
+  List<FiltterHotelModel> search = [];
+  void searchHotel({
+    required String address,
+  }) async {
+    emit(SearchLoadingState());
+    final response = await filtterRepository.search(
+      address: address,
+      page: 1,
+    );
+
+    response.fold((l) {
+      emit(ErrorState(exception: l));
+    }, (r) {
+      search = r.data!.data;
+      emit(SearchSuccessState());
+    });
+  }
+
   int rooms = 0;
   int people = 0;
   void sumRooms() {

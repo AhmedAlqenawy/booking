@@ -1,3 +1,4 @@
+import 'package:booking/feature/allhotels/presentation/hotels_page.dart';
 import 'package:booking/feature/hotels/presentation/cubit/hotels_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,27 +23,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [
-          BlocProvider<AppBloc>(
-            create: (context) => sl<AppBloc>(),
-          ),
-          BlocProvider<HotelsCubit>(
-            create: (context) => sl<HotelsCubit>()..getAllUpcommingBooking()
-            ,
-          ),
-        ],
-        child: ScreenUtilInit(
-          designSize: const Size(375, 812),
-          builder: (context, child) => MaterialApp(
-            title: 'Flutter Demo',
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-            ),
-            routes: Routes.routes,
-            initialRoute: Routes.about,
-          ),
-        ));
+      providers: [
+        BlocProvider<AppBloc>(
+          create: (context) => sl<AppBloc>()
+            ..getLocation()
+            ..getAllHotels(),
+        ),
+        BlocProvider<HotelsCubit>(
+          create: (context) => sl<HotelsCubit>()..getAllUpcommingBooking(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: HotelsPage(),
+      ),
+    );
   }
 }
 
