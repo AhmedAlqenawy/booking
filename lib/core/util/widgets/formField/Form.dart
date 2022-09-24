@@ -24,6 +24,7 @@ class MyFormLogin extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 20.0,left: 20),
       child: Container(
+        clipBehavior: Clip.hardEdge,
         height: 45,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.white54),
@@ -49,6 +50,7 @@ class MyFormLogin extends StatelessWidget {
             return null;
           },
           decoration: InputDecoration(
+
               errorMaxLines: 1,
               disabledBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(4)),
