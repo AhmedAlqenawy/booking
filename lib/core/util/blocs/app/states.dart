@@ -31,6 +31,10 @@ class FiltterLoadingState extends AppStates {}
 
 class FiltterSuccessState extends AppStates {}
 
+class SearchLoadingState extends AppStates {}
+
+class SearchSuccessState extends AppStates {}
+
 class LocationSuccessState extends AppStates {}
 
 class AddCounterSuccessState extends AppStates {

@@ -13,4 +13,9 @@ abstract class FiltterRepository {
     required double latitude,
     required double longitude,
   });
+
+  Future<Either<PrimaryServerException, FiltterHotelsModel>> search({
+    required int page,
+    required String address,
+  });
 }
