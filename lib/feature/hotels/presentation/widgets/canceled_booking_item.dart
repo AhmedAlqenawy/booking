@@ -1,10 +1,8 @@
-import 'package:booking/feature/hotels/presentation/widgets/custom_image.dart';
 import 'package:booking/feature/hotels/presentation/widgets/rating_bar.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/util/network/remote/end_points.dart';
 import '../../domain/entities/trip.dart';
+import 'custom_image.dart';
 
 class CanceledBookingItem extends StatelessWidget {
   const CanceledBookingItem(

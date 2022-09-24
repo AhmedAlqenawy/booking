@@ -37,3 +37,23 @@ class GetCompletedBookingLoadedState extends HotelsState {
   @override
   List<Object> get props => [trip];
 }
+class CreateBookingSuccessState extends HotelsState {
+
+}
+
+class CreateBookingErrorState extends HotelsState {
+  final String message;
+
+  const CreateBookingErrorState(this.message);
+}
+
+class UpdateBookingSuccessState extends HotelsState {
+
+  const UpdateBookingSuccessState();
+}
+
+class UpdateBookingErrorState extends HotelsState {
+  final String message;
+
+  const UpdateBookingErrorState(this.message);
+}

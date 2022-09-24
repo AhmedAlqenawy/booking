@@ -8,9 +8,11 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../../feature/hotels/data/data_sources/remote_datasource.dart';
 import '../../feature/hotels/data/repositories/booking_repository_imp.dart';
 import '../../feature/hotels/domain/repositories/booking_repository.dart';
+import '../../feature/hotels/domain/use_cases/create_booking_usecase.dart';
 import '../../feature/hotels/domain/use_cases/get_canceled_usecase.dart';
 import '../../feature/hotels/domain/use_cases/get_completed_usecase.dart';
 import '../../feature/hotels/domain/use_cases/get_upcoming_usecase.dart';
+import '../../feature/hotels/domain/use_cases/update_booking_state_usecase.dart';
 import '../../feature/hotels/presentation/cubit/hotels_cubit.dart';
 import '../util/blocs/app/cubit.dart';
 import '../util/network/network_info.dart';
@@ -38,14 +40,18 @@ Future<void> init() async {
 
   //*  features booking
   // bloc
-  sl.registerFactory(() => HotelsCubit(sl(), sl(), sl()));
-  // usecases
+  sl.registerFactory(() => HotelsCubit(sl(), sl(), sl(),sl(),sl()));
+   // usecases
   sl.registerLazySingleton<GetUpCommingUseCase>(
       () => GetUpCommingUseCase(sl()));
   sl.registerLazySingleton<GetCancelledUseCase>(
       () => GetCancelledUseCase(sl()));
   sl.registerLazySingleton<GetCompletedUseCase>(
       () => GetCompletedUseCase(sl()));
+      sl.registerLazySingleton<CreateBookingUseCase>(
+      () => CreateBookingUseCase(sl()));
+      sl.registerLazySingleton<UpdateBookingUsecase>(
+      () => UpdateBookingUsecase(sl()));
   // repositories
   sl.registerLazySingleton<BookingRepository>(
       () => BookingRepositoryImp(sl(), sl()));

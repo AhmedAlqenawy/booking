@@ -1,11 +1,12 @@
-import 'package:booking/feature/hotels/data/data_sources/remote_datasource.dart';
-import 'package:booking/feature/hotels/domain/entities/trip.dart';
-import 'package:booking/core/error/exceptions.dart';
-import 'package:booking/feature/hotels/domain/repositories/booking_repository.dart';
+
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failure.dart';
 import '../../../../core/util/network/network_info.dart';
+import '../../domain/entities/trip.dart';
+import '../../domain/repositories/booking_repository.dart';
+import '../data_sources/remote_datasource.dart';
 import '../models/trip_model.dart';
 
 class BookingRepositoryImp extends BookingRepository {
@@ -56,8 +57,32 @@ Future<Either<Failure, Trip>> getUpcommingBooking() async {
   }
   
   @override
-  Future<Either<Failure, Trip>> bookHotelRoom() {
-    // TODO: implement bookHotelRoom
-    throw UnimplementedError();
+  Future<Either<Failure, Unit>> bookHotelRoom({required int hotelId, required int userid}) async{
+  if (await networkInfo.isConnected) {
+      try {
+        final response = await remoteDataSource.createBooking(hotelId: hotelId,userId: userid);
+        return Right(response);
+      } on PrimaryServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
   }
+  
+  @override
+  Future<Either<Failure, Unit>> updateBookingStatus({required int bookingId, required String type}) async{
+ if (await networkInfo.isConnected) {
+      try {
+        final response = await remoteDataSource.updateBookingStatus(bookingId: bookingId,type: type);
+        return Right(response);
+      } on PrimaryServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(OfflineFailure());
+    }
+  }
+  
+
 }
