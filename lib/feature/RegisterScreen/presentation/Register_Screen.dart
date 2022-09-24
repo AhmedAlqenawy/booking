@@ -194,8 +194,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
                Padding(
-                padding: EdgeInsets.only(right: 25,left: 25, ),
-                child: DefaultButton(bgColor: Color(0xff57B098), textColor: Colors.white, title: 'Sign UP', height: 50, width: 350, onTap: () {
+                padding: const EdgeInsets.only(right: 25,left: 25, ),
+                child: DefaultButton(bgColor: const Color(0xff57B098), textColor: Colors.white, title: 'Sign UP', height: 50, width: 350, onTap: () {
                   if (formKey.currentState!.validate()) {
                     AppBloc.get(context).userSignUp(
                         controller_email.text,
