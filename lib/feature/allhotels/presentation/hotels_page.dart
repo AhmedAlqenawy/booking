@@ -32,17 +32,19 @@ class HotelsPage extends StatelessWidget {
               ))
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(children: [
-          SearchWidget(),
-          const SizedBox(
-            height: 15,
-          ),
-          const PickDataAndRome(),
-          FiltterWidget(),
-          HotelsWidget()
-        ]),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(children: [
+            SearchWidget(),
+            const SizedBox(
+              height: 15,
+            ),
+            const PickDataAndRome(),
+            FiltterWidget(),
+            HotelsWidget()
+          ]),
+        ),
       ),
     );
   }
