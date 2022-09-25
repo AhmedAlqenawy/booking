@@ -70,6 +70,7 @@ class _FiltterPageState extends State<FiltterPage> {
                       start: AppBloc.get(context).start,
                       end: AppBloc.get(context).end,
                     );
+                    Navigator.pop(context);
                   },
                   child: const Text(
                     'Apply',
