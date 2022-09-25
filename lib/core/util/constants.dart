@@ -3,4 +3,4 @@ class AppString {
    String cacheHelper = 'cache_Helper';
    
 }
-String token = '';
+String token = ' ';
