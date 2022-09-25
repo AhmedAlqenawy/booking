@@ -1,5 +1,7 @@
+import 'package:booking/core/util/network/local/Cach_Helper.dart';
 import 'package:booking/core/util/network/remote/dio_helper.dart';
 import 'package:booking/core/util/network/remote/end_points.dart';
+import 'package:booking/feature/models/register_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +14,13 @@ abstract class Repository {
     required String email,
     required String password,
   });
+  Future<Either<PrimaryServerException, RegisterModel>> register({
+    required String name,
+    required String email,
+    required String password,
+    required String configPassword,
+  });
+
 
   Future<Either<PrimaryServerException, ProfileModel>> getProfile(
       {String? token, });
@@ -47,15 +56,15 @@ class RepositoryImplementation extends Repository {
 
   @override
   Future<Either<PrimaryServerException, ProfileModel>> updateProfile(
-      {String? token,String? name, String? email}) async {
+      {String? token, String? name, String? email}) async {
     return basicErrorHandling<ProfileModel>(
       onSuccess: () async {
         final response = await dioHelper.post(
           token: token,
-          query:{
-            'name':name,
-            'email':email
-            },
+          query: {
+            'name': name,
+            'email': email
+          },
           endPoint: updateProfileEndPoint,
         );
 
@@ -88,10 +97,37 @@ class RepositoryImplementation extends Repository {
         return e;
       },
     );
+
+  }
+
+  @override
+  Future<Either<PrimaryServerException, RegisterModel>> register
+      ({required String email,
+    required String password,
+    required String configPassword,
+    required String name})async{
+    return basicErrorHandling<RegisterModel>(
+      onSuccess: () async {
+        final response = await dioHelper.post(
+          endPoint: registerEndPoint,
+          data: {
+            'email': email,
+            'password': password,
+            'name':name,
+            'password_confirmation': configPassword
+          },
+        );
+
+        return RegisterModel.fromJson(response);
+      },
+      onPrimaryServerException: (e) async {
+        return e;
+      },
+    );
+
   }
 }
-
-extension on Repository {
+  extension on Repository {
   Future<Either<PrimaryServerException, T>> basicErrorHandling<T>({
     required Future<T> Function() onSuccess,
     Future<PrimaryServerException> Function(PrimaryServerException exception)?

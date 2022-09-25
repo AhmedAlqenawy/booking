@@ -1,4 +1,4 @@
-import 'package:booking/feature/allhotels/presentation/hotels_page.dart';
+import 'package:booking/core/util/network/local/Cach_Helper.dart';
 import 'package:booking/feature/hotels/presentation/cubit/hotels_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +10,8 @@ import 'core/util/routes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  CacheHelper.init();
+  late String accsestoken = CacheHelper.getData(key: 'token');
 
   init();
 
@@ -19,11 +21,10 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  // This widget is the root of your application
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-
         providers: [
           BlocProvider<AppBloc>(
             create: (context) => sl<AppBloc>(),

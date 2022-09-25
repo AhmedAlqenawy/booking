@@ -19,6 +19,11 @@ class GetProfileLoadingState extends AppStates {}
 class UpdateProfileLoadingState extends AppStates {}
 
 class UserLoginSuccessState extends AppStates {}
+
+class UserRegisterSuccessState extends AppStates {}
+
+class UserRegisterLoadingState extends AppStates {}
+
 class UserUpdateProfileSuccessState extends AppStates {}
 
 class GetProfileSuccessState extends AppStates {}

@@ -64,6 +64,7 @@ class DioImpl extends DioHelper {
     debugPrint('Header => ${dio.options.headers.toString()}');
     debugPrint('Body => $data');
     debugPrint('Query => $query');
+    debugPrint('accessToken => $token');
 
     return await request(
       call: () async => await dio.get(
