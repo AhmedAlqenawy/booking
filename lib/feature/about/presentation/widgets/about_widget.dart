@@ -71,7 +71,7 @@ class _AboutWidgetState extends State<AboutWidget> {
                       title: "Setting",
                       icon: Icons.settings,
                     ),
-                    MaterialButton(
+                    /*MaterialButton(
                       onPressed: () {
                      //   AppBloc.get(context).userLogin();
                       },
@@ -82,7 +82,7 @@ class _AboutWidgetState extends State<AboutWidget> {
                         AppBloc.get(context).getProfileDate();
                       },
                       child: const Text('Get Profile'),
-                    ),
+                    ),*/
                   ],
                 ),
               );
