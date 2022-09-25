@@ -2,8 +2,10 @@ import 'package:booking/feature/hotels/presentation/widgets/rating_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/util/network/remote/end_points.dart';
+import '../../../../core/util/widget_functions.dart';
 import '../../domain/entities/trip.dart';
 import 'custom_image.dart';
 
@@ -56,17 +58,11 @@ class UpcommingBookingItem extends StatelessWidget {
                         child: Row(
                           children: [
                             FittedBox(child: Text(hotelName,
-                            style: const TextStyle(color: Colors.black,
-                            fontSize: 22,
-                            fontWeight: FontWeight.w900
-                            ),
+                          style: openSans(20.sp, Colors.black, FontWeight.bold)
                             )),
                             const Spacer(),
                             FittedBox(child: Text(price,
-                            style: const TextStyle(color: Colors.black,
-                            fontSize: 22,
-                            fontWeight: FontWeight.w900
-                            ),
+                           style: openSans(20.sp, Colors.black, FontWeight.bold)
                             )),
                           ],
                         ),
@@ -79,9 +75,7 @@ class UpcommingBookingItem extends StatelessWidget {
                         child: Row(
                           children: [
                             FittedBox(child: Text(hotelAddress,
-                            style: const TextStyle(color: Colors.grey,
-                            fontSize: 14,
-                            ),
+                            style: openSans(16.sp, Colors.grey, FontWeight.w300)  
                             )),
                             const Spacer(),
                             const FittedBox(child: Text('/Per night')),

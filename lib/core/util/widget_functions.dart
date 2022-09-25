@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
- import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 space(double h, double w) {
   return SizedBox(
@@ -29,21 +29,23 @@ TextStyle openSans(double fontSize, Color color, FontWeight fontWeight,
 line(h, w, color, {hasDecoration = false, buttonPadding = 0.0}) {
   return hasDecoration == true
       ? Container(
-    width: w,
-    height: h,
-    padding: EdgeInsets.only(bottom: buttonPadding),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(5.w),
-      color: color,
-    ),
-  )
+          width: w,
+          height: h,
+          padding: EdgeInsets.only(bottom: buttonPadding),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5.w),
+            color: color,
+          ),
+        )
       : Container(
-    width: w,
-    height: h,
-    color: color,
-  );
+          width: w,
+          height: h,
+          color: color,
+        );
 }
-navigateTo({required BuildContext context,required Widget widget})=> Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>widget));
+
+navigateTo({required BuildContext context, required Widget widget}) =>
+    Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
+navigateAndFinish({required BuildContext context, required Widget widget}) =>
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => widget));

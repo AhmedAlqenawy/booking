@@ -32,8 +32,10 @@ class CompletedBookingScreen extends StatelessWidget {
                 navigateTo(
                     context: context,
                     widget: BookingDetailsScreen(
-                        bookingId: cubit.upCommingBooking[index].id,
-                        hotel: cubit.upCommingBooking[index].hotel));
+                      type: 'complete',
+                      userId: cubit.completedBooking[index].user.id!,
+                        bookingId: cubit.completedBooking[index].id,
+                        hotel: cubit.completedBooking[index].hotel));
               },
               child: CompletedBookingItem(
                 images: cubit.completedBooking[index].hotel.hotelImages!,

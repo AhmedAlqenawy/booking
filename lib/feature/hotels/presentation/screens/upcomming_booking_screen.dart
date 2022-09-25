@@ -18,19 +18,21 @@ class UpCommingBookingScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16),
       child: BlocConsumer<HotelsCubit, HotelsState>(listener: (context, state) {
-     
         print(state);
       }, builder: (context, state) {
         var cubit = BlocProvider.of<HotelsCubit>(context);
-   if(state is GetCompletedBookingLoadingState ){
-          return const Center(child: CircularProgressIndicator(),);
-        }
-       else if (cubit.upCommingBooking.isNotEmpty) {
+        if (state is GetCompletedBookingLoadingState) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (cubit.upCommingBooking.isNotEmpty) {
           return ListView.separated(
             itemBuilder: (BuildContext context, int index) => InkWell(
               onTap: () => navigateTo(
                   context: context,
                   widget: BookingDetailsScreen(
+                      type: 'upcomming',
+                      userId: cubit.upCommingBooking[index].user.id!,
                       bookingId: cubit.upCommingBooking[index].id,
                       hotel: cubit.upCommingBooking[index].hotel)),
               child: UpcommingBookingItem(
