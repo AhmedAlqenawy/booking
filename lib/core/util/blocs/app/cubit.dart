@@ -78,7 +78,8 @@ class AppBloc extends Cubit<AppStates> {
       },
       (r) {
         loginModel = r;
-
+        token = r.data!.token;
+        CacheHelper.saveData(key: 'token', value: token);
         emit(UserLoginSuccessState());
       },
     );
