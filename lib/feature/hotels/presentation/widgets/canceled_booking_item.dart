@@ -1,6 +1,8 @@
 import 'package:booking/feature/hotels/presentation/widgets/rating_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/util/widget_functions.dart';
 import '../../domain/entities/trip.dart';
 import 'custom_image.dart';
 
@@ -42,19 +44,18 @@ class CanceledBookingItem extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.21,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top:12.0,left: 12),
+                  padding: const EdgeInsets.only(top: 12.0, left: 12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(hotelName,style: TextStyle(color: Colors.black,
-                            fontSize: 22,
-                            fontWeight: FontWeight.w900
-                            ),),
+                      Text(hotelName,
+                          style:
+                              openSans(20.sp, Colors.black, FontWeight.bold)),
                       Text(hotelAddress),
-                      Text('$price /per night',style: TextStyle(color: Colors.black,
-                            fontSize: 22,
-                            fontWeight: FontWeight.w900
-                            ),),
+                      Text(
+                        '$price /per night',
+                        style: openSans(16.sp, Colors.grey, FontWeight.w200),
+                      ),
                       CustomRatingBar(rate: hotelRate),
                     ],
                   ),

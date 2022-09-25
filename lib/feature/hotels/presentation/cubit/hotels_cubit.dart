@@ -1,15 +1,18 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/error/failure.dart';
+import '../../../../core/util/widget_functions.dart';
 import '../../domain/entities/trip.dart';
 import '../../domain/use_cases/create_booking_usecase.dart';
 import '../../domain/use_cases/get_canceled_usecase.dart';
 import '../../domain/use_cases/get_completed_usecase.dart';
 import '../../domain/use_cases/get_upcoming_usecase.dart';
 import '../../domain/use_cases/update_booking_state_usecase.dart';
+import '../screens/get_booking_screen.dart';
 
 part 'hotels_state.dart';
 
@@ -92,9 +95,10 @@ class HotelsCubit extends Cubit<HotelsState> {
       emit(CreateBookingSuccessState());
     });
   }
-  updateBookingStatus({required int bookingId, required String type}) async {
+  updateBookingStatus({required int bookingId, required String type,required BuildContext context}) async {
     final Either<Failure, Unit> response =
         await updateBookingUsecase(bookingId: bookingId, type: type);
+        navigateAndFinish(context: context,widget: GetBookingScreen());
     response.fold(
         (failure) => UpdateBookingErrorState(_getFailureErrorMessage(failure)),
         (message) {

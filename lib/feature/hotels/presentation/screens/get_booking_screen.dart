@@ -13,14 +13,7 @@ class GetBookingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
-      child: Scaffold(
-          appBar: AppBar(
-            title:
-                const Text('My Trips', style: TextStyle(color: Colors.black)),
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-          ),
-          body: Column(children: [
+      child:  Column(children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
@@ -92,7 +85,7 @@ class GetBookingScreen extends StatelessWidget {
                   ),
                 ]),
                )
-          ])),
+          ])
     );
   }
 }

@@ -28,8 +28,10 @@ class CanceledBookingScreen extends StatelessWidget {
                 InkWell(onTap: ()=>navigateTo(
                   context: context,
                   widget: BookingDetailsScreen(
-                      bookingId: cubit.upCommingBooking[index].id,
-                      hotel: cubit.upCommingBooking[index].hotel)),
+                    userId:cubit.canceledBooking[index].user.id! ,
+                    type: 'cancelled',
+                      bookingId: cubit.canceledBooking[index].id,
+                      hotel: cubit.canceledBooking[index].hotel)),
                   child: CanceledBookingItem(
                               images: cubit. canceledBooking[index].hotel.hotelImages!,
                               price: cubit. canceledBooking[index].hotel.price!,

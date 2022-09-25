@@ -13,11 +13,12 @@ class BookingDetailsScreen extends StatelessWidget {
   const BookingDetailsScreen(
       {super.key,
       required this.hotel,
-    //  required this.userId,
-      required this.bookingId});
+      required this.userId,
+      required this.bookingId, required this.type});
   final Hotel hotel;
-  //final int userId;
+  final int userId;
   final int bookingId;
+  final String type;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,6 +48,7 @@ class BookingDetailsScreen extends StatelessWidget {
                     // BlocProvider.of<HotelsCubit>(context)
                     //     .createBooking(hotelId: 13, userId: 179);
                     BlocProvider.of<HotelsCubit>(context).updateBookingStatus(
+                      context: context,
                         bookingId: bookingId, type: 'completed');
                   },
                 ),
