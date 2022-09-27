@@ -37,13 +37,13 @@ class MyApp extends StatelessWidget {
         child: ScreenUtilInit(
           designSize: const Size(375, 812),
           builder: (context, child) => MaterialApp(
-            title: 'Flutter Demo',
+            title: 'Booking Hotels',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
             routes: Routes.routes,
-            initialRoute: Routes.about,
+            initialRoute: Routes.splash,
           ),
         ));
   }

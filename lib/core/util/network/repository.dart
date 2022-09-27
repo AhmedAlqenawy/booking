@@ -1,8 +1,10 @@
-import 'package:booking/core/util/network/local/Cach_Helper.dart';
+import 'dart:io';
+
 import 'package:booking/core/util/network/remote/dio_helper.dart';
 import 'package:booking/core/util/network/remote/end_points.dart';
 import 'package:booking/feature/models/register_model.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import '../../../feature/about/model/profile_model.dart';
@@ -14,6 +16,7 @@ abstract class Repository {
     required String email,
     required String password,
   });
+
   Future<Either<PrimaryServerException, RegisterModel>> register({
     required String name,
     required String email,
@@ -21,12 +24,12 @@ abstract class Repository {
     required String configPassword,
   });
 
-
-  Future<Either<PrimaryServerException, ProfileModel>> getProfile(
-      {String? token, });
+  Future<Either<PrimaryServerException, ProfileModel>> getProfile({
+    String? token,
+  });
 
   Future<Either<PrimaryServerException, ProfileModel>> updateProfile(
-      {String? token,String? name, String? email});
+      {String? token, String? name, String? email, File? file});
 }
 
 class RepositoryImplementation extends Repository {
@@ -42,7 +45,7 @@ class RepositoryImplementation extends Repository {
     return basicErrorHandling<ProfileModel>(
       onSuccess: () async {
         final response = await dioHelper.get(
-          token: token,
+          token: "mEbHlHnNAvI6mB15T4ZBzN19Y8Un5GxChAfLkYzugI2GhEXUcKiogp6BxLuH",
           endPoint: profileEndPoint,
         );
 
@@ -56,17 +59,29 @@ class RepositoryImplementation extends Repository {
 
   @override
   Future<Either<PrimaryServerException, ProfileModel>> updateProfile(
-      {String? token, String? name, String? email}) async {
+      {String? token, String? name, String? email, File? file}) async {
     return basicErrorHandling<ProfileModel>(
       onSuccess: () async {
-        final response = await dioHelper.post(
-          token: token,
-          query: {
+        var response;
+        if (file != null) {
+
+          String fileName = file.path.split('/').last;
+
+          FormData formData = FormData.fromMap({
+            "image":
+                await MultipartFile.fromFile(file.path, filename: fileName),
             'name': name,
             'email': email
-          },
-          endPoint: updateProfileEndPoint,
-        );
+          });
+          response = await DioImpl().post(
+              data: formData, endPoint: '/auth/update-info', token: token);
+        } else {
+          response = await dioHelper.post(
+            token: token,
+            query: {'name': name, 'email': email},
+            endPoint: updateProfileEndPoint,
+          );
+        }
 
         return ProfileModel.fromJson(response);
       },

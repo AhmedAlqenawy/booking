@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:booking/core/util/blocs/app/states.dart';
 import 'package:booking/core/util/network/local/Cach_Helper.dart';
 import 'package:booking/feature/about/model/profile_model.dart';
@@ -18,6 +20,7 @@ class AppBloc extends Cubit<AppStates> {
   final HotelsRepository hotelsRepository;
   final FiltterRepository filtterRepository;
   String? token = CacheHelper.getData(key: 'token');
+
   AppBloc({
     required this.repository,
     required this.hotelsRepository,
@@ -38,10 +41,10 @@ class AppBloc extends Cubit<AppStates> {
     final response = await repository.getProfile(token: token);
 
     response.fold(
-      (l) {
+          (l) {
         emit(ErrorState(exception: l));
       },
-      (r) {
+          (r) {
         profileModel = r;
 
         emit(GetProfileSuccessState());
@@ -49,9 +52,11 @@ class AppBloc extends Cubit<AppStates> {
     );
   }
 
-  void updateProfile(String name, String email) async {
+  void updateProfile(String name, String email, File? file) async {
     emit(UpdateProfileLoadingState());
-    final response = await repository.updateProfile(token: token,name:name,email: email);
+
+    final response =
+        await repository.updateProfile(token: "mEbHlHnNAvI6mB15T4ZBzN19Y8Un5GxChAfLkYzugI2GhEXUcKiogp6BxLuH", name: name, email: email,file: file);
 
     response.fold(
       (l) {
@@ -73,10 +78,10 @@ class AppBloc extends Cubit<AppStates> {
     );
 
     response.fold(
-      (l) {
+          (l) {
         emit(ErrorState(exception: l));
       },
-      (r) {
+          (r) {
         loginModel = r;
         token = r.data!.token;
         CacheHelper.saveData(key: 'token', value: token);
@@ -103,7 +108,7 @@ class AppBloc extends Cubit<AppStates> {
         emit(ErrorState(exception: l));
       },
           (s) {
-         registerModel = s ;
+        registerModel = s ;
 
         emit(UserRegisterSuccessState());
       },
@@ -124,6 +129,7 @@ class AppBloc extends Cubit<AppStates> {
   double start = 100;
   double startDistanc = 100;
   List<HotelModel> hotel = [];
+
   void getAllHotels() async {
     emit(HotelsLoadingState());
     final response = await hotelsRepository.getHotels(page: 1);
@@ -137,6 +143,7 @@ class AppBloc extends Cubit<AppStates> {
   }
 
   List<FiltterHotelModel> filtterHotel = [];
+
   void getfiltterHotel({
     required double start,
     required double end,
@@ -163,6 +170,7 @@ class AppBloc extends Cubit<AppStates> {
   }
 
   List<FiltterHotelModel> search = [];
+
   void searchHotel({
     required String address,
   }) async {
@@ -182,6 +190,7 @@ class AppBloc extends Cubit<AppStates> {
 
   int rooms = 0;
   int people = 0;
+
   void sumRooms() {
     rooms++;
     emit(AddCounterSuccessState(counter: rooms));
@@ -204,6 +213,7 @@ class AppBloc extends Cubit<AppStates> {
 
   late double lat;
   late double long;
+
   void getLocation() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -223,7 +233,7 @@ class AppBloc extends Cubit<AppStates> {
     if (permission == LocationPermission.deniedForever) {
       Fluttertoast.showToast(
           msg:
-              'Location permissions are permanently denied, we cannot request permissions.');
+          'Location permissions are permanently denied, we cannot request permissions.');
     }
 
     Position position = await Geolocator.getCurrentPosition(

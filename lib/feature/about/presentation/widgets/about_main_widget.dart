@@ -38,14 +38,13 @@ class AboutMainWidget extends StatelessWidget {
         Container(
           width: 50.w,
           height: 50.h,
-          decoration: const BoxDecoration(
+          decoration:   BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.redAccent,
             image: DecorationImage(
               fit: BoxFit.fill,
-              //image: NetworkImage(imgUrl ?? ""),
-              image: AssetImage("assets/img/splash_bg.jpg"),
-            ),
+              image: NetworkImage(imgUrl  ),
+             ),
           ),
         )
       ],
