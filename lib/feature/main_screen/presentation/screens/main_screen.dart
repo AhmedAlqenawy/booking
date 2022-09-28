@@ -1,7 +1,6 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../about/presentation/pages/about_page.dart';
 import '../../../hotels/presentation/screens/get_booking_screen.dart';
@@ -18,10 +17,10 @@ class _MainScreenState extends State<MainScreen> {
    int currentIndex = 0;
   List<Widget> screens = [
     const HomeScreen(),
-    const GetBookingScreen(),
+    const GetBookingScreen(item: 0,),
     const AboutPage(),
   ];
-  List<String> titles = ['Explore', 'Trips', 'Profile'];
+  List<String> titles = ['', 'Trips', 'Profile'];
   @override
   Widget build(BuildContext context) {
   

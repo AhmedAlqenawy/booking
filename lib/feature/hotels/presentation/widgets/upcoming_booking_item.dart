@@ -35,6 +35,7 @@ class UpcommingBookingItem extends StatelessWidget {
       child: Column(
         children: [
           Text(
+              style: openSans(14.sp, Colors.black, FontWeight.w300),
               '${DateFormat('MMM dd').format(DateTime.parse(startDate))} - ${DateFormat('MMM dd').format(DateTime.parse(endDate))} , 1 room 2 people'),
           Card(
               elevation: 4,
@@ -45,25 +46,31 @@ class UpcommingBookingItem extends StatelessWidget {
                     BoxDecoration(borderRadius: BorderRadius.circular(20)),
                 child: Column(
                   children: [
-                    CustomImage(images: images,
-                    isRounded: false,
-                       width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.2,
+                    CustomImage(
+                      images: images,
+                      isRounded: false,
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.2,
                     ),
-                   Padding(
+                    Padding(
                       padding:
                           const EdgeInsets.only(left: 16.0, right: 16, top: 8),
                       child: SizedBox(
                         width: double.infinity,
                         child: Row(
                           children: [
-                            FittedBox(child: Text(hotelName,
-                          style: openSans(20.sp, Colors.black, FontWeight.bold)
-                            )),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              child: Text(hotelName,
+                                  maxLines: 1,
+                                  style: openSans(
+                                      18.sp, Colors.black, FontWeight.bold)),
+                            ),
                             const Spacer(),
-                            FittedBox(child: Text(price,
-                           style: openSans(20.sp, Colors.black, FontWeight.bold)
-                            )),
+                            FittedBox(
+                                child: Text(price,
+                                    style: openSans(
+                                        18.sp, Colors.black, FontWeight.bold))),
                           ],
                         ),
                       ),
@@ -74,22 +81,26 @@ class UpcommingBookingItem extends StatelessWidget {
                         width: double.infinity,
                         child: Row(
                           children: [
-                            FittedBox(child: Text(hotelAddress,
-                            style: openSans(16.sp, Colors.grey, FontWeight.w300)  
-                            )),
+                            FittedBox(
+                                child: Text(hotelAddress,
+                                    style: openSans(
+                                        16.sp, Colors.black, FontWeight.w300))),
                             const Spacer(),
-                            const FittedBox(child: Text('/Per night')),
+                            FittedBox(
+                                child: Text('/Per night',
+                                    style: openSans(
+                                        16.sp, Colors.black, FontWeight.w300))),
                           ],
                         ),
                       ),
                     ),
                     Align(
-                      alignment: Alignment.topLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CustomRatingBar(rate:hotelRate),
-                      ))
-            ],
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CustomRatingBar(rate: hotelRate),
+                        ))
+                  ],
                 ),
               )),
         ],

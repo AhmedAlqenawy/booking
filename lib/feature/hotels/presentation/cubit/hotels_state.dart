@@ -57,3 +57,6 @@ class UpdateBookingErrorState extends HotelsState {
 
   const UpdateBookingErrorState(this.message);
 }
+class ChangeTabIndexState extends HotelsState {
+
+}

@@ -8,10 +8,12 @@ import 'core/di/injection.dart';
 import 'core/util/blocs/app/cubit.dart';
 import 'core/util/routes.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  CacheHelper.init();
+ await CacheHelper.init();
   late String accsestoken = CacheHelper.getData(key: 'token');
+
+  
 
   init();
 
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider<AppBloc>(
-            create: (context) => sl<AppBloc>(),
+            create: (context) => sl<AppBloc>()..getLocation()..getAllHotels(),
           ),
           BlocProvider<HotelsCubit>(
             create: (context) => sl<HotelsCubit>()..getAllUpcommingBooking()
@@ -37,13 +39,13 @@ class MyApp extends StatelessWidget {
         child: ScreenUtilInit(
           designSize: const Size(375, 812),
           builder: (context, child) => MaterialApp(
-            title: 'Booking Hotels',
+            title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
             routes: Routes.routes,
-            initialRoute: Routes.splash,
+            initialRoute: Routes.mainScreen,
           ),
         ));
   }

@@ -15,8 +15,9 @@ class CustomRatingBar extends StatelessWidget {
         allowHalfRating: true,
         itemCount: 5,
         itemSize: 25,
+        unratedColor: Colors.grey,
         itemPadding: const EdgeInsets.symmetric(horizontal: 0.0),
-        itemBuilder: (context, _) => Icon(
+        itemBuilder: (context, _) => const Icon(
           Icons.star,
           color: Colors.teal,
         ),
