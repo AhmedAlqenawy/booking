@@ -48,9 +48,14 @@ class CanceledBookingItem extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(hotelName,
-                          style:
-                              openSans(20.sp, Colors.black, FontWeight.bold)),
+                         SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              child: Text(hotelName,
+                                  maxLines: 1,
+                                  style: openSans(
+                                      18.sp, Colors.black, FontWeight.bold)),
+                            ),
+                            
                       Text(hotelAddress),
                       Text(
                         '$price /per night',

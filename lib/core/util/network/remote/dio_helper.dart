@@ -71,6 +71,7 @@ class DioImpl extends DioHelper {
         endPoint,
         queryParameters: query,
         cancelToken: cancelToken,
+        
       ),
     );
   }
