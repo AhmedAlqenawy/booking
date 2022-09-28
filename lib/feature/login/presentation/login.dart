@@ -1,11 +1,10 @@
 import 'package:booking/core/util/network/local/Cach_Helper.dart';
 import 'package:booking/core/util/widgets/formField/Form.dart';
-import 'package:booking/feature/home/presentation/pages/home_page.dart';
+import 'package:booking/feature/main_screen/presentation/screens/main_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -14,7 +13,6 @@ import '../../../core/util/blocs/app/states.dart';
 import '../../../core/util/widget_functions.dart';
 import '../../../core/util/widgets/Icon_Botton.dart';
 import '../../../core/util/widgets/default_button.dart';
-import '../../../core/util/widgets/my_form.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -41,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                  builder: (BuildContext context) => const HomePage()));
+                  builder: (BuildContext context) => MainScreen()));
         }
         if (state is ErrorState) {
           print(state.exception.error);
@@ -70,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Container(
                     width: double.maxFinite,
-                    height: 350,
+                    height: 300,
                     child: Image.asset('assets/img/anim.gif'),
                   ),
                   Text(
@@ -108,10 +106,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               image: 'assets/img/facebook.png',
                             ),
                           )),
-                          space(40.w, 20),
+                          space(20.h, 20),
                           Expanded(
                               child: Padding(
-                            padding: EdgeInsets.only(right: 20.0),
+                            padding: const EdgeInsets.only(right: 20.0),
                             child: IconDButton(
                               bgColor: Colors.blue.shade400,
                               textColor: Colors.white,
@@ -125,12 +123,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                       Padding(
-                        padding: EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.all(20.0),
                         child: Align(
                           alignment: Alignment.center,
                           child: Text(
                             'login_title2'.tr(),
-                            style: TextStyle(fontSize: 15, color: Colors.grey),
+                            style: const TextStyle(fontSize: 15, color: Colors.grey),
                           ),
                         ),
                       ),
@@ -212,6 +210,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                         ),
                       ),
+                      space(16.h, 0),
                       // DefaultButton(
                       //     bgColor: Color(0xff57B098),
                       //     textColor: Colors.white,
