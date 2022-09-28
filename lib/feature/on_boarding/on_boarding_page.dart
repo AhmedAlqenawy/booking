@@ -1,5 +1,6 @@
 import 'package:booking/feature/RegisterScreen/presentation/Register_Screen.dart';
 import 'package:booking/feature/login/presentation/login.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -29,7 +30,7 @@ class OnBoarding extends StatelessWidget {
                 pages: [
                   PageViewModel(
                     titleWidget: Text(
-                      "Plan your trips",
+                      "OnBoarding_title".tr(),
                       textScaleFactor: 1,
                       style: openSans(24.sp, Colors.black, FontWeight.bold),
                     ),
@@ -37,7 +38,7 @@ class OnBoarding extends StatelessWidget {
                       width: 259.w,
                       color: const Color(0xfff6f5f5),
                       child: Text(
-                        "book one of vour unique hotel to escape the ordinary",
+                        "OnBoarding_title3".tr(),
                         textScaleFactor: 1,
                         textAlign: TextAlign.center,
                         maxLines: 2,
@@ -66,14 +67,14 @@ class OnBoarding extends StatelessWidget {
                   ),
                   PageViewModel(
                     titleWidget: Text(
-                      "Find best deals",
+                      "OnBoarding_title2".tr(),
                       textScaleFactor: 1,
                       style: openSans(24.sp, Colors.black, FontWeight.bold),
                     ),
                     bodyWidget: SizedBox(
                       width: 259.w,
                       child: Text(
-                        "Find deals for any season from cosy country homes to city flats",
+                        "OnBoarding_title3".tr(),
                         textScaleFactor: 1,
                         textAlign: TextAlign.center,
                         maxLines: 2,
@@ -100,14 +101,14 @@ class OnBoarding extends StatelessWidget {
                   ),
                   PageViewModel(
                     titleWidget: Text(
-                      "Best travelling all time",
+                      "OnBoarding_title4".tr(),
                       textScaleFactor: 1,
                       style: openSans(24.sp, Colors.black, FontWeight.bold),
                     ),
                     bodyWidget: SizedBox(
                       width: 259.w,
                       child: Text(
-                        "Find deals for anv season from cosv country homes to city flats",
+                        "OnBoarding_title5".tr(),
                         textScaleFactor: 1,
                         textAlign: TextAlign.center,
                         maxLines: 2,
@@ -203,7 +204,7 @@ class OnBoarding extends StatelessWidget {
               textColor: Colors.white,
               width: 300.w,
               height: 55.h,
-              title: "Login",
+              title: "OnBoarding_button1".tr(),
               onTap: () {
                 Navigator.pushReplacement(
                   context,
@@ -219,7 +220,7 @@ class OnBoarding extends StatelessWidget {
               textColor: Colors.black,
               width: 300.w,
               height: 55.h,
-              title: "Create account",
+              title: "OnBoarding_button2".tr(),
               onTap: () {
                  Navigator.pushReplacement(
                   context,
