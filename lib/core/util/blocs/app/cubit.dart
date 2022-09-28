@@ -51,7 +51,8 @@ class AppBloc extends Cubit<AppStates> {
 
   void updateProfile(String name, String email) async {
     emit(UpdateProfileLoadingState());
-    final response = await repository.updateProfile(token: token,name:name,email: email);
+    final response =
+        await repository.updateProfile(token: token, name: name, email: email);
 
     response.fold(
       (l) {
@@ -85,7 +86,7 @@ class AppBloc extends Cubit<AppStates> {
     );
   }
 
-  void userSignUp(email, password,Fname,ConfirmPassword) async {
+  void userSignUp(email, password, Fname, ConfirmPassword) async {
     emit(UserRegisterLoadingState());
     print('$email + omniaaaaaaa');
     print('$password + omniaaaaaaa');
@@ -99,11 +100,11 @@ class AppBloc extends Cubit<AppStates> {
     );
 
     response.fold(
-          (l) {
+      (l) {
         emit(ErrorState(exception: l));
       },
-          (s) {
-         registerModel = s ;
+      (s) {
+        registerModel = s;
 
         emit(UserRegisterSuccessState());
       },
@@ -120,9 +121,9 @@ class AppBloc extends Cubit<AppStates> {
     emit(LocationSuccessState());
   }
 
-  double end = 5000;
-  double start = 100;
-  double startDistanc = 100;
+  double end = 4000;
+  double start = 500;
+  double startDistanc = 50;
   List<HotelModel> hotel = [];
   void getAllHotels() async {
     emit(HotelsLoadingState());

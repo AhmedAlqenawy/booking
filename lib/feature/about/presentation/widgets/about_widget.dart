@@ -44,7 +44,10 @@ class _AboutWidgetState extends State<AboutWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     space(50.h, 0),
-                      AboutMainWidget(name: profileModel.data?.name??"",imgUrl:profileModel.data?.image??"" ,),
+                    AboutMainWidget(
+                      name: profileModel.data?.name ?? "",
+                      imgUrl: profileModel.data?.image ?? "",
+                    ),
                     space(32.h, 0),
                     const ProfileItem(
                       title: "Change Password",

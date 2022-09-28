@@ -1,5 +1,8 @@
 import 'package:booking/core/util/network/local/Cach_Helper.dart';
+import 'package:booking/feature/allhotels/presentation/hotels_page.dart';
+import 'package:booking/feature/allhotels/presentation/widgets/map_widget.dart';
 import 'package:booking/feature/hotels/presentation/cubit/hotels_cubit.dart';
+import 'package:booking/feature/hotels/presentation/screens/get_booking_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,11 +30,12 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider<AppBloc>(
-            create: (context) => sl<AppBloc>(),
+            create: (context) => sl<AppBloc>()
+              ..getLocation()
+              ..getAllHotels(),
           ),
           BlocProvider<HotelsCubit>(
-            create: (context) => sl<HotelsCubit>()..getAllUpcommingBooking()
-            ,
+            create: (context) => sl<HotelsCubit>()..getAllUpcommingBooking(),
           ),
         ],
         child: ScreenUtilInit(
@@ -43,7 +47,7 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.blue,
             ),
             routes: Routes.routes,
-            initialRoute: Routes.about,
+            initialRoute: Routes.splash,
           ),
         ));
   }

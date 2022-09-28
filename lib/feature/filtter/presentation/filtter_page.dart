@@ -16,8 +16,6 @@ class FiltterPage extends StatefulWidget {
 class _FiltterPageState extends State<FiltterPage> {
   @override
   Widget build(BuildContext context) {
-    double distance = 100;
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

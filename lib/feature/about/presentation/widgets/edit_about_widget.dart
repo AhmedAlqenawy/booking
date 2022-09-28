@@ -28,7 +28,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
     emailTextEditingController = TextEditingController();
     phoneTextEditingController = TextEditingController();
     //AppBloc.get(context).getProfileDate();
-     profileModel = AppBloc.get(context).profileModel;
+    profileModel = AppBloc.get(context).profileModel;
     if (profileModel != null) {
       nameTextEditingController.text = profileModel!.data!.name!;
       emailTextEditingController.text = profileModel!.data!.email!;
@@ -50,7 +50,6 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
         }
       },
       builder: (context, state) {
-
         return state.toString() == UpdateProfileLoadingState().toString()
             ? Center(child: const CircularProgressIndicator())
             : Padding(
