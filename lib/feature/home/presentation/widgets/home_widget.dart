@@ -1,4 +1,5 @@
 import 'package:booking/core/util/widget_functions.dart';
+import 'package:booking/feature/allhotels/presentation/hotels_page.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,20 +10,18 @@ import '../../../../core/util/blocs/app/states.dart';
 import '../../../../core/util/widgets/formField/Form.dart';
 
 class HomeWidget extends StatefulWidget {
-
   const HomeWidget({Key? key}) : super(key: key);
 
   @override
   State<HomeWidget> createState() => _HomeWidgetState();
 }
 
-
 class _HomeWidgetState extends State<HomeWidget> {
-
   @override
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppBloc, AppStates>(
@@ -34,9 +33,16 @@ class _HomeWidgetState extends State<HomeWidget> {
         }
       },
       builder: (context, state) {
-        return
-
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HotelsPage(),
+                    ));
+              },
+              child: Text('aaaaaaaaaaaaaaaa')),
           CarouselSlider.builder(
             itemCount: 3,
             itemBuilder:
@@ -60,8 +66,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 scrollDirection: Axis.horizontal,
                 clipBehavior: Clip.antiAliasWithSaveLayer),
           )
-        ]
-              );
+        ]);
       },
     );
   }

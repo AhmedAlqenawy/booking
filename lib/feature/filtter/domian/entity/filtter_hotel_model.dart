@@ -5,6 +5,7 @@ class FiltterHotelModel {
   final String price;
   final String address;
   final dynamic rate;
+  List<HotelImages>? hotelImages;
 
   FiltterHotelModel({
     required this.price,
@@ -13,6 +14,7 @@ class FiltterHotelModel {
     required this.description,
     required this.address,
     required this.rate,
+    required this.hotelImages,
   });
 
   factory FiltterHotelModel.fromJson(Map<String, dynamic> json) {
@@ -23,6 +25,21 @@ class FiltterHotelModel {
       price: json['price'],
       address: json['address'],
       rate: json['rate'],
+      hotelImages: (json['hotel_images'] as List<dynamic>?)
+          ?.map((e) => HotelImages.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+class HotelImages {
+  final String image;
+
+  HotelImages({required this.image});
+
+  factory HotelImages.fromJson(Map<String, dynamic> json) {
+    return HotelImages(
+      image: json['image'],
     );
   }
 }

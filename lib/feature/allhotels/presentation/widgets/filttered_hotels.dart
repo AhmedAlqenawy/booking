@@ -1,5 +1,6 @@
 import 'package:booking/core/util/blocs/app/cubit.dart';
 import 'package:booking/core/util/blocs/app/states.dart';
+import 'package:booking/core/util/network/remote/end_points.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -31,7 +32,9 @@ class FiltterdHotel extends StatelessWidget {
                   child: Image.network(
                       width: double.infinity,
                       fit: BoxFit.fill,
-                      'https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png'),
+                      cubit.filtterHotel[index].hotelImages!.isNotEmpty
+                          ? '$baseApiUrl/images/${cubit.search[index].hotelImages![0].image}'
+                          : 'http://api.mahmoudtaha.com/images/35321662903840.jpg'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),

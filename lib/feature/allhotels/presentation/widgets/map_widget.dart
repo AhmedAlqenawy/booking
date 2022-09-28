@@ -15,6 +15,12 @@ class MapWidget extends StatefulWidget {
 }
 
 class _MapWidgetState extends State<MapWidget> {
+  @override
+  void initState() {
+    super.initState();
+    AppBloc.get(context).getAllHotels();
+  }
+
   int x = 0;
   Future<void> _goToTheLake() async {
     GoogleMapController controller = await _controller.future;
@@ -32,37 +38,37 @@ class _MapWidgetState extends State<MapWidget> {
   List<CameraPosition> latlonglist = [
     const CameraPosition(
         bearing: 192.8334901395799,
-        target: LatLng(30.784451, 30.997881),
+        target: LatLng(27.049302, 33.900214),
         tilt: 59.440717697143555,
         zoom: 15.151926040649414),
     const CameraPosition(
         bearing: 192.8334901395799,
-        target: LatLng(41.902782, 12.496365),
+        target: LatLng(27.049302, 33.900214),
         tilt: 59.440717697143555,
         zoom: 15.151926040649414),
     const CameraPosition(
         bearing: 192.8334901395799,
-        target: LatLng(41.902782, 12.496365),
+        target: LatLng(27.049302, 33.900214),
         tilt: 59.440717697143555,
         zoom: 15.151926040649414),
     const CameraPosition(
         bearing: 192.8334901395799,
-        target: LatLng(41.902782, 12.496365),
+        target: LatLng(27.049302, 33.900214),
         tilt: 59.440717697143555,
         zoom: 15.151926040649414),
     const CameraPosition(
         bearing: 192.8334901395799,
-        target: LatLng(41.902782, 12.496365),
+        target: LatLng(27.150182, 33.826711),
         tilt: 59.440717697143555,
         zoom: 15.151926040649414),
     const CameraPosition(
         bearing: 192.8334901395799,
         tilt: 59.440717697143555,
-        target: LatLng(30.784451, 30.997881),
+        target: LatLng(27.135312, 33.8116368),
         zoom: 15.151926040649414),
     const CameraPosition(
         bearing: 192.8334901395799,
-        target: LatLng(30.784451, 30.997881),
+        target: LatLng(27.259102, 33.812999),
         tilt: 59.440717697143555,
         zoom: 15.151926040649414),
   ];

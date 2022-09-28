@@ -32,7 +32,7 @@ class _DistanceWidgetState extends State<DistanceWidget> {
             inactiveTickMarkColor: Colors.transparent,
           ),
           child: Slider(
-            max: 100,
+            max: 300,
             min: 1,
             divisions: 20,
             label: AppBloc.get(context).startDistanc.round().toString(),

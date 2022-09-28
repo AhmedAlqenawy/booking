@@ -121,9 +121,9 @@ class AppBloc extends Cubit<AppStates> {
     emit(LocationSuccessState());
   }
 
-  double end = 4000;
-  double start = 500;
-  double startDistanc = 50;
+  double end = 1000;
+  double start = 10;
+  double startDistanc = 150;
   List<HotelModel> hotel = [];
   void getAllHotels() async {
     emit(HotelsLoadingState());
@@ -147,8 +147,8 @@ class AppBloc extends Cubit<AppStates> {
     final response = await filtterRepository.filtter(
       latitude: lat,
       longitude: long,
-      facilities0: 3,
-      facilities1: 2,
+      facilities0: 5,
+      facilities1: 10,
       page: 1,
       maxPrice: end,
       minPrice: start,

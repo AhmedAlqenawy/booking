@@ -34,9 +34,9 @@ class _RangSliderWidgetState extends State<RangSliderWidget> {
         ),
         Row(
           children: const [
-            Text('100', style: TextStyle(fontSize: 14, color: Colors.grey)),
+            Text('10', style: TextStyle(fontSize: 14, color: Colors.grey)),
             Spacer(),
-            Text('5000', style: TextStyle(fontSize: 14, color: Colors.grey)),
+            Text('1000', style: TextStyle(fontSize: 14, color: Colors.grey)),
           ],
         ),
         SliderTheme(
@@ -50,8 +50,8 @@ class _RangSliderWidgetState extends State<RangSliderWidget> {
             inactiveTickMarkColor: Colors.transparent,
           ),
           child: RangeSlider(
-            max: 5000,
-            min: 100,
+            max: 1000,
+            min: 10,
             values: RangeValues(
                 AppBloc.get(context).start, AppBloc.get(context).end),
             divisions: 20,
