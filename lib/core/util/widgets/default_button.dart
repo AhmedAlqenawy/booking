@@ -6,6 +6,8 @@ class DefaultButton extends StatelessWidget {
   final void Function()? onTap;
   final Color bgColor;
   final Color textColor;
+   final  bool haveBorder;
+
   final String title;
   final double height, width;
 
@@ -16,7 +18,7 @@ class DefaultButton extends StatelessWidget {
     required this.textColor,
     required this.title,
     required this.height,
-    required this.width,
+    required this.width,  this.haveBorder = false,
   }) : super(key: key);
 
   @override
@@ -29,6 +31,8 @@ class DefaultButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: bgColor,
           borderRadius: BorderRadius.circular(32.r),
+
+          border: Border.all(color:haveBorder? textColor:bgColor),
           boxShadow: const [
             BoxShadow(
               blurRadius: 2,

@@ -25,7 +25,8 @@ class CanceledBookingScreen extends StatelessWidget {
         if (cubit. canceledBooking.isNotEmpty) {
           return ListView.separated(
             itemBuilder: (BuildContext context, int index) =>
-                InkWell(onTap: ()=>navigateTo(
+                InkWell(onTap: ()=>
+                navigateTo(
                   context: context,
                   widget: BookingDetailsScreen(
                     userId:cubit.canceledBooking[index].user.id! ,

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,13 +7,15 @@ import '../../../../core/util/widgets/default_button.dart';
 import '../../domain/entities/trip.dart';
 import '../cubit/hotels_cubit.dart';
 import '../widgets/images_slider.dart';
+import 'get_booking_screen.dart';
 
 class BookingDetailsScreen extends StatelessWidget {
   const BookingDetailsScreen(
       {super.key,
       required this.hotel,
       required this.userId,
-      required this.bookingId, required this.type});
+      required this.bookingId,
+      required this.type});
   final Hotel hotel;
   final int userId;
   final int bookingId;
@@ -37,21 +38,8 @@ class BookingDetailsScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(hotel.description!),
-                DefaultButton(
-                  bgColor: Color(0xff57B098),
-                  textColor: Colors.black,
-                  width: 120.w,
-                  height: 40.h,
-                  title: "Book now",
-                  onTap: () {
-                    // BlocProvider.of<HotelsCubit>(context)
-                    //     .createBooking(hotelId: 13, userId: 179);
-                    BlocProvider.of<HotelsCubit>(context).updateBookingStatus(
-                      context: context,
-                        bookingId: bookingId, type: 'completed');
-                  },
-                ),
+                Text(hotel.description!,
+                    style: openSans(16.sp, Colors.black, FontWeight.w400)),
               ],
             ),
           ),
@@ -68,6 +56,55 @@ class BookingDetailsScreen extends StatelessWidget {
               ]),
             ),
           ),
+          const SizedBox(
+            height: 20,
+          ),
+          type == 'upcomming'
+              ? Center(
+                  child: DefaultButton(
+                    bgColor: Color(0xff57B098),
+                    textColor: Colors.white,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    height: 40.h,
+                    title: "Complete reservation",
+                    onTap: () {
+                      // BlocProvider.of<HotelsCubit>(context)
+                      //     .createBooking(hotelId: 13, userId: 179);
+                      BlocProvider.of<HotelsCubit>(context).updateBookingStatus(
+                          context: context,
+                          bookingId: bookingId,
+                          index: 1,
+                          type: 'completed');
+                      //navigateTo(context: context, widget: GetBookingScreen(item: 1,));
+                    },
+                  ),
+                )
+              : const SizedBox(),
+          const SizedBox(
+            height: 16,
+          ),
+          type == 'upcomming' || type == 'completed'
+              ? Center(
+                  child: DefaultButton(
+                    textColor: Color(0xff57B098),
+                    bgColor: Colors.white,
+                    haveBorder: true,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    height: 40.h,
+                    title: "Cancel reservation",
+                    onTap: () {
+                      // BlocProvider.of<HotelsCubit>(context)
+                      //     .createBooking(hotelId: 13, userId: 179);
+                      BlocProvider.of<HotelsCubit>(context).updateBookingStatus(
+                          context: context,
+                          bookingId: bookingId,
+                          index: 2,
+                          type: 'cancelled');
+                          
+                    },
+                  ),
+                )
+              : SizedBox()
         ],
       ),
     );
