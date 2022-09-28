@@ -90,7 +90,7 @@ class AppBloc extends Cubit<AppStates> {
     );
   }
 
-  void userSignUp(email, password,Fname,ConfirmPassword) async {
+  void userSignUp(email, password, Fname, ConfirmPassword) async {
     emit(UserRegisterLoadingState());
     print('$email + Omniaaaaaaa');
     print('$password + Omniaaaaaaa');
@@ -104,11 +104,11 @@ class AppBloc extends Cubit<AppStates> {
     );
 
     response.fold(
-          (l) {
+      (l) {
         emit(ErrorState(exception: l));
       },
-          (s) {
-        registerModel = s ;
+      (s) {
+        registerModel = s;
 
         emit(UserRegisterSuccessState());
       },
@@ -125,9 +125,9 @@ class AppBloc extends Cubit<AppStates> {
     emit(LocationSuccessState());
   }
 
-  double end = 5000;
-  double start = 100;
-  double startDistanc = 100;
+  double end = 1000;
+  double start = 10;
+  double startDistanc = 150;
   List<HotelModel> hotel = [];
 
   void getAllHotels() async {
@@ -143,7 +143,6 @@ class AppBloc extends Cubit<AppStates> {
   }
 
   List<FiltterHotelModel> filtterHotel = [];
-
   void getfiltterHotel({
     required double start,
     required double end,
@@ -153,8 +152,8 @@ class AppBloc extends Cubit<AppStates> {
     final response = await filtterRepository.filtter(
       latitude: lat,
       longitude: long,
-      facilities0: 3,
-      facilities1: 2,
+      facilities0: 5,
+      facilities1: 10,
       page: 1,
       maxPrice: end,
       minPrice: start,

@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 import '../../../about/presentation/pages/about_page.dart';
@@ -14,7 +12,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-   int currentIndex = 0;
+  int currentIndex = 0;
   List<Widget> screens = [
     const HomeScreen(),
     const GetBookingScreen(item: 0,),
@@ -23,37 +21,28 @@ class _MainScreenState extends State<MainScreen> {
   List<String> titles = ['', 'Trips', 'Profile'];
   @override
   Widget build(BuildContext context) {
-  
-        
-
-        return Scaffold(
-          appBar: AppBar(
-            title:
-                 Text(titles[currentIndex], style: const TextStyle(color: Colors.black)),
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-          ),
-          body:  screens[currentIndex],
-                bottomNavigationBar: BottomNavigationBar(
-                  items:  const[
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.search), label: 'Explore'),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.favorite_border), label: 'Trips'),
-                          BottomNavigationBarItem(
-                        icon: Icon(Icons.person), label: 'Profile'),
-                    
-                
-                  ],
-                  onTap: (index) {
-                    setState(() {
-                            currentIndex = index;
-
-                    });
-                  },
-                  currentIndex: currentIndex,
-                ),
-
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(titles[currentIndex],
+            style: const TextStyle(color: Colors.black)),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
+      body: screens[currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Explore'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite_border), label: 'Trips'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        currentIndex: currentIndex,
+      ),
     );
   }
 }

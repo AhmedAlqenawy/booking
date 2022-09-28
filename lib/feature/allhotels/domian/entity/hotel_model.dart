@@ -5,6 +5,9 @@ class HotelModel {
   final String price;
   final String address;
   final dynamic rate;
+  final double longitude;
+  final double latitude;
+  List<HotelImages>? hotelImages;
 
   HotelModel({
     required this.price,
@@ -13,6 +16,9 @@ class HotelModel {
     required this.description,
     required this.address,
     required this.rate,
+    required this.hotelImages,
+    required this.longitude,
+    required this.latitude,
   });
 
   factory HotelModel.fromJson(Map<String, dynamic> json) {
@@ -23,6 +29,23 @@ class HotelModel {
       price: json['price'],
       address: json['address'],
       rate: json['rate'],
+      latitude: json['latitude'],
+      longitude: json['longitude'],
+      hotelImages: (json['hotel_images'] as List<dynamic>?)
+          ?.map((e) => HotelImages.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+class HotelImages {
+  final String image;
+
+  HotelImages({required this.image});
+
+  factory HotelImages.fromJson(Map<String, dynamic> json) {
+    return HotelImages(
+      image: json['image'],
     );
   }
 }

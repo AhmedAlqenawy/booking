@@ -16,8 +16,6 @@ class FiltterPage extends StatefulWidget {
 class _FiltterPageState extends State<FiltterPage> {
   @override
   Widget build(BuildContext context) {
-    double distance = 100;
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -70,6 +68,7 @@ class _FiltterPageState extends State<FiltterPage> {
                       start: AppBloc.get(context).start,
                       end: AppBloc.get(context).end,
                     );
+                    //   AppBloc.get(context).getAllHotels();
                     Navigator.pop(context);
                   },
                   child: const Text(

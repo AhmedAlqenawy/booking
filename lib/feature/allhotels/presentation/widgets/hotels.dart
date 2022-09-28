@@ -10,7 +10,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HotelsWidget extends StatelessWidget {
   HotelsWidget({Key? key}) : super(key: key);
-  HotelsModel? hotelsModel;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppBloc, AppStates>(

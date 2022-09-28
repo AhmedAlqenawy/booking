@@ -5,6 +5,8 @@
         android:label="booking"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyA8_EFGoZBJpto0Tsz6l79jeCA6X11hhso"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

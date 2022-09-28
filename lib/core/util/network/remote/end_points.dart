@@ -14,5 +14,5 @@ const String getupCommingBookingEndPoint =
     '/get-bookings?type=upcomming &count=10';
 const String getCompletedBookingEndPoint =
     '/get-bookings?type=completed &count=10';
-    const String createBookingEndPoint = '/create-booking';
-        const String updateBookingEndPoint = '/update-booking-status';
+const String createBookingEndPoint = '/create-booking';
+const String updateBookingEndPoint = '/update-booking-status';

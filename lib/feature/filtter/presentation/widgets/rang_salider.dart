@@ -11,7 +11,7 @@ class RangSliderWidget extends StatefulWidget {
 }
 
 class _RangSliderWidgetState extends State<RangSliderWidget> {
-  final double _x = 10.0;
+  // final double _x = 10.0;
 
   // RangeValues currentValues = RangeValues(_x, 2000);
 
@@ -29,23 +29,29 @@ class _RangSliderWidgetState extends State<RangSliderWidget> {
         ),
         const Text('price (for 1 night)',
             style: TextStyle(fontSize: 14, color: Colors.grey)),
-        Text('${AppBloc.get(context).start}',
-            style: const TextStyle(fontSize: 14, color: Colors.grey)),
-        Text('${AppBloc.get(context).end}',
-            style: const TextStyle(fontSize: 14, color: Colors.grey)),
+        const SizedBox(
+          height: 10,
+        ),
+        Row(
+          children: const [
+            Text('10', style: TextStyle(fontSize: 14, color: Colors.grey)),
+            Spacer(),
+            Text('1000', style: TextStyle(fontSize: 14, color: Colors.grey)),
+          ],
+        ),
         SliderTheme(
           data: const SliderThemeData(
             showValueIndicator: ShowValueIndicator.always,
             thumbColor: Colors.teal,
-            trackHeight: 10,
+            trackHeight: 8,
             activeTrackColor: Colors.teal,
             inactiveTrackColor: Colors.grey,
             activeTickMarkColor: Colors.transparent,
             inactiveTickMarkColor: Colors.transparent,
           ),
           child: RangeSlider(
-            max: 5000,
-            min: 100,
+            max: 1000,
+            min: 10,
             values: RangeValues(
                 AppBloc.get(context).start, AppBloc.get(context).end),
             divisions: 20,

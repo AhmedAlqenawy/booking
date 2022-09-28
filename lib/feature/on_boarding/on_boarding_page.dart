@@ -26,7 +26,7 @@ class OnBoarding extends StatelessWidget {
               padding: EdgeInsets.only(top: 40.h),
               child: IntroductionScreen(
                 globalBackgroundColor: const Color(0xfff6f5f5),
-               // isTopSafeArea: true,
+                // isTopSafeArea: true,
                 pages: [
                   PageViewModel(
                     titleWidget: Text(
@@ -59,10 +59,10 @@ class OnBoarding extends StatelessWidget {
                     decoration: PageDecoration(
                       pageColor: const Color(0xfff6f5f5),
                       titlePadding: EdgeInsets.only(top: 8.0.h),
-                      imagePadding:   EdgeInsets.only(top: 16.0.h),
+                      imagePadding: EdgeInsets.only(top: 16.0.h),
                       bodyPadding: EdgeInsets.only(top: 16.0.h),
                       contentMargin: EdgeInsets.all(20.h),
-                     // footerPadding: EdgeInsets.all(0)
+                      // footerPadding: EdgeInsets.all(0)
                     ),
                   ),
                   PageViewModel(
@@ -209,7 +209,7 @@ class OnBoarding extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (BuildContext context) =>  LoginScreen(),
+                    builder: (BuildContext context) => LoginScreen(),
                   ),
                 );
               },
@@ -222,7 +222,7 @@ class OnBoarding extends StatelessWidget {
               height: 55.h,
               title: "OnBoarding_button2".tr(),
               onTap: () {
-                 Navigator.pushReplacement(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) => const RegisterScreen(),

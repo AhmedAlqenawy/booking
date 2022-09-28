@@ -17,19 +17,22 @@ class _DistanceWidgetState extends State<DistanceWidget> {
       children: [
         const Text('Distance from city center ',
             style: TextStyle(color: Colors.grey)),
-        Center(child: const Text('Less than 5.0 Km ')),
+        const SizedBox(
+          height: 10,
+        ),
+        const Center(child: Text('Less than 5.0 Km ')),
         SliderTheme(
           data: const SliderThemeData(
             showValueIndicator: ShowValueIndicator.always,
             thumbColor: Colors.teal,
-            trackHeight: 10,
+            trackHeight: 8,
             activeTrackColor: Colors.teal,
             inactiveTrackColor: Colors.grey,
             activeTickMarkColor: Colors.transparent,
             inactiveTickMarkColor: Colors.transparent,
           ),
           child: Slider(
-            max: 100,
+            max: 300,
             min: 1,
             divisions: 20,
             label: AppBloc.get(context).startDistanc.round().toString(),
