@@ -1,5 +1,7 @@
+import 'package:booking/core/util/network/local/Cach_Helper.dart';
 import 'package:booking/core/util/widgets/formField/Form.dart';
-import 'package:booking/feature/home/presentation/pages/home_page.dart';
+import 'package:booking/feature/main_screen/presentation/screens/main_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,12 +13,18 @@ import '../../../core/util/blocs/app/states.dart';
 import '../../../core/util/widget_functions.dart';
 import '../../../core/util/widgets/Icon_Botton.dart';
 import '../../../core/util/widgets/default_button.dart';
-import '../../../core/util/widgets/my_form.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
+
+  CacheHelper? cacheHelper;
 
   TextEditingController controller_email = TextEditingController();
 
@@ -31,7 +39,7 @@ class LoginScreen extends StatelessWidget {
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                  builder: (BuildContext context) => const HomePage()));
+                  builder: (BuildContext context) => MainScreen()));
         }
         if (state is ErrorState) {
           print(state.exception.error);
@@ -60,22 +68,22 @@ class LoginScreen extends StatelessWidget {
                 children: [
                   Container(
                     width: double.maxFinite,
-                    height: 350,
+                    height: 300,
                     child: Image.asset('assets/img/anim.gif'),
                   ),
                   Text(
-                    'Welcome',
+                    'login_title'.tr(),
                     style: TextStyle(fontFamily: 'AbrilFatface', fontSize: 30),
                   ),
                   Column(
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 25.0, top: 10),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 25.0, top: 10),
                         child: Align(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            'Login',
-                            style: TextStyle(
+                            'login_title1'.tr(),
+                            style: const TextStyle(
                                 fontFamily: 'AbrilFatface',
                                 fontWeight: FontWeight.w200,
                                 fontSize: 20),
@@ -98,10 +106,10 @@ class LoginScreen extends StatelessWidget {
                               image: 'assets/img/facebook.png',
                             ),
                           )),
-                          space(40.w, 20),
+                          space(20.h, 20),
                           Expanded(
                               child: Padding(
-                            padding: EdgeInsets.only(right: 20.0),
+                            padding: const EdgeInsets.only(right: 20.0),
                             child: IconDButton(
                               bgColor: Colors.blue.shade400,
                               textColor: Colors.white,
@@ -114,35 +122,35 @@ class LoginScreen extends StatelessWidget {
                           ))
                         ],
                       ),
-                      const Padding(
-                        padding: EdgeInsets.all(20.0),
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
                         child: Align(
                           alignment: Alignment.center,
                           child: Text(
-                            'or log in with email',
-                            style: TextStyle(fontSize: 15, color: Colors.grey),
+                            'login_title2'.tr(),
+                            style: const TextStyle(fontSize: 15, color: Colors.grey),
                           ),
                         ),
                       ),
                       // space(10, 0),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(left: 25.0, bottom: 5),
                         child: Align(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            'Your email',
+                            'login_title3'.tr(),
                             style: TextStyle(fontSize: 12, color: Colors.grey),
                           ),
                         ),
                       ),
                       MyFormLogin(
-                        label: 'enter your email',
+                        label: 'login_title4'.tr(),
                         validation: 'required email',
                         controller: controller_email,
                         type: TextInputType.emailAddress,
                       ),
                       space(30.h, 0),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(
                           left: 25.0,
                           bottom: 5,
@@ -150,14 +158,14 @@ class LoginScreen extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            'Password',
+                            'login_title5'.tr(),
                             style: TextStyle(fontSize: 12, color: Colors.grey),
                           ),
                         ),
                       ),
 
                       MyFormLogin(
-                        label: 'enter password',
+                        label: 'login_title6'.tr(),
                         validation: 'required password',
                         controller: controller_password,
                         type: TextInputType.visiblePassword,
@@ -174,8 +182,8 @@ class LoginScreen extends StatelessWidget {
                             onPressed: () {
                               // ####################################################
                             },
-                            child: const Text(
-                              'Forgot your Password?',
+                            child: Text(
+                              'login_button1'.tr(),
                               style:
                                   TextStyle(fontSize: 15, color: Colors.grey),
                             ),
@@ -190,7 +198,7 @@ class LoginScreen extends StatelessWidget {
                         child: DefaultButton(
                           bgColor: Color(0xff57B098),
                           textColor: Colors.white,
-                          title: 'Log in',
+                          title: 'login_button2'.tr(),
                           height: 50,
                           width: 350,
                           onTap: () {
@@ -202,6 +210,17 @@ class LoginScreen extends StatelessWidget {
                           },
                         ),
                       ),
+                      space(16.h, 0),
+                      // DefaultButton(
+                      //     bgColor: Color(0xff57B098),
+                      //     textColor: Colors.white,
+                      //     title: 'login_button2'.tr(),
+                      //     height: 50,
+                      //     width: 350,
+                      //     onTap: () {
+                      //       cacheHelper?.changeLanguage();
+                      //        Phoenix.rebirth(context);
+                      //     })
                     ],
                   ),
                 ],

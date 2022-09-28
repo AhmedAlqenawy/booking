@@ -5,12 +5,12 @@ import 'package:booking/feature/allhotels/domian/entity/hotel_model.dart';
 import 'package:booking/feature/allhotels/domian/repository/auth_repository.dart';
 import 'package:booking/feature/filtter/domian/entity/filtter_hotel_model.dart';
 import 'package:booking/feature/filtter/domian/repository/filtter_repository.dart';
-import 'package:booking/feature/models/register_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 
-import '../../../../feature/models/login_model.dart';
+import '../../../../feature/login/models/login_model.dart';
+import '../../../../feature/login/models/register_model.dart';
 import '../../network/repository.dart';
 
 class AppBloc extends Cubit<AppStates> {
@@ -18,6 +18,7 @@ class AppBloc extends Cubit<AppStates> {
   final HotelsRepository hotelsRepository;
   final FiltterRepository filtterRepository;
   String? token = CacheHelper.getData(key: 'token');
+
   AppBloc({
     required this.repository,
     required this.hotelsRepository,
@@ -38,10 +39,10 @@ class AppBloc extends Cubit<AppStates> {
     final response = await repository.getProfile(token: token);
 
     response.fold(
-      (l) {
+          (l) {
         emit(ErrorState(exception: l));
       },
-      (r) {
+          (r) {
         profileModel = r;
 
         emit(GetProfileSuccessState());
@@ -49,10 +50,11 @@ class AppBloc extends Cubit<AppStates> {
     );
   }
 
-  void updateProfile(String name, String email) async {
+  void updateProfile(String name, String email, File? file) async {
     emit(UpdateProfileLoadingState());
+
     final response =
-        await repository.updateProfile(token: token, name: name, email: email);
+        await repository.updateProfile(token: "mEbHlHnNAvI6mB15T4ZBzN19Y8Un5GxChAfLkYzugI2GhEXUcKiogp6BxLuH", name: name, email: email,file: file);
 
     response.fold(
       (l) {
@@ -74,12 +76,12 @@ class AppBloc extends Cubit<AppStates> {
     );
 
     response.fold(
-      (l) {
+          (l) {
         emit(ErrorState(exception: l));
       },
-      (r) {
+          (r) {
         loginModel = r;
-        token = r.data!.token;
+        token = r.data!.apiToken;
         CacheHelper.saveData(key: 'token', value: token);
         emit(UserLoginSuccessState());
       },
@@ -88,10 +90,10 @@ class AppBloc extends Cubit<AppStates> {
 
   void userSignUp(email, password, Fname, ConfirmPassword) async {
     emit(UserRegisterLoadingState());
-    print('$email + omniaaaaaaa');
-    print('$password + omniaaaaaaa');
-    print('$Fname + omniaaaaaaa');
-    print('$ConfirmPassword + omniaaaaaaa');
+    print('$email + Omniaaaaaaa');
+    print('$password + Omniaaaaaaa');
+    print('$Fname + Omniaaaaaaa');
+    print('$ConfirmPassword + Omniaaaaaaa');
     final response = await repository.register(
       name: Fname,
       email: email,
@@ -125,6 +127,7 @@ class AppBloc extends Cubit<AppStates> {
   double start = 10;
   double startDistanc = 150;
   List<HotelModel> hotel = [];
+
   void getAllHotels() async {
     emit(HotelsLoadingState());
     final response = await hotelsRepository.getHotels(page: 1);
@@ -164,6 +167,7 @@ class AppBloc extends Cubit<AppStates> {
   }
 
   List<FiltterHotelModel> search = [];
+
   void searchHotel({
     required String address,
   }) async {
@@ -183,6 +187,7 @@ class AppBloc extends Cubit<AppStates> {
 
   int rooms = 0;
   int people = 0;
+
   void sumRooms() {
     rooms++;
     emit(AddCounterSuccessState(counter: rooms));
@@ -205,6 +210,7 @@ class AppBloc extends Cubit<AppStates> {
 
   late double lat;
   late double long;
+
   void getLocation() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -224,7 +230,7 @@ class AppBloc extends Cubit<AppStates> {
     if (permission == LocationPermission.deniedForever) {
       Fluttertoast.showToast(
           msg:
-              'Location permissions are permanently denied, we cannot request permissions.');
+          'Location permissions are permanently denied, we cannot request permissions.');
     }
 
     Position position = await Geolocator.getCurrentPosition(

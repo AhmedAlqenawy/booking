@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -31,8 +30,9 @@ class HotelsCubit extends Cubit<HotelsState> {
   final UpdateBookingUsecase updateBookingUsecase;
 
   List<Data> upCommingBooking = [];
-  List<Data> completedBooking =[];
+  List<Data> completedBooking = [];
   List<Data> canceledBooking = [];
+
   getAllCanceledBooking() async {
     canceledBooking = [];
     emit(GetCompletedBookingLoadingState());
@@ -91,19 +91,39 @@ class HotelsCubit extends Cubit<HotelsState> {
     response.fold(
         (failure) => CreateBookingErrorState(_getFailureErrorMessage(failure)),
         (message) {
-
       emit(CreateBookingSuccessState());
     });
   }
-  updateBookingStatus({required int bookingId, required String type,required BuildContext context}) async {
+
+  int? tabIndex;
+  TabController? tabController;
+
+  updateBookingStatus(
+      {required int bookingId,
+      required String type,
+      required int index,
+      required BuildContext context}) async {
+    tabController!.animateTo(index);
     final Either<Failure, Unit> response =
         await updateBookingUsecase(bookingId: bookingId, type: type);
-        navigateAndFinish(context: context,widget: GetBookingScreen());
+
     response.fold(
         (failure) => UpdateBookingErrorState(_getFailureErrorMessage(failure)),
         (message) {
-
       emit(UpdateBookingSuccessState());
+      if (index == 1) {
+        getAllCompletedBooking();
+      } else if (index == 2) {
+        getAllCanceledBooking();
+      }
+      changeTabIndex(index: index, context: context);
     });
+  }
+
+  changeTabIndex({required int index, required BuildContext context}) {
+    //tabIndex = index;
+    //print('tabIndex'+tabIndex.toString());
+    Navigator.of(context).pop();
+    //emit(ChangeTabIndexState());
   }
 }

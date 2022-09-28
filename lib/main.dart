@@ -1,38 +1,58 @@
+import 'package:easy_localization/easy_localization.dart';
+
+import 'package:booking/core/util/mangerLang/manger_languge.dart';
 import 'package:booking/core/util/network/local/Cach_Helper.dart';
-import 'package:booking/feature/allhotels/presentation/hotels_page.dart';
-import 'package:booking/feature/allhotels/presentation/widgets/map_widget.dart';
 import 'package:booking/feature/hotels/presentation/cubit/hotels_cubit.dart';
-import 'package:booking/feature/hotels/presentation/screens/get_booking_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/di/injection.dart';
 import 'core/util/blocs/app/cubit.dart';
 import 'core/util/routes.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  CacheHelper.init();
-  late String accsestoken = CacheHelper.getData(key: 'token');
+ await CacheHelper.init();
+  // late String accsestoken = CacheHelper.getData(key: 'token');
+  await EasyLocalization.ensureInitialized();
+  // CacheHelper.init();
 
   init();
-
-  runApp(const MyApp());
+  runApp(EasyLocalization(
+      supportedLocales: const [Arabic_local, English_local],
+      path: Assets_Localization,
+      child: Phoenix(child: const MyApp())));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  CacheHelper cache = CacheHelper();
+
+
+  @override
+  void didChangeDependencies() {
+
+    cache.getLocal().then((local) => {context.setLocale(local)});
+    print(cache.getAppLanguage().toString());
+
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
           BlocProvider<AppBloc>(
-            create: (context) => sl<AppBloc>()
-              ..getLocation()
-              ..getAllHotels(),
+            create: (context) => sl<AppBloc>()..getLocation()..getAllHotels(),
           ),
           BlocProvider<HotelsCubit>(
             create: (context) => sl<HotelsCubit>()..getAllUpcommingBooking(),
@@ -41,10 +61,14 @@ class MyApp extends StatelessWidget {
         child: ScreenUtilInit(
           designSize: const Size(375, 812),
           builder: (context, child) => MaterialApp(
+            locale: context.locale ,
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            // locale: context.locale,
             title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              primarySwatch: Colors.blue,
+            //  primarySwatch: Colors.blue,
             ),
             routes: Routes.routes,
             initialRoute: Routes.splash,

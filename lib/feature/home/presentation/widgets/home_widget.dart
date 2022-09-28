@@ -1,8 +1,9 @@
+import 'package:booking/core/util/network/local/Cach_Helper.dart';
 import 'package:booking/core/util/widget_functions.dart';
-import 'package:booking/feature/allhotels/presentation/hotels_page.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/util/blocs/app/cubit.dart';
@@ -17,6 +18,8 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
+  CacheHelper? cacheHelper;
+
   @override
   void initState() {
     super.initState();
@@ -34,15 +37,6 @@ class _HomeWidgetState extends State<HomeWidget> {
       },
       builder: (context, state) {
         return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HotelsPage(),
-                    ));
-              },
-              child: Text('aaaaaaaaaaaaaaaa')),
           CarouselSlider.builder(
             itemCount: 3,
             itemBuilder:
@@ -65,7 +59,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                 viewportFraction: 1,
                 scrollDirection: Axis.horizontal,
                 clipBehavior: Clip.antiAliasWithSaveLayer),
-          )
+          ),
+          TextButton(
+              onPressed: () {
+                cacheHelper?.changeLanguage();
+                Phoenix.rebirth(context);
+              },
+              child: Text('lang'))
         ]);
       },
     );
