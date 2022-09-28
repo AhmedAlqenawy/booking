@@ -1,12 +1,12 @@
 import 'package:booking/core/util/network/local/Cach_Helper.dart';
 import 'package:booking/core/util/network/remote/dio_helper.dart';
 import 'package:booking/core/util/network/remote/end_points.dart';
-import 'package:booking/feature/models/register_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
 import '../../../feature/about/model/profile_model.dart';
-import '../../../feature/models/login_model.dart';
+import '../../../feature/login/models/login_model.dart';
+import '../../../feature/login/models/register_model.dart';
 import '../../error/exceptions.dart';
 
 abstract class Repository {

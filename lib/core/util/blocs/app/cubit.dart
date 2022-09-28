@@ -5,12 +5,12 @@ import 'package:booking/feature/allhotels/domian/entity/hotel_model.dart';
 import 'package:booking/feature/allhotels/domian/repository/auth_repository.dart';
 import 'package:booking/feature/filtter/domian/entity/filtter_hotel_model.dart';
 import 'package:booking/feature/filtter/domian/repository/filtter_repository.dart';
-import 'package:booking/feature/models/register_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 
-import '../../../../feature/models/login_model.dart';
+import '../../../../feature/login/models/login_model.dart';
+import '../../../../feature/login/models/register_model.dart';
 import '../../network/repository.dart';
 
 class AppBloc extends Cubit<AppStates> {
@@ -78,7 +78,7 @@ class AppBloc extends Cubit<AppStates> {
       },
       (r) {
         loginModel = r;
-        token = r.data!.token;
+        token = r.data!.apiToken;
         CacheHelper.saveData(key: 'token', value: token);
         emit(UserLoginSuccessState());
       },
@@ -87,10 +87,10 @@ class AppBloc extends Cubit<AppStates> {
 
   void userSignUp(email, password,Fname,ConfirmPassword) async {
     emit(UserRegisterLoadingState());
-    print('$email + omniaaaaaaa');
-    print('$password + omniaaaaaaa');
-    print('$Fname + omniaaaaaaa');
-    print('$ConfirmPassword + omniaaaaaaa');
+    print('$email + Omniaaaaaaa');
+    print('$password + Omniaaaaaaa');
+    print('$Fname + Omniaaaaaaa');
+    print('$ConfirmPassword + Omniaaaaaaa');
     final response = await repository.register(
       name: Fname,
       email: email,

@@ -1,4 +1,5 @@
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -80,11 +81,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Column(
             children:  [
 
-              const Padding(
+               Padding(
                 padding: EdgeInsets.all(25.0),
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: Text('Sign up',style: TextStyle(
+                  child: Text('register_title'.tr(),style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20
                   ),),
@@ -105,79 +106,79 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                 ],
               ),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.all(20.0),
                 child: Align(
                   alignment: Alignment.center,
-                  child: Text('or log in with email',style: TextStyle(
+                  child: Text('login_title2'.tr(),style: TextStyle(
                       fontSize: 15,
                       color: Colors.grey
                   ),),
                 ),
               ),
               // space(10, 0),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.only(left: 25.0,bottom: 5),
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: Text('First name',style: TextStyle(
+                  child: Text('register_title1'.tr(),style: TextStyle(
                       fontSize: 12,
                       color: Colors.grey
                   ),),
                 ),
               ),
 
-              MyFormLogin(label: 'enter  first name', validation: 'required Name',  controller: controller_Fname,type: TextInputType.emailAddress,),
+              MyFormLogin(label: 'register_title2'.tr(), validation: 'required Name',  controller: controller_Fname,type: TextInputType.emailAddress,),
               space(30.h, 0),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.only(left: 25.0,bottom: 5,),
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: Text('Last Name',style: TextStyle(
+                  child: Text('register_title3'.tr(),style: TextStyle(
                       fontSize: 12,
                       color: Colors.grey
                   ),),
                 ),
               ),
 
-              MyFormLogin(label: 'enter last name', validation: 'required name',  controller: controller_Lname,type: TextInputType.text,),
+              MyFormLogin(label: 'register_title4'.tr(), validation: 'required name',  controller: controller_Lname,type: TextInputType.text,),
               space(30.h, 0),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.only(left: 25.0,bottom: 5),
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: Text('Your email',style: TextStyle(
+                  child: Text('register_title5'.tr(),style: TextStyle(
                       fontSize: 12,
                       color: Colors.grey
                   ),),
                 ),
               ),
-              MyFormLogin(label: 'enter your email', validation: 'required email',  controller: controller_email,type: TextInputType.emailAddress,),
+              MyFormLogin(label: 'register_title6'.tr(), validation: 'required email',  controller: controller_email,type: TextInputType.emailAddress,),
               space(30.h, 0),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.only(left: 25.0,bottom: 5,),
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: Text('Password',style: TextStyle(
+                  child: Text('register_title7'.tr(),style: TextStyle(
                       fontSize: 12,
                       color: Colors.grey
                   ),),
                 ),
               ),
 
-              MyFormLogin(label: 'enter password', validation: 'required password',  controller: controller_password,type: TextInputType.visiblePassword,),
+              MyFormLogin(label: 'login_title5'.tr(), validation: 'required password',  controller: controller_password,type: TextInputType.visiblePassword,),
               space(30.h, 0),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.only(left: 25.0,bottom: 5,),
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: Text('Confirm Password',style: TextStyle(
+                  child: Text('login_title6'.tr(),style: TextStyle(
                       fontSize: 12,
                       color: Colors.grey
                   ),),
                 ),
               ),
-              MyFormLogin(label: 'confirm password', validation: 'required password',  controller: controller_configPassword,type: TextInputType.visiblePassword,),
+              MyFormLogin(label: 'register_title7'.tr(), validation: 'required password',  controller: controller_configPassword,type: TextInputType.visiblePassword,),
               space(10.h, 0),
 
               Padding(
@@ -186,7 +187,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   alignment: Alignment.topRight,
                   child: TextButton(
                     onPressed: () { },
-                    child:const Text('Forgot your Password?',style: TextStyle(
+                    child: Text('login_button1'.tr(),style: TextStyle(
                         fontSize: 15,
                         color: Colors.grey
                     ),),

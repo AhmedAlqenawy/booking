@@ -1,3 +1,4 @@
+import 'package:booking/core/util/network/local/Cach_Helper.dart';
 import 'package:booking/feature/allhotels/data/repository/hotel_repo_impl.dart';
 import 'package:booking/feature/allhotels/domian/repository/auth_repository.dart';
 import 'package:booking/feature/filtter/data/repository/filtter_repo_impl.dart';
@@ -31,7 +32,9 @@ Future<void> init() async {
   sl.registerLazySingleton<DioHelper>(
     () => DioImpl(),
   );
-
+// sl.registerLazySingleton((CacheHelper) =>
+// ()=>
+// )
   sl.registerLazySingleton<Repository>(
     () => RepositoryImplementation(
       dioHelper: sl(),

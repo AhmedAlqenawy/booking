@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -38,12 +39,12 @@ class SplashPage extends StatelessWidget {
                         ))),
               ),
               Text(
-                "Motel",
+                "splash_title".tr(),
                 style: openSans(20.sp, Colors.black, FontWeight.bold),
               ),
               space(16.h, 0),
               Text(
-                "Best hotel deals for your holiday",
+                "splash_title2".tr(),
                 style: openSans(14.sp, Colors.black, FontWeight.w400),
               ),
               space(445.h, 0),
@@ -52,7 +53,7 @@ class SplashPage extends StatelessWidget {
                 textColor: Colors.white,
                 width: 300.w,
                 height: 55.h,
-                title: "Get started",
+                title: "splash_button1".tr(),
                 onTap: () {
                   NavigationContext(context).push = Routes.onBoarding;
                   /*Navigator.pushReplacement(
@@ -65,7 +66,7 @@ class SplashPage extends StatelessWidget {
               ),
               space(24.h, 0),
               Text(
-                "Already have account?",
+                "splash_button2".tr(),
                 style: openSans(14.sp, Colors.white, FontWeight.w400),
               ),
             ],

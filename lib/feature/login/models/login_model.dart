@@ -2,17 +2,13 @@
 
 
 
-import 'package:booking/feature/models/status_model.dart';
-import 'package:booking/feature/models/user_model.dart';
 
 
 
 
 
-
-
-
-
+import '../../allhotels/data/models/stutsmodel.dart';
+import '../../hotels/data/models/trip_model.dart';
 
 class LoginModel {
   final StatusModel status;

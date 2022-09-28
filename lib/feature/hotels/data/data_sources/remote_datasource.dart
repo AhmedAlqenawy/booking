@@ -1,6 +1,6 @@
+import 'package:booking/core/util/constants.dart';
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/util/constants.dart';
 import '../../../../core/util/network/remote/dio_helper.dart';
 import '../../../../core/util/network/remote/end_points.dart';
 import '../models/trip_model.dart';
@@ -25,7 +25,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     final response = await dioHelper.get(
         endPoint: getcancelledBookingEndPoint,
         data: {'type': 'canceled ', 'count': 10},
-        token: token);
+        token: AppString().token);
     final booking = TripModel.fromJson(response['data']);
 
     return booking;
@@ -40,7 +40,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
           'type': 'completed ',
           'count': 10,
         },
-        token: token);
+        token: AppString().token);
     final booking = TripModel.fromJson(response['data']);
 
     return booking;
@@ -52,7 +52,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     final response = await dioHelper.get(
         endPoint: getupCommingBookingEndPoint,
         data: {'type': 'upcomming  ', 'count': 10},
-        token: token);
+        token: AppString().token);
     final booking = TripModel.fromJson(response['data']);
 
     return booking;
@@ -60,14 +60,15 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
   @override
   Future<Unit> createBooking(
-      {required int hotelId, required int userId}) async {
+      {required int hotelId, required int userId})
+  async {
     final response = await dioHelper.post(
         endPoint: createBookingEndPoint,
         data: {
           'user_id': userId,
           'hotel_id': hotelId,
         },
-        token: token);
+        token: AppString().token);
     return Future.value(unit);
   }
 
@@ -80,7 +81,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
           'booking_id': bookingId,
           'type': type,
         },
-        token: token);
+        token: AppString().token);
         
     return Future.value(unit);
   }
