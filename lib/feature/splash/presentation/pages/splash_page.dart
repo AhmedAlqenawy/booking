@@ -1,3 +1,5 @@
+import 'package:booking/core/util/constants.dart';
+import 'package:booking/core/util/network/local/Cach_Helper.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,7 +32,7 @@ class SplashPage extends StatelessWidget {
                 width: 136.w,
                 height: 120.h,
                 decoration: const BoxDecoration(
-                    //  color: Colors.white,
+                  //  color: Colors.white,
 
                     image: DecorationImage(
                         fit: BoxFit.cover,
@@ -55,7 +57,17 @@ class SplashPage extends StatelessWidget {
                 height: 55.h,
                 title: "splash_button1".tr(),
                 onTap: () {
-                  NavigationContext(context).push = Routes.onBoarding;
+                  if (CacheHelper.getData(key: "token") != null) {
+                    token=CacheHelper.getData(key: "token");
+                    NavigationContext(context).push = Routes.mainScreen;
+                  } else {
+                    if (CacheHelper.getData(key: "fristLogin") != null) {
+                      NavigationContext(context).push = Routes.login;
+                    }
+                    else {
+                      NavigationContext(context).push = Routes.onBoarding;
+                    }
+                  }
                   /*Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(

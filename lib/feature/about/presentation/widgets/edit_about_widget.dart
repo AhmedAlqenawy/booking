@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:booking/core/util/constants.dart';
 import 'package:booking/core/util/widget_functions.dart';
 import 'package:booking/feature/about/model/profile_model.dart';
 import 'package:booking/main.dart';
@@ -157,16 +158,3 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
   }
 }
 
-Future<String> uploadImage(File file) async {
-  String fileName = file.path.split('/').last;
-  FormData formData = FormData.fromMap({
-    "image": await MultipartFile.fromFile(file.path, filename: fileName),
-    "name": "Ahmed Sayed",
-    "email": "ahmed.mohamed@gmail.com"
-  });
-  var response = await DioImpl().post(
-      data: formData,
-      endPoint: '/auth/update-info',
-      token: "mEbHlHnNAvI6mB15T4ZBzN19Y8Un5GxChAfLkYzugI2GhEXUcKiogp6BxLuH");
-  return response.data['id'];
-}

@@ -45,7 +45,7 @@ class RepositoryImplementation extends Repository {
     return basicErrorHandling<ProfileModel>(
       onSuccess: () async {
         final response = await dioHelper.get(
-          token: "mEbHlHnNAvI6mB15T4ZBzN19Y8Un5GxChAfLkYzugI2GhEXUcKiogp6BxLuH",
+          token: token,
           endPoint: profileEndPoint,
         );
 

@@ -8,12 +8,14 @@ class CacheHelper {
   static init() async {
     if (sharedPreferences == null) {
       sharedPreferences = await SharedPreferences.getInstance();
+
     }
+
   }
 
   Future<String?> getAppLanguage() async {
     String? language = sharedPreferences?.getString('lang');
-    if (language != null && language!.isNotEmpty) {
+    if (language != null && language.isNotEmpty) {
       return language;
     } else {
       return LanguageType.English.getValue();

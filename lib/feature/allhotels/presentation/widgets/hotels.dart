@@ -16,7 +16,7 @@ class HotelsWidget extends StatelessWidget {
       builder: (context, state) {
         if (state is HotelsSuccessState) {
           return SizedBox(
-              height: 400,
+              height: 900,
               width: double.infinity,
               child: ListView.separated(
                 separatorBuilder: (context, index) => const SizedBox(

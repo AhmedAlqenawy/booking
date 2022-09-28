@@ -1,4 +1,5 @@
 import 'package:booking/core/util/widget_functions.dart';
+import 'package:booking/feature/allhotels/domian/entity/hotel_model.dart';
 import 'package:booking/feature/hotels/presentation/widgets/rating_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +9,7 @@ import '../../../hotels/domain/entities/trip.dart';
 
 class HotailDetailsContainer extends StatelessWidget {
   const HotailDetailsContainer({super.key, required this.hotel});
-  final Hotel hotel;
+  final HotelModel hotel;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,13 +24,13 @@ class HotailDetailsContainer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              hotel.name!,
+              hotel.name,
               style: openSans(22.sp, Colors.white, FontWeight.bold),
             ),
             Row(
               children: [
                 Text(
-                  hotel.address!,
+                  hotel.address,
                   style: openSans(14.sp, Colors.white, FontWeight.w100),
                 ),
                 const SizedBox(
@@ -41,7 +42,7 @@ class HotailDetailsContainer extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  hotel.price!,
+                  hotel.price,
                   style: openSans(22.sp, Colors.white, FontWeight.bold),
                 ),
               ],

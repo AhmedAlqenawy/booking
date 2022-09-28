@@ -1,4 +1,4 @@
-import 'package:booking/feature/allhotels/domian/entity/hotel_model.dart';
+ import 'package:booking/feature/allhotels/domian/entity/hotel_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +11,7 @@ import '../widgets/hotel_detail_container.dart';
 
 class HotelDetailsScreen extends StatefulWidget {
   const HotelDetailsScreen({super.key, required this.hotelModel});
-  final Hotel hotelModel;
+  final HotelModel hotelModel;
 
   @override
   State<HotelDetailsScreen> createState() => _HotelDetailsScreenState();
@@ -204,7 +204,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
           child: SizedBox(
               height: MediaQuery.of(context).size.height * 0.7,
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20),
+                padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -212,11 +212,11 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          widget.hotelModel.name!,
+                          widget.hotelModel.name,
                           style: openSans(22.sp, Colors.white, FontWeight.bold),
                         ),
                         Text(
-                          widget.hotelModel.price!,
+                          widget.hotelModel.price,
                           style: openSans(22.sp, Colors.white, FontWeight.bold),
                         ),
                       ],
@@ -225,7 +225,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          widget.hotelModel.address!,
+                          widget.hotelModel.address,
                           style: openSans(14.sp, Colors.white, FontWeight.w100),
                         ),
                         const SizedBox(
@@ -258,7 +258,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                       style: openSans(18.sp, Colors.white, FontWeight.bold),
                     ),
                     Text(
-                      widget.hotelModel.description!,
+                      widget.hotelModel.description,
                       style: openSans(14.sp, Colors.white, FontWeight.w100),
                     ),
                     SizedBox(
@@ -271,9 +271,9 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                     SizedBox(
                       height: 10.h,
                     ),
-                    FacilitiesList(
-                      facilities: widget.hotelModel.facilities!,
-                    ),
+                    /*FacilitiesList(
+                      facilities: widget.hotelModel.,
+                    ),*/
                      SizedBox(
                       height: 16.h,
                     ),
@@ -284,7 +284,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                       SizedBox(
                       height: 10.h,
                     ),
-                    SizedBox(
+                    /*SizedBox(
                       width: double.infinity,
                       height: 100.h,
                       child: ListView.separated(
@@ -300,7 +300,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                                 width: 10,
                               ),
                           itemCount: widget.hotelModel.facilities!.length),
-                    )
+                    )*/
                   ],
                 ),
               )),

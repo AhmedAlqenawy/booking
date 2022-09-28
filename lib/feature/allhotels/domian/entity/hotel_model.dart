@@ -5,8 +5,8 @@ class HotelModel {
   final String price;
   final String address;
   final dynamic rate;
-  final double longitude;
-  final double latitude;
+  final String longitude;
+  final String latitude;
   List<HotelImages>? hotelImages;
 
   HotelModel({

@@ -5,6 +5,7 @@ import 'package:booking/feature/allhotels/data/models/hotels_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Hotel extends StatelessWidget {
   Hotel({Key? key, required this.index}) : super(key: key);
@@ -19,11 +20,12 @@ class Hotel extends StatelessWidget {
           elevation: 2.0,
           borderRadius: BorderRadius.circular(10),
           child: Container(
-            height: MediaQuery.of(context).size.height / 2.8,
+            height: 260.h,
             width: MediaQuery.of(context).size.width / 1.5,
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10)),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
@@ -46,12 +48,16 @@ class Hotel extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            cubit.hotel[index].name,
-                            style: const TextStyle(
-                                overflow: TextOverflow.ellipsis,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
+                          SizedBox(
+                            width: 200.w,
+                            child: Text(
+                              cubit.hotel[index].name,
+
+                              style: const TextStyle(
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Text(
                             cubit.hotel[index].price,
@@ -66,11 +72,15 @@ class Hotel extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            cubit.hotel[index].address,
-                            style: const TextStyle(
-                              overflow: TextOverflow.ellipsis,
-                              fontSize: 12,
+                          SizedBox(
+                            width: 200.w,
+                            child: Text(
+                              cubit.hotel[index].address,
+                              maxLines: 2,
+                              style:   TextStyle(
+                                overflow: TextOverflow.ellipsis,
+                                fontSize: 14.sp,
+                              ),
                             ),
                           ),
                           const SizedBox(

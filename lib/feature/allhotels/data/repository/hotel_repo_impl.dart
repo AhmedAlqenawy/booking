@@ -24,6 +24,7 @@ class HotelsRepositoryImplementation extends HotelsRepository {
           'count': 10,
         });
 
+        print("herrrre");
         return HotelsModel.fromJson(response);
       },
       onPrimaryServerException: (e) async {

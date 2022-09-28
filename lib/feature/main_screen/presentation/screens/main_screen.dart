@@ -1,3 +1,4 @@
+import 'package:booking/core/util/blocs/app/cubit.dart';
 import 'package:flutter/material.dart';
 
 import '../../../about/presentation/pages/about_page.dart';
@@ -18,6 +19,12 @@ class _MainScreenState extends State<MainScreen> {
     const GetBookingScreen(item: 0,),
     const AboutPage(),
   ];
+
+  @override
+  initState(){
+    super.initState();
+    AppBloc.get(context).getAllHotels();
+  }
   List<String> titles = ['', 'Trips', 'Profile'];
   @override
   Widget build(BuildContext context) {

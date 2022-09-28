@@ -13,8 +13,10 @@ import 'package:geolocator/geolocator.dart';
 
 import '../../../../feature/login/models/login_model.dart';
 import '../../../../feature/login/models/register_model.dart';
+import '../../constants.dart' as constants;
 import '../../network/repository.dart';
 
+import '';
 class AppBloc extends Cubit<AppStates> {
   final Repository repository;
   final HotelsRepository hotelsRepository;
@@ -56,7 +58,7 @@ class AppBloc extends Cubit<AppStates> {
     emit(UpdateProfileLoadingState());
 
     final response =
-        await repository.updateProfile(token: "mEbHlHnNAvI6mB15T4ZBzN19Y8Un5GxChAfLkYzugI2GhEXUcKiogp6BxLuH", name: name, email: email,file: file);
+        await repository.updateProfile(token: token, name: name, email: email,file: file);
 
     response.fold(
       (l) {
@@ -71,8 +73,7 @@ class AppBloc extends Cubit<AppStates> {
 
   void userLogin(email, password) async {
     emit(UserLoginLoadingState());
-    print('$email + omniaaaaaaa');
-    final response = await repository.login(
+     final response = await repository.login(
       email: email,
       password: password,
     );
@@ -84,6 +85,8 @@ class AppBloc extends Cubit<AppStates> {
           (r) {
         loginModel = r;
         token = r.data!.apiToken;
+        constants.token=token!;
+        CacheHelper.saveData(key: 'fristLogin', value: false);
         CacheHelper.saveData(key: 'token', value: token);
         emit(UserLoginSuccessState());
       },
@@ -134,6 +137,8 @@ class AppBloc extends Cubit<AppStates> {
     emit(HotelsLoadingState());
     final response = await hotelsRepository.getHotels(page: 1);
 
+    print("response response 1");
+    print("response $response");
     response.fold((l) {
       emit(ErrorState(exception: l));
     }, (r) {
