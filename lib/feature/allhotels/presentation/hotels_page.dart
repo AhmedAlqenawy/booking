@@ -17,7 +17,7 @@ class _HotelsPageState extends State<HotelsPage> {
   @override
   void initState() {
     super.initState();
-   // AppBloc.get(context).getAllHotels();
+    AppBloc.get(context).getAllHotels();
   }
 
   @override

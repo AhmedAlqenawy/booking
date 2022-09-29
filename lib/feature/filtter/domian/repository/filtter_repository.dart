@@ -16,6 +16,6 @@ abstract class FiltterRepository {
 
   Future<Either<PrimaryServerException, FiltterHotelsModel>> search({
     required int page,
-    required String address,
+    required String name,
   });
 }

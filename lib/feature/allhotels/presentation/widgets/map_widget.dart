@@ -1,6 +1,7 @@
 import 'package:booking/core/util/blocs/app/cubit.dart';
 import 'package:booking/core/util/blocs/app/states.dart';
 import 'package:booking/feature/allhotels/presentation/widgets/hotel.dart';
+import 'package:booking/feature/allhotels/presentation/widgets/map_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -91,7 +92,7 @@ class _MapWidgetState extends State<MapWidget> {
             builder: (context, state) {
               if (state is HotelsSuccessState) {
                 return SizedBox(
-                    height: MediaQuery.of(context).size.height / 2.9,
+                    height: MediaQuery.of(context).size.height / 5,
                     width: double.infinity,
                     child: ScrollablePositionedList.separated(
                       itemScrollController: itemScrollController,
@@ -99,7 +100,8 @@ class _MapWidgetState extends State<MapWidget> {
                       separatorBuilder: (context, index) => const SizedBox(
                         width: 20,
                       ),
-                      itemBuilder: (context, index) => Hotel(index: index),
+                      itemBuilder: (context, index) =>
+                          MapListItem(index: index),
                       itemCount: AppBloc.get(context).hotel.length,
                     ));
               } else {
