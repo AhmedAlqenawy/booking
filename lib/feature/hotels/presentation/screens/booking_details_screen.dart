@@ -24,7 +24,11 @@ class BookingDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(hotel.name!),
+        title: Text(hotel.name!,
+        style: const TextStyle(color: Colors.black)),
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.transparent,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,8 +42,14 @@ class BookingDetailsScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(hotel.description!,
-                    style: openSans(16.sp, Colors.black, FontWeight.w400)),
+                SizedBox(
+                  height: 100.h,
+                  width:MediaQuery.of(context).size.width*0.9 ,
+                  child: Text(hotel.description!,
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                      style: openSans(16.sp, Colors.black, FontWeight.w400)),
+                ),
               ],
             ),
           ),

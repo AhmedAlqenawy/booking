@@ -30,14 +30,13 @@ class CompletedBookingScreen extends StatelessWidget {
           return ListView.separated(
             itemBuilder: (BuildContext context, int index) => InkWell(
               onTap: () {
-               // navigateTo(context: context, widget: HotelDetailsScreen(hotelModel:cubit.completedBooking[index].hotel ,));
-                // navigateTo(
-                //     context: context,
-                //     widget: BookingDetailsScreen(
-                //       type: 'complete',
-                //       userId: cubit.completedBooking[index].user.id!,
-                //         bookingId: cubit.completedBooking[index].id,
-                //         hotel: cubit.completedBooking[index].hotel));
+                navigateTo(
+                    context: context,
+                    widget: BookingDetailsScreen(
+                      type: 'complete',
+                      userId: cubit.completedBooking[index].user.id!,
+                        bookingId: cubit.completedBooking[index].id,
+                        hotel: cubit.completedBooking[index].hotel));
               },
               child: CompletedBookingItem(
                 images: cubit.completedBooking[index].hotel.hotelImages!,

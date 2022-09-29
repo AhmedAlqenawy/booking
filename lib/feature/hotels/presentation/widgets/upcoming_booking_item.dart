@@ -34,10 +34,7 @@ class UpcommingBookingItem extends StatelessWidget {
       width: double.infinity,
       child: Column(
         children: [
-          Text(
-              style: openSans(14.sp, Colors.black, FontWeight.w300),
-              '${DateFormat('MMM dd').format(DateTime.parse(startDate))} - ${DateFormat('MMM dd').format(DateTime.parse(endDate))} , 1 room 2 people'),
-          Card(
+       Card(
               elevation: 4,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
@@ -81,10 +78,14 @@ class UpcommingBookingItem extends StatelessWidget {
                         width: double.infinity,
                         child: Row(
                           children: [
-                            FittedBox(
-                                child: Text(hotelAddress,
-                                    style: openSans(
-                                        16.sp, Colors.black, FontWeight.w300))),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width*0.5,
+                              child: Text(hotelAddress,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                                  style: openSans(
+                                      16.sp, Colors.black, FontWeight.w300)),
+                            ),
                             const Spacer(),
                             FittedBox(
                                 child: Text('/Per night',

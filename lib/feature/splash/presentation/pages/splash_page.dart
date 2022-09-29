@@ -59,6 +59,7 @@ class SplashPage extends StatelessWidget {
                 onTap: () {
                   if (CacheHelper.getData(key: "token") != null) {
                     token=CacheHelper.getData(key: "token");
+                    
                     NavigationContext(context).push = Routes.mainScreen;
                   } else {
                     if (CacheHelper.getData(key: "fristLogin") != null) {

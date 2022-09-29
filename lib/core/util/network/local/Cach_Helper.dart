@@ -8,9 +8,7 @@ class CacheHelper {
   static init() async {
     if (sharedPreferences == null) {
       sharedPreferences = await SharedPreferences.getInstance();
-
     }
-
   }
 
   Future<String?> getAppLanguage() async {
@@ -59,7 +57,7 @@ class CacheHelper {
   static dynamic getData({
     required String key,
   }) {
-    return sharedPreferences?.get(key);
+    return sharedPreferences!.get(key);
   }
 
   static Future<dynamic> saveData({
