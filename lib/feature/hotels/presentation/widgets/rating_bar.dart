@@ -19,7 +19,7 @@ class CustomRatingBar extends StatelessWidget {
         itemPadding: const EdgeInsets.symmetric(horizontal: 0.0),
         itemBuilder: (context, _) => const Icon(
           Icons.star,
-          color: Colors.teal,
+          color: Colors.amber,
         ),
         onRatingUpdate: (rating) {
           print(rating);

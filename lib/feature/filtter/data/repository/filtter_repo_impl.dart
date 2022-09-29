@@ -47,12 +47,12 @@ class FiltterRepositoryImplementation extends FiltterRepository {
 
   @override
   Future<Either<PrimaryServerException, FiltterHotelsModel>> search(
-      {required int page, required String address}) async {
+      {required int page, required String name}) async {
     return basicErrorHandling<FiltterHotelsModel>(
       onSuccess: () async {
         final response = await dioHelper.get(endPoint: filtterEndPoint, query: {
           'page': page,
-          'address': address,
+          'name': name,
         });
 
         return FiltterHotelsModel.fromJson(response);

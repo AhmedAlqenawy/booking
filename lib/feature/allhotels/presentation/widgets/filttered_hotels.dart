@@ -33,7 +33,7 @@ class FiltterdHotel extends StatelessWidget {
                       width: double.infinity,
                       fit: BoxFit.fill,
                       cubit.filtterHotel[index].hotelImages!.isNotEmpty
-                          ? '$baseApiUrl/images/${cubit.search[index].hotelImages![0].image}'
+                          ? '$baseApiUrl/images/${cubit.filtterHotel[index].hotelImages![0].image}'
                           : 'http://api.mahmoudtaha.com/images/35321662903840.jpg'),
                 ),
                 Padding(
