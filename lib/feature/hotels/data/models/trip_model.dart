@@ -1,13 +1,30 @@
 import '../../domain/entities/trip.dart';
 
 class TripModel extends Trip {
-  TripModel({required super.data, required super.currentPage});
+  TripModel({required super.pageData, required super.status});
+
   factory TripModel.fromJson(Map<String, dynamic> json) {
+    return TripModel(
+        pageData: DataPageModel.fromJson(json['data']),
+        status: TripStatusModel.fromJson(json['status']));
+  }
+}
+
+class TripStatusModel extends Status {
+  TripStatusModel({required super.type});
+  factory TripStatusModel.fromJson(Map<String, dynamic> json) {
+    return TripStatusModel(type: json['type']);
+  }
+}
+
+class DataPageModel extends DataClass {
+  DataPageModel({required super.currentPage, required super.data});
+  factory DataPageModel.fromJson(Map<String, dynamic> json) {
     List<DataModel> data1 = <DataModel>[];
     json['data'].forEach((v) {
       data1.add(DataModel.fromJson(v));
     });
-    return TripModel(data: data1, currentPage: json['current_page']);
+    return DataPageModel(currentPage: json['current_page'], data: data1);
   }
 }
 
