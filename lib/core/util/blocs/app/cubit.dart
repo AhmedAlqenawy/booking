@@ -17,6 +17,7 @@ import '../../constants.dart' as constants;
 import '../../network/repository.dart';
 
 import '';
+
 class AppBloc extends Cubit<AppStates> {
   final Repository repository;
   final HotelsRepository hotelsRepository;
@@ -43,10 +44,10 @@ class AppBloc extends Cubit<AppStates> {
     final response = await repository.getProfile(token: token);
 
     response.fold(
-          (l) {
+      (l) {
         emit(ErrorState(exception: l));
       },
-          (r) {
+      (r) {
         profileModel = r;
 
         emit(GetProfileSuccessState());
@@ -57,8 +58,8 @@ class AppBloc extends Cubit<AppStates> {
   void updateProfile(String name, String email, File? file) async {
     emit(UpdateProfileLoadingState());
 
-    final response =
-        await repository.updateProfile(token: token, name: name, email: email,file: file);
+    final response = await repository.updateProfile(
+        token: token, name: name, email: email, file: file);
 
     response.fold(
       (l) {
@@ -73,19 +74,19 @@ class AppBloc extends Cubit<AppStates> {
 
   void userLogin(email, password) async {
     emit(UserLoginLoadingState());
-     final response = await repository.login(
+    final response = await repository.login(
       email: email,
       password: password,
     );
 
     response.fold(
-          (l) {
+      (l) {
         emit(ErrorState(exception: l));
       },
-          (r) {
+      (r) {
         loginModel = r;
         token = r.data!.apiToken;
-        constants.token=token!;
+        constants.token = token!;
         CacheHelper.saveData(key: 'fristLogin', value: false);
         CacheHelper.saveData(key: 'token', value: token);
         emit(UserLoginSuccessState());
@@ -176,11 +177,11 @@ class AppBloc extends Cubit<AppStates> {
   List<FiltterHotelModel> search = [];
 
   void searchHotel({
-    required String address,
+    required String name,
   }) async {
     emit(SearchLoadingState());
     final response = await filtterRepository.search(
-      address: address,
+      name: name,
       page: 1,
     );
 
@@ -237,7 +238,7 @@ class AppBloc extends Cubit<AppStates> {
     if (permission == LocationPermission.deniedForever) {
       Fluttertoast.showToast(
           msg:
-          'Location permissions are permanently denied, we cannot request permissions.');
+              'Location permissions are permanently denied, we cannot request permissions.');
     }
 
     Position position = await Geolocator.getCurrentPosition(

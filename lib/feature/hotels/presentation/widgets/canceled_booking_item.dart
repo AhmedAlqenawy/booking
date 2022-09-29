@@ -48,15 +48,22 @@ class CanceledBookingItem extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                         SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.4,
-                              child: Text(hotelName,
-                                  maxLines: 1,
-                                  style: openSans(
-                                      18.sp, Colors.black, FontWeight.bold)),
-                            ),
-                            
-                      Text(hotelAddress),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Text(hotelName,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style:
+                                openSans(18.sp, Colors.black, FontWeight.bold)),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Text(hotelAddress,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style:
+                                openSans(16.sp, Colors.black, FontWeight.w400)),
+                      ),
                       Text(
                         '$price /per night',
                         style: openSans(16.sp, Colors.grey, FontWeight.w200),

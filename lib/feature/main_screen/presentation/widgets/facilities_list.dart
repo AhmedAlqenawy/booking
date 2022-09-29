@@ -5,30 +5,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:math' as math;
 class FacilitiesList extends StatelessWidget {
-  const FacilitiesList({super.key, required this.facilities});
-final List<Facilities> facilities;
+  const FacilitiesList({super.key, });
   @override
   Widget build(BuildContext context) {
+    List<IconData> icons=[Icons.restaurant,Icons.pool,Icons.wifi,Icons.spa,];
+    int colorValue =( math.Random().nextDouble()*0xFFFFFF).toInt();
     return SizedBox(
       width: double.infinity,
-      height: 80.h,
+      height: 50.w,
       child: ListView.separated(
       scrollDirection: Axis.horizontal,
         itemBuilder: (context,index){
         return Container(
        width: 40.w,
-       height: 40.h,
+       height: 40.w,
        decoration: BoxDecoration(
-        color:Colors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: Color((math.Random().nextDouble()*0xFFFFFF).toInt()).withOpacity(0.1)
+          color: Colors.teal
         )
        ),
-  child: Image.network(facilities[index].image!),
+      child: Icon(icons[index],
+      color:Colors.teal,
+      ),
 
         );
-      }, separatorBuilder: (context,index)=>const SizedBox(width: 12,), itemCount: facilities.length),
+      }, separatorBuilder: (context,index)=>const SizedBox(width: 12,), itemCount: icons.length),
     );
   }
 }

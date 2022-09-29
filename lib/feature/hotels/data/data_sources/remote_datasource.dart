@@ -48,11 +48,14 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
   @override
   Future<TripModel> getUpcommingBooking() async {
-    //type = 'upcomming';
+    //type = 'upcomming';     
+       print('response 333333');
+
     final response = await dioHelper.get(
         endPoint: getupCommingBookingEndPoint,
-        data: {'type': 'upcomming  ', 'count': 10},
+        data: {'type': 'upcomming  ', 'count': 1},
         token:  token);
+print('ffffffffffffffffff'+response['data'].toString());
     final booking = TripModel.fromJson(response['data']);
 
     return booking;

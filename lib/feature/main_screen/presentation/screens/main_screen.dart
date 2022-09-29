@@ -29,14 +29,15 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(titles[currentIndex],
-            style: const TextStyle(color: Colors.black)),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
+      // appBar: AppBar(
+      //   title: Text(titles[currentIndex],
+      //       style: const TextStyle(color: Colors.black)),
+      //   elevation: 0,
+      //   backgroundColor: Colors.transparent,
+      // ),
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.teal,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Explore'),
           BottomNavigationBarItem(

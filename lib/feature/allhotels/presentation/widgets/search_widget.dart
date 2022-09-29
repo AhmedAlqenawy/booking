@@ -18,7 +18,7 @@ class SearchWidget extends StatelessWidget {
           onPressed: () {},
           child: IconButton(
             onPressed: () {
-              AppBloc.get(context).searchHotel(address: controller.text);
+              AppBloc.get(context).searchHotel(name: controller.text);
             },
             icon: const Icon(Icons.search),
           ),

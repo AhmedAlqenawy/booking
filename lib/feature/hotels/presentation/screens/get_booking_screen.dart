@@ -19,77 +19,89 @@ class _GetBookingScreenState extends State<GetBookingScreen>
   void initState() {
     BlocProvider.of<HotelsCubit>(context).tabController =
         TabController(length: 3, vsync: this);
+          BlocProvider.of<HotelsCubit>(context)
+                            .getAllUpcommingBooking();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
  
-      return Column(children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: Colors.white,
+      return Scaffold(
+         appBar: AppBar(
+          automaticallyImplyLeading: false,
+        title: const Text('Trips',
+        
+            style: TextStyle(color: Colors.black)),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
+        body: Column(children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
-                child: TabBar(
-                  controller:
-                      BlocProvider.of<HotelsCubit>(context).tabController,
-                  labelColor: Colors.teal,
-                  indicatorColor: Colors.teal,
-                  labelStyle: const TextStyle(
-                    color: Colors.teal,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: TabBar(
+                    controller:
+                        BlocProvider.of<HotelsCubit>(context).tabController,
+                    labelColor: Colors.teal,
+                    indicatorColor: Colors.teal,
+                    labelStyle: const TextStyle(
+                      color: Colors.teal,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                    splashBorderRadius: BorderRadius.circular(20),
+                    enableFeedback: true,
+                    indicator:
+                        BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                    unselectedLabelColor: Colors.grey,
+                    labelPadding: const EdgeInsets.all(0),
+                    onTap: (i) {
+                      if (i == 2) {
+                        BlocProvider.of<HotelsCubit>(context)
+                            .getAllCanceledBooking();
+                      } else if (i == 1) {
+                        BlocProvider.of<HotelsCubit>(context)
+                            .getAllCompletedBooking();
+                        //print('state '+state.toString());
+                      } else {
+                        BlocProvider.of<HotelsCubit>(context)
+                            .getAllUpcommingBooking();
+                      }
+                    },
+                    tabs: const [
+                      Tab(
+                        text: 'Upcoming',
+                      ),
+                      Tab(
+                        text: 'Finished',
+                      ),
+                      Tab(
+                        text: 'Canceled',
+                      ),
+                    ],
                   ),
-                  splashBorderRadius: BorderRadius.circular(20),
-                  enableFeedback: true,
-                  indicator:
-                      BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                  unselectedLabelColor: Colors.grey,
-                  labelPadding: const EdgeInsets.all(0),
-                  onTap: (i) {
-                    if (i == 2) {
-                      BlocProvider.of<HotelsCubit>(context)
-                          .getAllCanceledBooking();
-                    } else if (i == 1) {
-                      BlocProvider.of<HotelsCubit>(context)
-                          .getAllCompletedBooking();
-                      //print('state '+state.toString());
-                    } else {
-                      BlocProvider.of<HotelsCubit>(context)
-                          .getAllUpcommingBooking();
-                    }
-                  },
-                  tabs: const [
-                    Tab(
-                      text: 'Upcoming',
-                    ),
-                    Tab(
-                      text: 'Finished',
-                    ),
-                    Tab(
-                      text: 'Canceled',
-                    ),
-                  ],
-                ),
-              )),
-        ),
-        Expanded(
-          child: TabBarView(
-              controller: BlocProvider.of<HotelsCubit>(context).tabController,
-              children: const [
-                UpCommingBookingScreen(),
-                CompletedBookingScreen(),
-                CanceledBookingScreen(),
-              ]),
-        )
-      ]);
+                )),
+          ),
+          Expanded(
+            child: TabBarView(
+                controller: BlocProvider.of<HotelsCubit>(context).tabController,
+                children: const [
+                  UpCommingBookingScreen(),
+                  CompletedBookingScreen(),
+                  CanceledBookingScreen(),
+                ]),
+          )
+        ]),
+      );
 
   }
 }

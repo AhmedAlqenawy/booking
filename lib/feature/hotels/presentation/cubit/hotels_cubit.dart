@@ -35,14 +35,14 @@ class HotelsCubit extends Cubit<HotelsState> {
 
   getAllCanceledBooking() async {
     canceledBooking = [];
-    emit(GetCompletedBookingLoadingState());
+    emit(GetCancelledBookingLoadingState());
     final Either<Failure, Trip> tripList = await getCancelledUseCase();
     tripList.fold(
-        (failure) => GetBookingErrorState(_getFailureErrorMessage(failure)),
+        (failure) => GetCancelledBookingErrorState(_getFailureErrorMessage(failure)),
         (bookings) {
       canceledBooking.addAll(bookings.data!);
       print(canceledBooking);
-      emit(GetBookingLoadedState(trip: bookings));
+      emit(GetCancelledBookingLoadedState(trip: bookings));
     });
   }
 
@@ -61,14 +61,14 @@ class HotelsCubit extends Cubit<HotelsState> {
 
   getAllUpcommingBooking() async {
     upCommingBooking = [];
-    emit(GetCompletedBookingLoadingState());
+    emit(GetUpcommingBookingLoadingState());
     final Either<Failure, Trip> tripList = await getUpCommingUseCase();
     tripList.fold(
-        (failure) => GetBookingErrorState(_getFailureErrorMessage(failure)),
+        (failure) => GetUpcommingBookingErrorState(_getFailureErrorMessage(failure)),
         (bookings) {
       upCommingBooking.addAll(bookings.data!);
 
-      emit(GetCompletedBookingLoadedState(trip: bookings));
+      emit(GetUpcommingBookingLoadedState(trip: bookings));
     });
   }
 
@@ -85,13 +85,14 @@ class HotelsCubit extends Cubit<HotelsState> {
     }
   }
 
-  createBooking({required int hotelId, required int userId}) async {
+  createBooking({required int hotelId, required int userId,required BuildContext context}) async {
     final Either<Failure, Unit> response =
         await createBookingUseCase(hotelId: hotelId, userId: userId);
     response.fold(
         (failure) => CreateBookingErrorState(_getFailureErrorMessage(failure)),
         (message) {
       emit(CreateBookingSuccessState());
+      navigateAndFinish(context: context, widget: GetBookingScreen(item: 0));
     });
   }
 
