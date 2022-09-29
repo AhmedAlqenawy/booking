@@ -1,21 +1,23 @@
 import 'package:equatable/equatable.dart';
 
-// class Trip  extends Equatable{
-//   String? type;
-//     int? currentPage;
-//   List<Data>? data;
-
-//   Trip({this.type, this.data,this.currentPage});
-//    @override
-//   List<Object?> get props => [];
-// }
-
 class Trip {
-  int currentPage;
+  Status? status;
+  DataClass? pageData;
+
+  Trip({required this.pageData, required this.status});
+}
+
+class Status {
+  String? type;
+
+  Status({required this.type});
+}
+
+class DataClass {
+  int? currentPage;
   List<Data>? data;
-
-  Trip({this.data,required this.currentPage});}
-
+ DataClass({required this.currentPage,required this.data,});
+}
 
 class Data extends Equatable {
   int id;
@@ -28,18 +30,19 @@ class Data extends Equatable {
   Hotel hotel;
   Data(
       {required this.id,
-     required this.userId,
-     required this.hotelId,
-     required this.type,
-     required this.createdAt,
-     required this.updatedAt,
-     required this.user,
-    required  this.hotel});
-      
-        @override
-        // TODO: implement props
-        List<Object?> get props => []; 
+      required this.userId,
+      required this.hotelId,
+      required this.type,
+      required this.createdAt,
+      required this.updatedAt,
+      required this.user,
+      required this.hotel});
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
 }
+
 class User {
   int? id;
   String? name;
@@ -63,8 +66,6 @@ class User {
       this.updatedAt,
       this.googleId,
       this.provider});
-
- 
 }
 
 class Hotel {
@@ -94,12 +95,7 @@ class Hotel {
       this.updatedAt,
       this.hotelImages,
       this.facilities});
-
-
-    
-  }
-
- 
+}
 
 class HotelImages {
   int? id;
@@ -119,7 +115,4 @@ class Facilities {
   String? updatedAt;
 
   Facilities({this.id, this.name, this.image, this.createdAt, this.updatedAt});
- 
 }
-
-

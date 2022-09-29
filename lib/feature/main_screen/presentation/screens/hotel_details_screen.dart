@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/util/blocs/app/cubit.dart';
+import '../../../../core/util/network/local/Cach_Helper.dart';
 import '../../../../core/util/network/remote/end_points.dart';
 import '../../../../core/util/widget_functions.dart';
 import '../../../../core/util/widgets/default_button.dart';
@@ -28,12 +29,13 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
   var controller;
   bool isScrolled = false;
   ScrollController? scrollController;
-  ProfileModel? profileModel;
+  int? userId;
   @override
   void initState() {
+        userId = CacheHelper.getData(key: 'userId');
+
     scrollController = ScrollController();
     scrollController!.addListener(listenToScrollChange);
-    AppBloc.get(context).getProfileDate();
     super.initState();
   }
 
@@ -57,7 +59,6 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
 
   @override
   Widget build(BuildContext context) {
-        profileModel = AppBloc.get(context).profileModel;
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -129,7 +130,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                             children: [
                               HotailDetailsContainer(
                                 hotel: widget.hotelModel,
-                                userId:  profileModel!.data!.id!,
+                                userId:userId!,
                               ),
                               const SizedBox(
                                 height: 12,
@@ -334,7 +335,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                       BlocProvider.of<HotelsCubit>(context).createBooking(
                         context: context,
                           hotelId: widget.hotelModel.id,
-                          userId: profileModel!.data!.id!);
+                          userId: userId!);
                     },
                   ),
                 )
