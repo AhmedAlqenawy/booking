@@ -6,8 +6,8 @@ const String Arabic = "ar";
 const String English = "en";
 const String Assets_Localization = "assets/lang";
 
-const Locale Arabic_local = Locale( "ar","SA");
-const Locale English_local = Locale("en","US");
+const Locale Arabic_local = Locale( "ar");
+const Locale English_local = Locale("en");
 
 
 
