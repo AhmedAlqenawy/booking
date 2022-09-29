@@ -21,7 +21,13 @@ void main() async{
 
   init();
   runApp(EasyLocalization(
-      supportedLocales: const [Arabic_local, English_local],
+            supportedLocales: const [
+              Locale('en'),
+              Locale('ar'),
+            ],
+            fallbackLocale: const Locale('en'),
+            //assetLoader: const CodegenLoader(),
+
       path: Assets_Localization,
       child: Phoenix(child: const MyApp())));
 }
@@ -61,10 +67,18 @@ class _MyAppState extends State<MyApp> {
         child: ScreenUtilInit(
           designSize: const Size(375, 812),
           builder: (context, child) => MaterialApp(
-            locale: context.locale ,
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            // locale: context.locale,
+         localizationsDelegates: context.localizationDelegates,
+                    supportedLocales: context.supportedLocales,
+                    locale: context.locale,
+                    localeResolutionCallback: (locale, supportedLocales) {
+                      for (var supportedLocale in supportedLocales) {
+                        if (supportedLocale.languageCode == locale?.languageCode) {
+                          return supportedLocale;
+                        }
+                      }
+                      return supportedLocales.first;
+                    },
+
             title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
