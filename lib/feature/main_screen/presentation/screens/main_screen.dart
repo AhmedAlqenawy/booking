@@ -37,6 +37,7 @@ class _MainScreenState extends State<MainScreen> {
       // ),
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.teal,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Explore'),
           BottomNavigationBarItem(

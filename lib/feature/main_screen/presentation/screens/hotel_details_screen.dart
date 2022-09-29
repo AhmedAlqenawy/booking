@@ -8,6 +8,7 @@ import '../../../../core/util/blocs/app/cubit.dart';
 import '../../../../core/util/network/remote/end_points.dart';
 import '../../../../core/util/widget_functions.dart';
 import '../../../../core/util/widgets/default_button.dart';
+import '../../../about/model/profile_model.dart';
 import '../../../hotels/domain/entities/trip.dart';
 import '../../../hotels/presentation/cubit/hotels_cubit.dart';
 import '../widgets/facilities_list.dart';
@@ -27,10 +28,12 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
   var controller;
   bool isScrolled = false;
   ScrollController? scrollController;
+  ProfileModel? profileModel;
   @override
   void initState() {
     scrollController = ScrollController();
     scrollController!.addListener(listenToScrollChange);
+    AppBloc.get(context).getProfileDate();
     super.initState();
   }
 
@@ -54,7 +57,8 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
 
   @override
   Widget build(BuildContext context) {
-    print('$baseApiUrl/images/${widget.hotelModel.hotelImages![0].image}');
+        profileModel = AppBloc.get(context).profileModel;
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: NestedScrollView(
@@ -125,6 +129,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                             children: [
                               HotailDetailsContainer(
                                 hotel: widget.hotelModel,
+                                userId:  profileModel!.data!.id!,
                               ),
                               const SizedBox(
                                 height: 12,
@@ -185,156 +190,157 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
         },
         body: SingleChildScrollView(
           child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.7,
+              // height: MediaQuery.of(context).size.height * 0.8,
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: 200.w,
-                          child: Text(
-                            widget.hotelModel.name,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style:
-                                openSans(20.sp, Colors.white, FontWeight.bold),
-                          ),
-                        ),
-                        Text(
-                          widget.hotelModel.price,
-                          style: openSans(20.sp, Colors.white, FontWeight.bold),
-                        ),
-                      ],
-                    ),
                     SizedBox(
-                      height: 4.h,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: 200.w,
-                          child: Text(
-                            widget.hotelModel.address,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style:
-                                openSans(14.sp, Colors.white, FontWeight.w100),
-                          ),
-                        ),
-                        const Spacer(),
-                        Text(
-                          '/Per night',
-                          style: openSans(14.sp, Colors.white, FontWeight.w100),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.location_pin,
-                          size: 12,
-                          color: Colors.teal,
-                        ),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                        SizedBox(
-                          width: 100.w,
-                          child: Text(
-                            '3.0km to city',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style:
-                                openSans(14.sp, Colors.white, FontWeight.w100),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: Divider(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    Text(
-                      'Summary',
-                      style: openSans(18.sp, Colors.white, FontWeight.bold),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 100.h,
+                      width: 200.w,
                       child: Text(
-                        widget.hotelModel.description,
-                        maxLines: 5,
+                        widget.hotelModel.name,
+                        maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: openSans(12.sp, Colors.white, FontWeight.w100),
+                        style: openSans(20.sp, Colors.white, FontWeight.bold),
                       ),
                     ),
-                    SizedBox(
-                      height: 16.h,
-                    ),
                     Text(
-                      'Facilities',
-                      style: openSans(18.sp, Colors.white, FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    const FacilitiesList(),
-                    SizedBox(
-                      height: 16.h,
-                    ),
-                    Text(
-                      'Photos',
-                      style: openSans(18.sp, Colors.white, FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 80.h,
-                      child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return SizedBox(
-                              width: 80.w,
-                              height: 80.h,
-                              child: Image.network(
-                                '$baseApiUrl/images/${widget.hotelModel.hotelImages![index].image}',
-                                fit: BoxFit.cover,
-                              ),
-                            );
-                          },
-                          separatorBuilder: (context, index) => SizedBox(
-                                width: 10.w,
-                              ),
-                          itemCount: widget.hotelModel.hotelImages!.length),
-                    ),
-                    DefaultButton(
-                      height: 40.h,
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      textColor: Colors.white,
-                      title: 'Book Now',
-                      bgColor: Colors.teal,
-                      onTap: () {
-                        BlocProvider.of<HotelsCubit>(context).createBooking(
-                            hotelId: widget.hotelModel.id,
-                            userId: BlocProvider.of<AppBloc>(context)
-                                .loginModel!
-                                .data!
-                                .id!);
-                      },
+                      widget.hotelModel.price,
+                      style: openSans(20.sp, Colors.white, FontWeight.bold),
                     ),
                   ],
                 ),
-              )),
+                SizedBox(
+                  height: 4.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: 200.w,
+                      child: Text(
+                        widget.hotelModel.address,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: openSans(14.sp, Colors.white, FontWeight.w100),
+                      ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      '/Per night',
+                      style: openSans(14.sp, Colors.white, FontWeight.w100),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.location_pin,
+                      size: 12,
+                      color: Colors.teal,
+                    ),
+                    const SizedBox(
+                      width: 4,
+                    ),
+                    SizedBox(
+                      width: 100.w,
+                      child: Text(
+                        '3.0km to city',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: openSans(14.sp, Colors.white, FontWeight.w100),
+                      ),
+                    ),
+                  ],
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                  child: Divider(
+                    color: Colors.grey,
+                  ),
+                ),
+                Text(
+                  'Summary',
+                  style: openSans(18.sp, Colors.white, FontWeight.bold),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 100.h,
+                  child: Text(
+                    widget.hotelModel.description,
+                    maxLines: 5,
+                    overflow: TextOverflow.ellipsis,
+                    style: openSans(12.sp, Colors.white, FontWeight.w100),
+                  ),
+                ),
+                SizedBox(
+                  height: 16.h,
+                ),
+                Text(
+                  'Facilities',
+                  style: openSans(18.sp, Colors.white, FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                const FacilitiesList(),
+                SizedBox(
+                  height: 16.h,
+                ),
+                widget.hotelModel.hotelImages!.isNotEmpty
+                    ? Text(
+                        'Photos',
+                        style: openSans(18.sp, Colors.white, FontWeight.bold),
+                      )
+                    : const SizedBox(),
+                SizedBox(
+                  height: widget.hotelModel.hotelImages!.isNotEmpty ? 10.h : 0,
+                ),
+                widget.hotelModel.hotelImages!.isNotEmpty
+                    ? SizedBox(
+                        width: double.infinity,
+                        height: 80.h,
+                        child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return SizedBox(
+                                width: 80.w,
+                                height: 80.h,
+                                child: Image.network(
+                                  '$baseApiUrl/images/${widget.hotelModel.hotelImages![index].image}',
+                                  fit: BoxFit.cover,
+                                ),
+                              );
+                            },
+                            separatorBuilder: (context, index) => SizedBox(
+                                  width: 10.w,
+                                ),
+                            itemCount: widget.hotelModel.hotelImages!.length),
+                      )
+                    : const SizedBox(),
+                SizedBox(height: 50.h),
+                Center(
+                  child: DefaultButton(
+                    height: 40.h,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    textColor: Colors.white,
+                    title: 'Book Now',
+                    bgColor: Colors.teal,
+                    onTap: () {
+                      BlocProvider.of<HotelsCubit>(context).createBooking(
+                        context: context,
+                          hotelId: widget.hotelModel.id,
+                          userId: profileModel!.data!.id!);
+                    },
+                  ),
+                )
+              ],
+            ),
+          )),
         ),
       ),
     );

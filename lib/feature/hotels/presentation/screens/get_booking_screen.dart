@@ -19,6 +19,8 @@ class _GetBookingScreenState extends State<GetBookingScreen>
   void initState() {
     BlocProvider.of<HotelsCubit>(context).tabController =
         TabController(length: 3, vsync: this);
+          BlocProvider.of<HotelsCubit>(context)
+                            .getAllUpcommingBooking();
     super.initState();
   }
 
@@ -27,9 +29,10 @@ class _GetBookingScreenState extends State<GetBookingScreen>
  
       return Scaffold(
          appBar: AppBar(
-        title: Text('Trips',
+          automaticallyImplyLeading: false,
+        title: const Text('Trips',
         
-            style: const TextStyle(color: Colors.black)),
+            style: TextStyle(color: Colors.black)),
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
