@@ -8,13 +8,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/util/blocs/app/cubit.dart';
 import '../../../../core/util/widgets/default_button.dart';
+import '../../../about/model/profile_model.dart';
 import '../../../hotels/domain/entities/trip.dart';
 
 class HotailDetailsContainer extends StatelessWidget {
-  const HotailDetailsContainer({super.key, required this.hotel});
+  const HotailDetailsContainer({super.key, required this.hotel, required this.userId});
   final HotelModel hotel;
+  final int userId;
   @override
   Widget build(BuildContext context) {
+                ProfileModel? profileModel = AppBloc.get(context).profileModel;
+
     return Container(
       width: MediaQuery.of(context).size.width * 0.8,
       height: MediaQuery.of(context).size.height * 0.22,
@@ -82,11 +86,9 @@ class HotailDetailsContainer extends StatelessWidget {
                 bgColor: Colors.teal,
                 onTap: () {
                   BlocProvider.of<HotelsCubit>(context).createBooking(
+                    context: context,
                       hotelId: hotel.id,
-                      userId: BlocProvider.of<AppBloc>(context)
-                          .loginModel!
-                          .data!
-                          .id!);
+                      userId:userId);
                 },
               ),
             )

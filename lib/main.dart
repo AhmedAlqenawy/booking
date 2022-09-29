@@ -61,7 +61,7 @@ class _MyAppState extends State<MyApp> {
             create: (context) => sl<AppBloc>()..getLocation()..getAllHotels(),
           ),
           BlocProvider<HotelsCubit>(
-            create: (context) => sl<HotelsCubit>()..getAllUpcommingBooking(),
+            create: (context) => sl<HotelsCubit>(),
           ),
         ],
         child: ScreenUtilInit(
