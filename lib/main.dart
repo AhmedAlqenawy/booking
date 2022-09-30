@@ -25,10 +25,9 @@ void main() async{
               Locale('en'),
               Locale('ar'),
             ],
-            fallbackLocale: const Locale('en'),
             //assetLoader: const CodegenLoader(),
 
-      path: Assets_Localization,
+      path: "assets/lang",
       child: Phoenix(child: const MyApp())));
 }
 
@@ -70,14 +69,14 @@ class _MyAppState extends State<MyApp> {
          localizationsDelegates: context.localizationDelegates,
                     supportedLocales: context.supportedLocales,
                     locale: context.locale,
-                    localeResolutionCallback: (locale, supportedLocales) {
-                      for (var supportedLocale in supportedLocales) {
-                        if (supportedLocale.languageCode == locale?.languageCode) {
-                          return supportedLocale;
-                        }
-                      }
-                      return supportedLocales.first;
-                    },
+                    // localeResolutionCallback: (locale, supportedLocales) {
+                    //   for (var supportedLocale in supportedLocales) {
+                    //     if (supportedLocale.languageCode == locale?.languageCode) {
+                    //       return supportedLocale;
+                    //     }
+                    //   }
+                    //   return supportedLocales.first;
+                    // },
 
             title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
