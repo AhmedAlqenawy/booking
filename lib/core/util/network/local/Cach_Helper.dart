@@ -20,32 +20,7 @@ class CacheHelper {
     }
   }
 
-  Future<void> changeLanguage() async {
-    String? currentLang = await getAppLanguage();
-    if (currentLang == LanguageType.English.getValue()) {
-      sharedPreferences!.setString('lang', LanguageType.English.getValue());
-    } else {
-      if (currentLang == LanguageType.Arabic.getValue()) {
-        sharedPreferences!.setString('lang', LanguageType.Arabic.getValue());
-      }    }
-  }
 
-  Future<Locale> getLocal() async {
-    String? currentLang = await getAppLanguage();
-    if (currentLang == LanguageType.English.getValue()) {
-      return English_local;
-    } else {
-      return Arabic_local;
-    }
-  }
-  Future<Locale> setLocal() async {
-    String? currentLang = await getAppLanguage();
-    if (currentLang == LanguageType.Arabic.getValue()) {
-      return Arabic_local;
-    } else {
-      return English_local;
-    }
-  }
 
   static Future<dynamic> putData({
     required dynamic key,
@@ -53,6 +28,12 @@ class CacheHelper {
   }) async {
     return await sharedPreferences?.setString(key, value);
   }
+  static dynamic removeData({
+    required String key,
+  }) {
+    return sharedPreferences!.remove(key);
+  }
+
 
   static dynamic getData({
     required String key,

@@ -1,3 +1,4 @@
+import 'package:booking/core/util/constants/constants.dart';
 import 'package:booking/core/util/mangerLang/manger_languge.dart';
 import 'package:booking/core/util/network/local/Cach_Helper.dart';
 import 'package:booking/core/util/widget_functions.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/util/blocs/app/cubit.dart';
 import '../../../../core/util/blocs/app/states.dart';
+import '../../../../core/util/widgets/default_button.dart';
 import 'about_main_widget.dart';
 
 class AboutWidget extends StatefulWidget {
@@ -94,18 +96,20 @@ class _AboutWidgetState extends State<AboutWidget> {
                         icon: Icons.language_outlined,
                       ),
                     ),
-                    /*MaterialButton(
-                      onPressed: () {
-                     //   AppBloc.get(context).userLogin();
-                      },
-                      child: const Text('Login'),
+                    space(100.h, 0),
+                    Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: DefaultButton(
+                        bgColor: const Color(0xff57B098),
+                        textColor: Colors.white,
+                        width: 300.w,
+                        height: 55.h,
+                        title: "about.out".tr(),
+                        onTap: () {
+                          signOut(context);
+                        },
+                      ),
                     ),
-                    MaterialButton(
-                      onPressed: () {
-                        AppBloc.get(context).getProfileDate();
-                      },
-                      child: const Text('Get Profile'),
-                    ),*/
                   ],
                 ),
               );

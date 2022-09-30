@@ -14,7 +14,7 @@ import 'package:geolocator/geolocator.dart';
 import '../../../../feature/filtter/data/models/facilities.dart';
 import '../../../../feature/login/models/login_model.dart';
 import '../../../../feature/login/models/register_model.dart';
-import '../../constants.dart' as constants;
+import '../../constants/constants.dart' as constants;
 import '../../network/repository.dart';
 
 class AppBloc extends Cubit<AppStates> {
@@ -81,7 +81,6 @@ class AppBloc extends Cubit<AppStates> {
 
   void updateProfile(String name, String email, File? file) async {
     emit(UpdateProfileLoadingState());
-
     final response = await repository.updateProfile(
         token: token, name: name, email: email, file: file);
 
@@ -102,7 +101,6 @@ class AppBloc extends Cubit<AppStates> {
       email: email,
       password: password,
     );
-
     response.fold(
       (l) {
         emit(ErrorState(exception: l));
