@@ -211,16 +211,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       space(16.h, 0),
-                      // DefaultButton(
-                      //     bgColor: Color(0xff57B098),
-                      //     textColor: Colors.white,
-                      //     title: 'login_button2'.tr(),
-                      //     height: 50,
-                      //     width: 350,
-                      //     onTap: () {
-                      //       cacheHelper?.changeLanguage();
-                      //        Phoenix.rebirth(context);
-                      //     })
+                      Text(
+                        "splash_button2".tr(),
+                        style: openSans(14.sp, Colors.white, FontWeight.w400),
+                      ),
+                      space(20.h,0)
                     ],
                   ),
                 ],

@@ -23,8 +23,8 @@ void main() async {
   init();
   runApp(EasyLocalization(
             supportedLocales: const [
-              Locale('en'),
               Locale('ar'),
+              Locale('en'),
             ],
             //assetLoader: const CodegenLoader(),
 
@@ -40,15 +40,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  CacheHelper cache = CacheHelper();
-
-  @override
-  void didChangeDependencies() {
-    cache.getLocal().then((local) => {context.setLocale(local)});
-    print(cache.getAppLanguage().toString());
-
-    super.didChangeDependencies();
-  }
+  // CacheHelper cache = CacheHelper();
+  //
+  // @override
+  // void didChangeDependencies() {
+  //   cache.getLocal().then((local) => {context.setLocale(local)});
+  //   print(cache.getAppLanguage().toString());
+  //
+  //   super.didChangeDependencies();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -82,8 +82,8 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             darkTheme: darkTheme,
             theme: lightTheme,
-            themeMode:
-                AppBloc.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
+            themeMode:ThemeMode.light,
+                // AppBloc.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
             routes: Routes.routes,
             initialRoute: Routes.splash,
           ),
