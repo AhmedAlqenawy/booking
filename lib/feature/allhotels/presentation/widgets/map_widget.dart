@@ -105,7 +105,7 @@ class _MapWidgetState extends State<MapWidget> {
                       itemCount: AppBloc.get(context).hotel.length,
                     ));
               } else {
-                return const Text('data');
+                return const Text('');
               }
             },
           ),

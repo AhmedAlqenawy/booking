@@ -77,11 +77,11 @@ class SplashPage extends StatelessWidget {
                   );*/
                 },
               ),
-              space(24.h, 0),
-              Text(
-                "splash_button2".tr(),
-                style: openSans(14.sp, Colors.white, FontWeight.w400),
-              ),
+              // space(24.h, 0),
+              // Text(
+              //   "splash_button2".tr(),
+              //   style: openSans(14.sp, Colors.white, FontWeight.w400),
+              // ),
             ],
           ),
         ),

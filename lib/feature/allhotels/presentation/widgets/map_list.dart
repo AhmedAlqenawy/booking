@@ -67,6 +67,7 @@ class MapListItem extends StatelessWidget {
                                 cubit.hotel[index].address,
                                 maxLines: 3,
                                 style: TextStyle(
+                                  color: Colors.black54,
                                   overflow: TextOverflow.ellipsis,
                                   fontSize: 14.sp,
                                 ),
