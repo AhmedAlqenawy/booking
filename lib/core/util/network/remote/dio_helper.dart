@@ -71,7 +71,6 @@ class DioImpl extends DioHelper {
         endPoint,
         queryParameters: query,
         cancelToken: cancelToken,
-        
       ),
     );
   }
@@ -124,7 +123,11 @@ extension on DioHelper {
       final r = await call.call();
       debugPrint("Response_Data => ${r.data}");
       debugPrint("Response_Code => ${r.statusCode}");
-
+      if (r.data['status']['type'] == '0' &&
+          r.data['data']['data'] != null &&
+          r.data['data']['data'].isEmpty) {
+        return r.data;
+      }
       if (r.data['status']['type'] == '0') {
         dynamic title = r.data['status']['title'];
         print(title);

@@ -89,6 +89,8 @@ class AppBloc extends Cubit<AppStates> {
         constants.token = token!;
         CacheHelper.saveData(key: 'fristLogin', value: false);
         CacheHelper.saveData(key: 'token', value: token);
+        CacheHelper.saveData(key: 'userId', value: r.data!.id!);
+
         emit(UserLoginSuccessState());
       },
     );
@@ -113,6 +115,7 @@ class AppBloc extends Cubit<AppStates> {
       },
       (s) {
         registerModel = s;
+        CacheHelper.saveData(key: 'userId', value: s.data!.id!);
 
         emit(UserRegisterSuccessState());
       },
@@ -248,5 +251,12 @@ class AppBloc extends Cubit<AppStates> {
     print('my lat' + lat.toString());
     print('my long' + long.toString());
     emit(LocationSuccessState());
+  }
+
+  bool isDark = true;
+
+  void changeAppMode() {
+    isDark = !isDark;
+    emit(AppChangeModeState());
   }
 }

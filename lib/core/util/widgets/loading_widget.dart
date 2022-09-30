@@ -12,7 +12,8 @@ class LoadingWidget extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(10)),
             child: Column(
               children: [
                 Shimmer.fromColors(
@@ -121,7 +122,8 @@ class LoadingWidget extends StatelessWidget {
           ),
           Container(
             decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(10)),
             child: Column(
               children: [
                 Shimmer.fromColors(

@@ -45,7 +45,7 @@ class _PickDataAndRomeState extends State<PickDataAndRome> {
                         Row(
                           children: [
                             const Text(
-                              'Number of Room ',
+                              'Number of Rooms ',
                               style: TextStyle(fontSize: 12),
                             ),
                             IconButton(
@@ -134,11 +134,12 @@ class _PickDataAndRomeState extends State<PickDataAndRome> {
               },
               child: Column(
                 children: [
-                  const Text('Number of Rome'),
+                  const Text('Number of Rooms',
+                      style: TextStyle(color: Colors.grey)),
                   const SizedBox(
                     height: 10,
                   ),
-                  Text('${cubit.rooms} Room' '${cubit.people} people '),
+                  Text('${cubit.rooms} Room' '' '${cubit.people} people '),
                 ],
               ),
             ),
