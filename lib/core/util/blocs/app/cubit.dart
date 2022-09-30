@@ -249,4 +249,11 @@ class AppBloc extends Cubit<AppStates> {
     print('my long' + long.toString());
     emit(LocationSuccessState());
   }
+
+  bool isDark = true;
+
+  void changeAppMode() {
+    isDark = !isDark;
+    emit(AppChangeModeState());
+  }
 }

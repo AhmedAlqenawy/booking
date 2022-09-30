@@ -1,6 +1,7 @@
 import 'package:booking/core/util/blocs/app/cubit.dart';
 import 'package:booking/core/util/blocs/app/states.dart';
 import 'package:booking/core/util/network/remote/end_points.dart';
+import 'package:booking/core/util/style/colors.dart';
 import 'package:booking/feature/allhotels/data/models/hotels_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,13 +18,17 @@ class Hotel extends StatelessWidget {
       builder: (context, state) {
         var cubit = AppBloc.get(context);
         return Material(
+          color: AppBloc.get(context).isDark
+              ? darkScafoldColor
+              : whiteScafoldColor,
           elevation: 2.0,
           borderRadius: BorderRadius.circular(10),
           child: Container(
             height: 260.h,
             width: MediaQuery.of(context).size.width / 1.5,
             decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(20)),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +57,6 @@ class Hotel extends StatelessWidget {
                             width: 200.w,
                             child: Text(
                               cubit.hotel[index].name,
-
                               style: const TextStyle(
                                   overflow: TextOverflow.ellipsis,
                                   fontSize: 18,
@@ -77,7 +81,7 @@ class Hotel extends StatelessWidget {
                             child: Text(
                               cubit.hotel[index].address,
                               maxLines: 2,
-                              style:   TextStyle(
+                              style: TextStyle(
                                 overflow: TextOverflow.ellipsis,
                                 fontSize: 14.sp,
                               ),

@@ -1,6 +1,7 @@
 import 'package:booking/core/util/blocs/app/cubit.dart';
 import 'package:booking/core/util/blocs/app/states.dart';
 import 'package:booking/core/util/network/remote/end_points.dart';
+import 'package:booking/core/util/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -14,13 +15,17 @@ class SearchHotel extends StatelessWidget {
       builder: (context, state) {
         var cubit = AppBloc.get(context);
         return Material(
+          color: AppBloc.get(context).isDark
+              ? darkScafoldColor
+              : whiteScafoldColor,
           elevation: 2.0,
           borderRadius: BorderRadius.circular(10),
           child: Container(
             height: MediaQuery.of(context).size.height / 2.8,
             width: MediaQuery.of(context).size.width / 1.5,
             decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(10)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

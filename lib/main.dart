@@ -1,3 +1,4 @@
+import 'package:booking/core/util/style/thems.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:booking/core/util/mangerLang/manger_languge.dart';
@@ -12,21 +13,21 @@ import 'core/di/injection.dart';
 import 'core/util/blocs/app/cubit.dart';
 import 'core/util/routes.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
- await CacheHelper.init();
+  await CacheHelper.init();
   // late String accsestoken = CacheHelper.getData(key: 'token');
   await EasyLocalization.ensureInitialized();
   // CacheHelper.init();
 
   init();
   runApp(EasyLocalization(
-            supportedLocales: const [
-              Locale('en'),
-              Locale('ar'),
-            ],
-            fallbackLocale: const Locale('en'),
-            //assetLoader: const CodegenLoader(),
+      supportedLocales: const [
+        Locale('en'),
+        Locale('ar'),
+      ],
+      fallbackLocale: const Locale('en'),
+      //assetLoader: const CodegenLoader(),
 
       path: Assets_Localization,
       child: Phoenix(child: const MyApp())));
@@ -40,13 +41,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   CacheHelper cache = CacheHelper();
-
 
   @override
   void didChangeDependencies() {
-
     cache.getLocal().then((local) => {context.setLocale(local)});
     print(cache.getAppLanguage().toString());
 
@@ -58,7 +56,9 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
         providers: [
           BlocProvider<AppBloc>(
-            create: (context) => sl<AppBloc>()..getLocation()..getAllHotels(),
+            create: (context) => sl<AppBloc>()
+              ..getLocation()
+              ..getAllHotels(),
           ),
           BlocProvider<HotelsCubit>(
             create: (context) => sl<HotelsCubit>(),
@@ -67,23 +67,23 @@ class _MyAppState extends State<MyApp> {
         child: ScreenUtilInit(
           designSize: const Size(375, 812),
           builder: (context, child) => MaterialApp(
-         localizationsDelegates: context.localizationDelegates,
-                    supportedLocales: context.supportedLocales,
-                    locale: context.locale,
-                    localeResolutionCallback: (locale, supportedLocales) {
-                      for (var supportedLocale in supportedLocales) {
-                        if (supportedLocale.languageCode == locale?.languageCode) {
-                          return supportedLocale;
-                        }
-                      }
-                      return supportedLocales.first;
-                    },
-
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            localeResolutionCallback: (locale, supportedLocales) {
+              for (var supportedLocale in supportedLocales) {
+                if (supportedLocale.languageCode == locale?.languageCode) {
+                  return supportedLocale;
+                }
+              }
+              return supportedLocales.first;
+            },
             title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-            //  primarySwatch: Colors.blue,
-            ),
+            darkTheme: darkTheme,
+            theme: lightTheme,
+            themeMode:
+                AppBloc.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
             routes: Routes.routes,
             initialRoute: Routes.splash,
           ),
