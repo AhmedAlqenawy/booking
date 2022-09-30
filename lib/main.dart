@@ -22,14 +22,13 @@ void main() async {
 
   init();
   runApp(EasyLocalization(
-      supportedLocales: const [
-        Locale('en'),
-        Locale('ar'),
-      ],
-      fallbackLocale: const Locale('en'),
-      //assetLoader: const CodegenLoader(),
+            supportedLocales: const [
+              Locale('ar'),
+              Locale('en'),
+            ],
+            //assetLoader: const CodegenLoader(),
 
-      path: Assets_Localization,
+      path: "assets/lang",
       child: Phoenix(child: const MyApp())));
 }
 
@@ -41,15 +40,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  CacheHelper cache = CacheHelper();
-
-  @override
-  void didChangeDependencies() {
-    cache.getLocal().then((local) => {context.setLocale(local)});
-    print(cache.getAppLanguage().toString());
-
-    super.didChangeDependencies();
-  }
+  // CacheHelper cache = CacheHelper();
+  //
+  // @override
+  // void didChangeDependencies() {
+  //   cache.getLocal().then((local) => {context.setLocale(local)});
+  //   print(cache.getAppLanguage().toString());
+  //
+  //   super.didChangeDependencies();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -67,23 +66,24 @@ class _MyAppState extends State<MyApp> {
         child: ScreenUtilInit(
           designSize: const Size(375, 812),
           builder: (context, child) => MaterialApp(
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            locale: context.locale,
-            localeResolutionCallback: (locale, supportedLocales) {
-              for (var supportedLocale in supportedLocales) {
-                if (supportedLocale.languageCode == locale?.languageCode) {
-                  return supportedLocale;
-                }
-              }
-              return supportedLocales.first;
-            },
+         localizationsDelegates: context.localizationDelegates,
+                    supportedLocales: context.supportedLocales,
+                    locale: context.locale,
+                    // localeResolutionCallback: (locale, supportedLocales) {
+                    //   for (var supportedLocale in supportedLocales) {
+                    //     if (supportedLocale.languageCode == locale?.languageCode) {
+                    //       return supportedLocale;
+                    //     }
+                    //   }
+                    //   return supportedLocales.first;
+                    // },
+
             title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
             darkTheme: darkTheme,
             theme: lightTheme,
-            themeMode:
-                AppBloc.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
+            themeMode:ThemeMode.light,
+                // AppBloc.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
             routes: Routes.routes,
             initialRoute: Routes.splash,
           ),

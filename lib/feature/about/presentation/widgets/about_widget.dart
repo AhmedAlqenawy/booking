@@ -1,10 +1,13 @@
+import 'package:booking/core/util/mangerLang/manger_languge.dart';
+import 'package:booking/core/util/network/local/Cach_Helper.dart';
 import 'package:booking/core/util/widget_functions.dart';
 import 'package:booking/feature/about/model/profile_model.dart';
 import 'package:booking/feature/about/presentation/widgets/profile_item.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/util/blocs/app/cubit.dart';
 import '../../../../core/util/blocs/app/states.dart';
 import 'about_main_widget.dart';
@@ -17,6 +20,7 @@ class AboutWidget extends StatefulWidget {
 }
 
 class _AboutWidgetState extends State<AboutWidget> {
+  CacheHelper? cacheHelper;
   @override
   void initState() {
     AppBloc.get(context).getProfileDate();
@@ -49,30 +53,46 @@ class _AboutWidgetState extends State<AboutWidget> {
                       imgUrl: profileModel.data?.image ?? "",
                     ),
                     space(32.h, 0),
-                    const ProfileItem(
-                      title: "Change Password",
+                     ProfileItem(
+                      title: "about.password".tr(),
                       icon: Icons.lock,
                     ),
-                    const ProfileItem(
-                      title: "Invite Friend",
+                     ProfileItem(
+                      title: "about.invite".tr(),
                       icon: Icons.people,
                     ),
-                    const ProfileItem(
-                      title: "Credit & Coupons",
+                     ProfileItem(
+                      title: "about.credit".tr(),
                       icon: Icons.calendar_view_month,
                     ),
-                    const ProfileItem(
-                        title: "Help Center",
+                     ProfileItem(
+                        title: "about.Help".tr(),
                         icon: IconData(
                           0xf655,
                         )),
-                    const ProfileItem(
-                      title: "Payment",
+                     ProfileItem(
+                      title: "about.pay".tr(),
                       icon: Icons.payment,
                     ),
-                    const ProfileItem(
-                      title: "Setting",
-                      icon: Icons.settings,
+                    InkWell(
+                      onTap: (){
+                        if(context.locale.toString() == "ar"){
+                        print(context.locale);
+                        setState(() {
+                          context.locale = const Locale('en');
+                        });}
+                        else{
+                          print(context.locale);
+                          setState(() {
+                            context.locale = const Locale('ar');
+                          });}
+
+                        // Phoenix.rebirth(context);
+                      },
+                      child:  ProfileItem(
+                        title: "about.lang".tr(),
+                        icon: Icons.language_outlined,
+                      ),
                     ),
                     /*MaterialButton(
                       onPressed: () {
