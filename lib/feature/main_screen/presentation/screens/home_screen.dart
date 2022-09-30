@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   void initState() {
     scrollController = ScrollController();
     scrollController!.addListener(listenToScrollChange);
+    AppBloc.get(context).getAllHotels();
     super.initState();
   }
 

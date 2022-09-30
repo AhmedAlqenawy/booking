@@ -10,18 +10,18 @@ class Facilities {
   });
 
   Status? status;
-  List<Datum>? data;
+  List<Facility>? data;
 
   factory Facilities.fromJson(Map<String, dynamic> json) => Facilities(
         status: json["status"] == null ? null : Status.fromJson(json["status"]),
         data: json["data"] == null
             ? null
-            : List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+            : List<Facility>.from(json["data"].map((x) => Facility.fromJson(x))),
       );
 }
 
-class Datum {
-  Datum({
+class Facility {
+  Facility({
     this.id,
     this.name,
     this.image,
@@ -35,7 +35,7 @@ class Datum {
   DateTime? createdAt;
   DateTime? updatedAt;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory Facility.fromJson(Map<String, dynamic> json) => Facility(
         id: json["id"],
         name: json["name"],
         image: json["image"],
@@ -56,6 +56,6 @@ class Status {
   String? type;
 
   factory Status.fromJson(Map<String, dynamic> json) => Status(
-        type: json["type"] == null ? null : json["type"],
+        type: json["type"]  ,
       );
 }

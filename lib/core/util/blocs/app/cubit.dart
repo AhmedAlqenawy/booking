@@ -11,12 +11,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 
+import '../../../../feature/filtter/data/models/facilities.dart';
 import '../../../../feature/login/models/login_model.dart';
 import '../../../../feature/login/models/register_model.dart';
 import '../../constants/constants.dart' as constants;
 import '../../network/repository.dart';
-
-import '';
 
 class AppBloc extends Cubit<AppStates> {
   final Repository repository;
@@ -37,6 +36,31 @@ class AppBloc extends Cubit<AppStates> {
   RegisterModel? registerModel;
 
   ProfileModel? profileModel;
+
+  Facilities? allFacilities;
+
+  List<int> facilitiesIds = [];
+
+  addFacilitiesToFilter(int id) {
+    facilitiesIds.add(id);
+  }
+
+  removeFacilitiesToFilter(int id) {
+    facilitiesIds.removeWhere((element) => element == id);
+  }
+
+  void getAllFacilities() async {
+    emit(FacilitiesLoadingState());
+    final response = await filtterRepository.getFacilities();
+
+    response.fold((l) {
+      emit(ErrorState(exception: l));
+    }, (r) {
+      allFacilities = r;
+      print("allFacilities ${r.data!.length}");
+      emit(FacilitiesSuccessState());
+    });
+  }
 
   void getProfileDate() async {
     emit(GetProfileLoadingState());
@@ -159,8 +183,7 @@ class AppBloc extends Cubit<AppStates> {
     final response = await filtterRepository.filtter(
       latitude: lat,
       longitude: long,
-      facilities0: 5,
-      facilities1: 10,
+      facilitiesIds: facilitiesIds,
       page: 1,
       maxPrice: end,
       minPrice: start,

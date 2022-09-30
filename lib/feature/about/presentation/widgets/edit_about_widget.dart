@@ -1,10 +1,8 @@
 import 'dart:io';
 
-import 'package:booking/core/util/constants/constants.dart';
 import 'package:booking/core/util/widget_functions.dart';
 import 'package:booking/feature/about/model/profile_model.dart';
 import 'package:booking/main.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +10,6 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/util/blocs/app/cubit.dart';
 import '../../../../core/util/blocs/app/states.dart';
-import '../../../../core/util/network/remote/dio_helper.dart';
 import '../../../../core/util/widgets/default_button.dart';
 import 'about_profile_edit_item.dart';
 
@@ -118,7 +115,7 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                           decoration: SelectedFile != null
                               ? BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Colors.redAccent,
+                                  //color: Colors.redAccent,
                                   image: DecorationImage(
                                     fit: BoxFit.fill,
                                     //image: NetworkImage(imgUrl ?? ""),
@@ -127,11 +124,12 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                 )
                               :   BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Colors.redAccent,
+                                  //color: Colors.redAccent,
                                   image: DecorationImage(
                                     fit: BoxFit.fill,
-                                     image:
-                                        NetworkImage(profileModel!.data!.image!.toString()),
+                                    image: NetworkImage(profileModel!
+                                            .data!.image ??
+                                        "https://cdn-icons-png.flaticon.com/512/17/17004.png"),
                                   ),
                                 ),
                         ),

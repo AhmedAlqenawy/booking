@@ -4,6 +4,8 @@ import 'package:booking/feature/filtter/presentation/filtter_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/util/blocs/app/cubit.dart';
+
 class FiltterWidget extends StatelessWidget {
   const FiltterWidget({Key? key}) : super(key: key);
 

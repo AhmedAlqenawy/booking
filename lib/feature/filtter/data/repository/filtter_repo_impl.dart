@@ -21,20 +21,20 @@ class FiltterRepositoryImplementation extends FiltterRepository {
     required double maxPrice,
     required double minPrice,
     required int distance,
-    required int facilities0,
-    required int facilities1,
+    required List  facilitiesIds,
     required double longitude,
     required double latitude,
   }) async {
     return basicErrorHandling<FiltterHotelsModel>(
       onSuccess: () async {
+
         final response = await dioHelper.get(endPoint: filtterEndPoint, query: {
           'page': page,
           'max_price': maxPrice,
           'min_price': minPrice,
           'distance': distance,
-          'facilities[0]': facilities0,
-          'facilities[1]': facilities1,
+          for(int i=0;i<facilitiesIds.length;i++)
+          'facilities[$i]': facilitiesIds[i],
           'latitude': latitude,
           'longitude': longitude,
         });
@@ -71,11 +71,10 @@ class FiltterRepositoryImplementation extends FiltterRepository {
   Future<Either<PrimaryServerException, Facilities>> getFacilities() {
     return basicErrorHandling<Facilities>(
       onSuccess: () async {
-        final response = await dioHelper.get(endPoint: filtterEndPoint, query: {
+        final response =
+            await dioHelper.get(endPoint: facilitiesFiltterEndPoint);
 
-        });
-
-        return facilitiesFromJson(response);
+        return Facilities.fromJson(response);
       },
       onPrimaryServerException: (e) async {
         return e;
