@@ -16,7 +16,7 @@ class MyFormLogin extends StatelessWidget {
     required this.type,
     required this.controller,
     this.radius = 15.0,
-    this.isPassword = false,
+    this.isPassword = true,
   }) : super(key: key);
 
   @override
@@ -72,6 +72,7 @@ class MyFormLogin extends StatelessWidget {
             hintText: label,
             hintStyle: TextStyle(
               color: color,
+              fontWeight: FontWeight.w400
             )
           ),
         ),

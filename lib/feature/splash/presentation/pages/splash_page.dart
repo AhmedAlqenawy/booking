@@ -1,4 +1,4 @@
-import 'package:booking/core/util/constants.dart';
+import 'package:booking/core/util/constants/constants.dart';
 import 'package:booking/core/util/network/local/Cach_Helper.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -69,12 +69,7 @@ class SplashPage extends StatelessWidget {
                       NavigationContext(context).push = Routes.onBoarding;
                     }
                   }
-                  /*Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => const OnBoarding(),
-                    ),
-                  );*/
+
                 },
               ),
               // space(24.h, 0),

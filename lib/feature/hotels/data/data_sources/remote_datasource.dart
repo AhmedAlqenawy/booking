@@ -1,4 +1,4 @@
-import 'package:booking/core/util/constants.dart';
+import 'package:booking/core/util/constants/constants.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/util/network/remote/dio_helper.dart';

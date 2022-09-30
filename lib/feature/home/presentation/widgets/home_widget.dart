@@ -60,12 +60,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 scrollDirection: Axis.horizontal,
                 clipBehavior: Clip.antiAliasWithSaveLayer),
           ),
-          TextButton(
-              onPressed: () {
-                cacheHelper?.changeLanguage();
-                Phoenix.rebirth(context);
-              },
-              child: Text('lang'))
+
         ]);
       },
     );

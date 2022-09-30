@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:booking/core/util/constants.dart';
+import 'package:booking/core/util/constants/constants.dart';
 import 'package:booking/core/util/widget_functions.dart';
 import 'package:booking/feature/about/model/profile_model.dart';
 import 'package:booking/main.dart';
