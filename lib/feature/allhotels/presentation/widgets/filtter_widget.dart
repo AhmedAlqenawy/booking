@@ -1,6 +1,8 @@
 import 'package:booking/feature/filtter/presentation/filtter_page.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/util/blocs/app/cubit.dart';
+
 class FiltterWidget extends StatelessWidget {
   const FiltterWidget({Key? key}) : super(key: key);
 
@@ -16,6 +18,7 @@ class FiltterWidget extends StatelessWidget {
         const Text('Filtter', style: TextStyle(color: Colors.black)),
         IconButton(
             onPressed: () {
+              AppBloc.get(context).getAllFacilities();
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => FiltterPage()));
             },

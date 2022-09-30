@@ -44,10 +44,15 @@ class FiltterdHotel extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            cubit.filtterHotel[index].name,
-                            style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 1.5,
+                            child: Text(
+                              cubit.filtterHotel[index].name,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Text(
                             cubit.filtterHotel[index].price,
@@ -62,10 +67,15 @@ class FiltterdHotel extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            cubit.hotel[index].address,
-                            style: const TextStyle(
-                              fontSize: 15,
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 1.5,
+                            child: Text(
+                              cubit.hotel[index].address,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontSize: 15,
+                              ),
                             ),
                           ),
                           const Text(

@@ -92,7 +92,7 @@ class _MapWidgetState extends State<MapWidget> {
             builder: (context, state) {
               if (state is HotelsSuccessState) {
                 return SizedBox(
-                    height: MediaQuery.of(context).size.height / 5,
+                    height: MediaQuery.of(context).size.height * 0.21,
                     width: double.infinity,
                     child: ScrollablePositionedList.separated(
                       itemScrollController: itemScrollController,

@@ -46,7 +46,7 @@ class _AboutWidgetState extends State<AboutWidget> {
                     space(50.h, 0),
                     AboutMainWidget(
                       name: profileModel.data?.name ?? "",
-                      imgUrl: profileModel.data?.image ?? "",
+                      imgUrl: profileModel.data?.image ?? "https://cdn-icons-png.flaticon.com/512/17/17004.png",
                     ),
                     space(32.h, 0),
                     const ProfileItem(

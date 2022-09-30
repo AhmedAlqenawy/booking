@@ -40,10 +40,10 @@ class AboutMainWidget extends StatelessWidget {
           height: 50.h,
           decoration:   BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.redAccent,
+            //color: Colors.redAccent,
             image: DecorationImage(
               fit: BoxFit.fill,
-              image: NetworkImage(imgUrl  ),
+              image: NetworkImage(imgUrl),
              ),
           ),
         )

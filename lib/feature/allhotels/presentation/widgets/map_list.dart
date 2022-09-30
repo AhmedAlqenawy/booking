@@ -20,8 +20,8 @@ class MapListItem extends StatelessWidget {
       builder: (context, state) {
         var cubit = AppBloc.get(context);
         return SizedBox(
-          height: MediaQuery.of(context).size.height / 5,
-          width: 370,
+          height: MediaQuery.of(context).size.height * 0.21,
+          width: 395.w,
           child: Card(
               elevation: 4,
               shape: RoundedRectangleBorder(
@@ -35,7 +35,7 @@ class MapListItem extends StatelessWidget {
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20)),
-                      height: 130,
+                      height: MediaQuery.of(context).size.height * 0.21,
                       child: Image.network(
                           width: MediaQuery.of(context).size.width * 0.4,
                           height: MediaQuery.of(context).size.height * 0.21,
@@ -55,17 +55,17 @@ class MapListItem extends StatelessWidget {
                               width: 200.w,
                               child: Text(
                                 cubit.hotel[index].name,
-                                style: const TextStyle(
+                                style:   TextStyle(
                                     overflow: TextOverflow.ellipsis,
-                                    fontSize: 18,
+                                    fontSize: 18.sp,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
                             SizedBox(
-                              width: 200.w,
+                              width: 220.w,
                               child: Text(
                                 cubit.hotel[index].address,
-                                maxLines: 1,
+                                maxLines: 3,
                                 style: TextStyle(
                                   overflow: TextOverflow.ellipsis,
                                   fontSize: 14.sp,

@@ -30,6 +30,10 @@ class GetProfileSuccessState extends AppStates {}
 
 class HotelsLoadingState extends AppStates {}
 
+class FacilitiesSuccessState extends AppStates {}
+
+class FacilitiesLoadingState extends AppStates {}
+
 class HotelsSuccessState extends AppStates {}
 
 class FiltterLoadingState extends AppStates {}
