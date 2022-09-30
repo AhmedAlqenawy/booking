@@ -1,10 +1,12 @@
 import 'package:booking/core/error/exceptions.dart';
 import 'package:booking/core/util/network/remote/dio_helper.dart';
 import 'package:booking/core/util/network/remote/end_points.dart';
+import 'package:booking/feature/filtter/data/models/facilities.dart';
 import 'package:booking/feature/filtter/data/models/filtter_hotels_model.dart';
 import 'package:booking/feature/filtter/domian/repository/filtter_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+
 
 class FiltterRepositoryImplementation extends FiltterRepository {
   final DioHelper dioHelper;
@@ -45,6 +47,8 @@ class FiltterRepositoryImplementation extends FiltterRepository {
     );
   }
 
+
+
   @override
   Future<Either<PrimaryServerException, FiltterHotelsModel>> search(
       {required int page, required String name}) async {
@@ -56,6 +60,22 @@ class FiltterRepositoryImplementation extends FiltterRepository {
         });
 
         return FiltterHotelsModel.fromJson(response);
+      },
+      onPrimaryServerException: (e) async {
+        return e;
+      },
+    );
+  }
+
+  @override
+  Future<Either<PrimaryServerException, Facilities>> getFacilities() {
+    return basicErrorHandling<Facilities>(
+      onSuccess: () async {
+        final response = await dioHelper.get(endPoint: filtterEndPoint, query: {
+
+        });
+
+        return facilitiesFromJson(response);
       },
       onPrimaryServerException: (e) async {
         return e;

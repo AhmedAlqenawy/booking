@@ -25,8 +25,9 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     final response = await dioHelper.get(
         endPoint: getcancelledBookingEndPoint,
         data: {'type': 'canceled ', 'count': 10},
-        token:  token);
-    final booking = TripModel.fromJson(response['data']);
+        token: token);
+  
+    final booking = TripModel.fromJson(response);
 
     return booking;
   }
@@ -41,7 +42,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
           'count': 10,
         },
         token:  token);
-    final booking = TripModel.fromJson(response['data']);
+    final booking = TripModel.fromJson(response);
 
     return booking;
   }
@@ -53,10 +54,9 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
     final response = await dioHelper.get(
         endPoint: getupCommingBookingEndPoint,
-        data: {'type': 'upcomming  ', 'count': 1},
-        token:  token);
-print('ffffffffffffffffff'+response['data'].toString());
-    final booking = TripModel.fromJson(response['data']);
+        data: {'type': 'upcomming', 'count': 10},
+        token: token);
+    final booking = TripModel.fromJson(response);
 
     return booking;
   }
