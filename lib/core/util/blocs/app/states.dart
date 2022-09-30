@@ -42,6 +42,8 @@ class SearchSuccessState extends AppStates {}
 
 class LocationSuccessState extends AppStates {}
 
+class AppChangeModeState extends AppStates {}
+
 class AddCounterSuccessState extends AppStates {
   final int counter;
 
