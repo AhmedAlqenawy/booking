@@ -103,8 +103,7 @@ class BookingDetailsScreen extends StatelessWidget {
                     height: 40.h,
                     title: "Cancel reservation",
                     onTap: () {
-                      // BlocProvider.of<HotelsCubit>(context)
-                      //     .createBooking(hotelId: 13, userId: 179);
+                     
                       BlocProvider.of<HotelsCubit>(context).updateBookingStatus(
                           context: context,
                           bookingId: bookingId,

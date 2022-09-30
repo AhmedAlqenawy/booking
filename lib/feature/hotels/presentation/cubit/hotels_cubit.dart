@@ -40,7 +40,7 @@ class HotelsCubit extends Cubit<HotelsState> {
     tripList.fold(
         (failure) => GetCancelledBookingErrorState(_getFailureErrorMessage(failure)),
         (bookings) {
-      canceledBooking.addAll(bookings.data!);
+      canceledBooking.addAll(bookings.pageData!.data!);
       print(canceledBooking);
       emit(GetCancelledBookingLoadedState(trip: bookings));
     });
@@ -53,7 +53,7 @@ class HotelsCubit extends Cubit<HotelsState> {
     tripList.fold(
         (failure) => GetBookingErrorState(_getFailureErrorMessage(failure)),
         (bookings) {
-      completedBooking.addAll(bookings.data!);
+      completedBooking.addAll(bookings.pageData!.data!);
 
       emit(GetCompletedBookingLoadedState(trip: bookings));
     });
@@ -66,7 +66,7 @@ class HotelsCubit extends Cubit<HotelsState> {
     tripList.fold(
         (failure) => GetUpcommingBookingErrorState(_getFailureErrorMessage(failure)),
         (bookings) {
-      upCommingBooking.addAll(bookings.data!);
+      upCommingBooking.addAll(bookings.pageData!.data!);
 
       emit(GetUpcommingBookingLoadedState(trip: bookings));
     });
