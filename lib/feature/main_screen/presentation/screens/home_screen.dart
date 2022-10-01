@@ -1,7 +1,9 @@
 import 'package:booking/core/util/widgets/loading_widget.dart';
 import 'package:booking/feature/allhotels/presentation/hotels_page.dart';
 import 'package:booking/feature/main_screen/presentation/screens/hotel_details_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -51,80 +53,89 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return NestedScrollView(
-      // floatHeaderSlivers: true,
-      controller: scrollController,
-      headerSliverBuilder: (context, innerBoxIsScrolled) {
-        if (innerBoxIsScrolled) {
-          /* Animation */
-          controller = AnimationController(
-            vsync: this,
-            duration: const Duration(
-              seconds: 1,
-            ),
-          );
-          animation = Tween(
-            begin: 0.0,
-            end: 1.0,
-          ).animate(controller);
-          /* Animation */
-          controller.forward();
-        }
-        return <Widget>[
-          HomeSliverBar(
-            isScrolled: isScrolled,
-          )
-        ];
-      },
-
-      body: Container(
-        height: MediaQuery.of(context).size.height*0.4,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 20.h,
-            ),
-            Text("Best Deals",
-                style: openSans(18.sp, Colors.black, FontWeight.bold)),
-                 SizedBox(
-              height: 10.h,
-            ),
-            BlocBuilder<AppBloc, AppStates>(
-              builder: (context, state) {
-                print("state2");
-                print(state);
-                if (state is HotelsSuccessState ||
-                    state is LocationSuccessState) {
-                  return Expanded(
-                    child: MediaQuery.removePadding(
-                      removeTop: true,
-                      context: context,
-                      child: ListView.separated(
-                        separatorBuilder: (context, index) => const SizedBox(
-                          height: 10,
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent
+    ));
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      body: NestedScrollView(
+        // floatHeaderSlivers: true,
+        controller: scrollController,
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          if (innerBoxIsScrolled) {
+            /* Animation */
+            controller = AnimationController(
+              vsync: this,
+              duration: const Duration(
+                seconds: 1,
+              ),
+            );
+            animation = Tween(
+              begin: 0.0,
+              end: 1.0,
+            ).animate(controller);
+            /* Animation */
+            controller.forward();
+          }
+          return <Widget>[
+            HomeSliverBar(
+              isScrolled: isScrolled,
+            )
+          ];
+        },
+    
+        body: Container(
+          height: MediaQuery.of(context).size.height * 0.4,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+               "best.deals".tr(),
+                style: Theme.of(context).textTheme.headline1,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              BlocBuilder<AppBloc, AppStates>(
+                builder: (context, state) {
+                  print("state2");
+                  print(state);
+                  if (state is HotelsSuccessState ||
+                      state is LocationSuccessState) {
+                    return Expanded(
+                      child: MediaQuery.removePadding(
+                        removeTop: true,
+                        context: context,
+                        child: ListView.separated(
+                          separatorBuilder: (context, index) => const SizedBox(
+                            height: 10,
+                          ),
+                          itemBuilder: (context, index) => GestureDetector(
+                            onTap: () {
+                              navigateTo(
+                                context: context,
+                                widget: HotelDetailsScreen(
+                                    hotelModel:
+                                        AppBloc.get(context).hotel[index]),
+                              );
+                            },
+                            child: Hotel(index: index),
+                          ),
+                          itemCount: AppBloc.get(context).hotel.length,
                         ),
-                        itemBuilder: (context, index) => GestureDetector(
-                          onTap: () {
-                            navigateTo(
-                              context: context,
-                              widget: HotelDetailsScreen(
-                                  hotelModel: AppBloc.get(context).hotel[index]),
-                            );
-                          },
-                          child: Hotel(index: index),
-                        ),
-                        itemCount: AppBloc.get(context).hotel.length,
                       ),
-                    ),
-                  );
-                } else {
-                  return const LoadingWidget();
-                }
-              },
-            ),
-          ],
+                    );
+                  } else {
+                    return const LoadingWidget();
+                  }
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

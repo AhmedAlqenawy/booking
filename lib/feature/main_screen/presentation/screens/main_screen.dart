@@ -1,4 +1,5 @@
 import 'package:booking/core/util/blocs/app/cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../about/presentation/pages/about_page.dart';
@@ -14,6 +15,8 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int currentIndex = 0;
+
+
   List<Widget> screens = [
     const HomeScreen(),
     const GetBookingScreen(item: 0,),
@@ -23,26 +26,30 @@ class _MainScreenState extends State<MainScreen> {
   @override
   initState(){
     super.initState();
+    
     AppBloc.get(context).getAllHotels();
   }
-  List<String> titles = ['', 'Trips', 'Profile'];
   @override
   Widget build(BuildContext context) {
+        print(context.locale);
+
     return Scaffold(
+      backgroundColor: Colors.transparent,
       // appBar: AppBar(
       //   title: Text(titles[currentIndex],
       //       style: const TextStyle(color: Colors.black)),
       //   elevation: 0,
       //   backgroundColor: Colors.transparent,
       // ),
+      
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.teal,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Explore'),
+        items:  [
+          BottomNavigationBarItem(icon: const Icon(Icons.search), label:'explore'.tr()),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_border), label: 'Trips'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+              icon: const Icon(Icons.favorite_border), label:'trips'.tr()),
+          BottomNavigationBarItem(icon: const Icon(Icons.person), label: 'profile'.tr()),
         ],
         onTap: (index) {
           setState(() {

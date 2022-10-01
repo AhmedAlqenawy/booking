@@ -23,7 +23,7 @@ class ProfileItem extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: openSans(14.sp, Colors.black, FontWeight.w400),
+                style: Theme.of(context).textTheme.headline4,
               ),
               Icon(
                 icon,

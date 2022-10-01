@@ -35,14 +35,23 @@
   "about.pay":   "دفع",
   "about.lang":   "اللغه",
   "about.out":   "تسجيل الخروج",
-
-
-  "": "",
-  "": "",
-  "": "",
-  "": "",
-  "": "",
-  "": ""
-
+  "explore": "اكتشف",
+  "trips": "رحلاتى",
+  "profile": "الملف الشخصى",
+  "upcoming": "القادمة",
+  "finished": "المنتهية",
+  "cancelled": "تم الغائها",
+  "best.deals": "افضل العروض",
+  "view.hotels": "عرض الفنادق",
+  "per.night": "لكل ليلة",
+  "book.now": "احجز الان",
+  "more.details": "المزيد من التفاصيل",
+  "summary": "ملخص",
+  "facilities": "المزايا",
+  "photos": "الصور",
+  "room.people":"فردين فى الغرفة",
+  "complete.reservation": "اكمال الحجز",
+  "cancel.reservation": "الغاء الحجز",
+  "mode": "المظهر"
 
 }

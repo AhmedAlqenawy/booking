@@ -274,10 +274,27 @@ class AppBloc extends Cubit<AppStates> {
     emit(LocationSuccessState());
   }
 
-  bool isDark = true;
+  bool isDark = false;
 
-  void changeAppMode() {
-    isDark = !isDark;
-    emit(AppChangeModeState());
+  // void changeAppMode() {
+  //   isDark = !isDark;
+  //   emit(AppChangeModeState());
+  // }
+
+  bool? getMode() {
+    if (CacheHelper.getData(key: 'isDark') == null) {
+      CacheHelper.saveData(key: 'isDark', value: isDark);
+    }
+    isDark = CacheHelper.getData(key: 'isDark');
+    return isDark;
   }
+
+  void changeAppTheme({bool? sharedValue}) {
+    isDark = sharedValue!;
+    print(isDark);
+emit(AppChangeModeState());
+    CacheHelper.saveData(key: 'isDark', value: isDark)
+        .then((value) => emit(AppChangeModeState()));
+  }
+
 }

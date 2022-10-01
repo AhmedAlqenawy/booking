@@ -2,6 +2,7 @@ import 'package:booking/core/util/widget_functions.dart';
 import 'package:booking/feature/allhotels/domian/entity/hotel_model.dart';
 import 'package:booking/feature/hotels/presentation/cubit/hotels_cubit.dart';
 import 'package:booking/feature/hotels/presentation/widgets/rating_bar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -69,7 +70,7 @@ class HotailDetailsContainer extends StatelessWidget {
                 CustomRatingBar(rate: hotel.rate!),
                 const Spacer(),
                 Text(
-                  '/Per night',
+                   "per.night".tr(),
                   style: openSans(14.sp, Colors.white, FontWeight.w100),
                 ),
               ],
@@ -82,7 +83,7 @@ class HotailDetailsContainer extends StatelessWidget {
                 height: 40.h,
                 width: MediaQuery.of(context).size.width * 0.7,
                 textColor: Colors.white,
-                title: 'Book Now',
+                title:  "book.now".tr(),
                 bgColor: Colors.teal,
                 onTap: () {
                   BlocProvider.of<HotelsCubit>(context).createBooking(

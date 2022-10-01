@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,8 +25,10 @@ class BookingDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(hotel.name!,
-        style: const TextStyle(color: Colors.black)),
+        title: Text(
+          hotel.name!,
+          style: Theme.of(context).textTheme.headline1,
+        ),
         elevation: 0,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
@@ -44,11 +47,13 @@ class BookingDetailsScreen extends StatelessWidget {
               children: [
                 SizedBox(
                   height: 100.h,
-                  width:MediaQuery.of(context).size.width*0.9 ,
-                  child: Text(hotel.description!,
-                  maxLines: 4,
-                  overflow: TextOverflow.ellipsis,
-                      style: openSans(16.sp, Colors.black, FontWeight.w400)),
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: Text(
+                    hotel.description!,
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.headline3,
+                  ),
                 ),
               ],
             ),
@@ -58,11 +63,13 @@ class BookingDetailsScreen extends StatelessWidget {
             child: RichText(
               text: TextSpan(children: [
                 TextSpan(
-                    text: hotel.price,
-                    style: openSans(20.sp, Colors.black, FontWeight.bold)),
+                  text: hotel.price,
+                  style: Theme.of(context).textTheme.headline1,
+                ),
                 TextSpan(
-                    text: '/per night',
-                    style: openSans(16.sp, Colors.black, FontWeight.w400)),
+                  text: '  ' +"per.night".tr(),
+                  style: Theme.of(context).textTheme.headline1,
+                ),
               ]),
             ),
           ),
@@ -76,7 +83,7 @@ class BookingDetailsScreen extends StatelessWidget {
                     textColor: Colors.white,
                     width: MediaQuery.of(context).size.width * 0.5,
                     height: 40.h,
-                    title: "Complete reservation",
+                    title: "complete.reservation".tr(),
                     onTap: () {
                       // BlocProvider.of<HotelsCubit>(context)
                       //     .createBooking(hotelId: 13, userId: 179);
@@ -96,20 +103,18 @@ class BookingDetailsScreen extends StatelessWidget {
           type == 'upcomming' || type == 'completed'
               ? Center(
                   child: DefaultButton(
-                    textColor: Color(0xff57B098),
-                    bgColor: Colors.white,
+                    textColor: Colors.teal,
+                    bgColor:  Colors.white,
                     haveBorder: true,
                     width: MediaQuery.of(context).size.width * 0.5,
                     height: 40.h,
-                    title: "Cancel reservation",
+                    title: "cancel.reservation".tr(),
                     onTap: () {
-                     
                       BlocProvider.of<HotelsCubit>(context).updateBookingStatus(
                           context: context,
                           bookingId: bookingId,
                           index: 2,
                           type: 'cancelled');
-                          
                     },
                   ),
                 )

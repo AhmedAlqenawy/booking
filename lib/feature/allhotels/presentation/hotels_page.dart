@@ -50,17 +50,17 @@ class _HotelsPageState extends State<HotelsPage> {
           const SizedBox(
             width: 5,
           ),
-          IconButton(
-            iconSize: 30,
-            onPressed: () {
-              setState(() {
-                AppBloc.get(context).changeAppMode();
-              });
-            },
-            icon: const Icon(
-              Icons.brightness_1,
-            ),
-          )
+          // IconButton(
+          //   iconSize: 30,
+          //   onPressed: () {
+          //     setState(() {
+          //       AppBloc.get(context).changeAppMode();
+          //     });
+          //   },
+          //   icon: const Icon(
+          //     Icons.brightness_1,
+          //   ),
+          // )
         ],
       ),
       body: SingleChildScrollView(

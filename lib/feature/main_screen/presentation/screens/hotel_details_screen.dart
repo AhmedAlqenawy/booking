@@ -1,6 +1,8 @@
 import 'package:booking/feature/allhotels/domian/entity/hotel_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -32,7 +34,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
   int? userId;
   @override
   void initState() {
-        userId = CacheHelper.getData(key: 'userId');
+    userId = CacheHelper.getData(key: 'userId');
 
     scrollController = ScrollController();
     scrollController!.addListener(listenToScrollChange);
@@ -59,9 +61,11 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
 
   @override
   Widget build(BuildContext context) {
-
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: NestedScrollView(
         // floatHeaderSlivers: true,
         controller: scrollController,
@@ -130,7 +134,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                             children: [
                               HotailDetailsContainer(
                                 hotel: widget.hotelModel,
-                                userId:userId!,
+                                userId: userId!,
                               ),
                               const SizedBox(
                                 height: 12,
@@ -149,8 +153,8 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                                 child: Container(
                                   width:
                                       MediaQuery.of(context).size.width * 0.4,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
+                                  height: MediaQuery.of(context).size.height *
+                                      0.052,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
                                       color: Colors.black.withOpacity(0.5)),
@@ -159,7 +163,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                                       child: Row(
                                         children: [
                                           Text(
-                                            'More Details',
+                                            "more.details".tr(),
                                             style: openSans(14.sp, Colors.white,
                                                 FontWeight.bold),
                                           ),
@@ -206,12 +210,12 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                         widget.hotelModel.name,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: openSans(20.sp, Colors.white, FontWeight.bold),
+                        style: Theme.of(context).textTheme.headline1,
                       ),
                     ),
                     Text(
                       widget.hotelModel.price,
-                      style: openSans(20.sp, Colors.white, FontWeight.bold),
+                      style: Theme.of(context).textTheme.headline1,
                     ),
                   ],
                 ),
@@ -227,13 +231,13 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                         widget.hotelModel.address,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: openSans(14.sp, Colors.white, FontWeight.w100),
+                        style: Theme.of(context).textTheme.headline3,
                       ),
                     ),
                     const Spacer(),
                     Text(
-                      '/Per night',
-                      style: openSans(14.sp, Colors.white, FontWeight.w100),
+                      "per.night".tr(),
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                   ],
                 ),
@@ -253,7 +257,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                         '3.0km to city',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: openSans(14.sp, Colors.white, FontWeight.w100),
+                        style: Theme.of(context).textTheme.headline3,
                       ),
                     ),
                   ],
@@ -265,8 +269,8 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                   ),
                 ),
                 Text(
-                  'Summary',
-                  style: openSans(18.sp, Colors.white, FontWeight.bold),
+                  "summary".tr(),
+                  style: Theme.of(context).textTheme.headline1,
                 ),
                 SizedBox(
                   width: double.infinity,
@@ -275,15 +279,15 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                     widget.hotelModel.description,
                     maxLines: 5,
                     overflow: TextOverflow.ellipsis,
-                    style: openSans(12.sp, Colors.white, FontWeight.w100),
+                    style: Theme.of(context).textTheme.headline3,
                   ),
                 ),
                 SizedBox(
                   height: 16.h,
                 ),
                 Text(
-                  'Facilities',
-                  style: openSans(18.sp, Colors.white, FontWeight.bold),
+                  "facilities".tr(),
+                  style: Theme.of(context).textTheme.headline1,
                 ),
                 SizedBox(
                   height: 10.h,
@@ -294,8 +298,8 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                 ),
                 widget.hotelModel.hotelImages!.isNotEmpty
                     ? Text(
-                        'Photos',
-                        style: openSans(18.sp, Colors.white, FontWeight.bold),
+                        "photos".tr(),
+                        style: Theme.of(context).textTheme.headline1,
                       )
                     : const SizedBox(),
                 SizedBox(
@@ -329,11 +333,11 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                     height: 40.h,
                     width: MediaQuery.of(context).size.width * 0.8,
                     textColor: Colors.white,
-                    title: 'Book Now',
+                    title: "book.now".tr(),
                     bgColor: Colors.teal,
                     onTap: () {
                       BlocProvider.of<HotelsCubit>(context).createBooking(
-                        context: context,
+                          context: context,
                           hotelId: widget.hotelModel.id,
                           userId: userId!);
                     },

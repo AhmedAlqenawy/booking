@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/util/constants.dart';
 import '../widgets/about_widget.dart';
 
 class AboutPage extends StatelessWidget {
@@ -7,7 +8,8 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
+      backgroundColor:  Theme.of(context).scaffoldBackgroundColor,
       body: AboutWidget(),
     );
   }

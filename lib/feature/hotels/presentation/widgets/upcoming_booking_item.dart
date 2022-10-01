@@ -1,10 +1,9 @@
 import 'package:booking/feature/hotels/presentation/widgets/rating_bar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
-import '../../../../core/util/network/remote/end_points.dart';
+import '../../../../core/util/blocs/app/cubit.dart';
+import '../../../../core/util/style/colors.dart';
 import '../../../../core/util/widget_functions.dart';
 import '../../domain/entities/trip.dart';
 import 'custom_image.dart';
@@ -40,7 +39,10 @@ class UpcommingBookingItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20)),
               child: Container(
                 decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                    BoxDecoration(borderRadius: BorderRadius.circular(20),
+                    color:AppBloc.get(context).isDark  ?darkGrey:whiteScafoldColor
+                    
+                    ),
                 child: Column(
                   children: [
                     CustomImage(
@@ -60,14 +62,12 @@ class UpcommingBookingItem extends StatelessWidget {
                               width: MediaQuery.of(context).size.width * 0.4,
                               child: Text(hotelName,
                                   maxLines: 1,
-                                  style: openSans(
-                                      18.sp, Colors.black, FontWeight.bold)),
+                                  style: Theme.of(context).textTheme.headline1)
                             ),
                             const Spacer(),
                             FittedBox(
                                 child: Text(price,
-                                    style: openSans(
-                                        18.sp, Colors.black, FontWeight.bold))),
+                                    style: Theme.of(context).textTheme.headline1)),
                           ],
                         ),
                       ),
@@ -83,14 +83,12 @@ class UpcommingBookingItem extends StatelessWidget {
                               child: Text(hotelAddress,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
-                                  style: openSans(
-                                      16.sp, Colors.black, FontWeight.w300)),
+                                 style: Theme.of(context).textTheme.headline2),
                             ),
                             const Spacer(),
                             FittedBox(
-                                child: Text('/Per night',
-                                    style: openSans(
-                                        16.sp, Colors.black, FontWeight.w300))),
+                                child: Text( "per.night".tr(),
+                                  style: Theme.of(context).textTheme.headline2)),
                           ],
                         ),
                       ),

@@ -17,12 +17,14 @@ TextStyle openSans(double fontSize, Color color, FontWeight fontWeight,
     fontSize: fontSize,
     color: color,
     fontWeight: fontWeight,
+    
     decoration: underline != false
         ? TextDecoration.underline
         : overLine != false
             ? TextDecoration.lineThrough
             : TextDecoration.none,
     decorationColor: decorationColor,
+    
   );
 }
 

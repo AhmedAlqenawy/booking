@@ -8,6 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/util/constants.dart';
+
 class Hotel extends StatelessWidget {
   Hotel({Key? key, required this.index}) : super(key: key);
   int index;
@@ -18,7 +20,7 @@ class Hotel extends StatelessWidget {
       builder: (context, state) {
         var cubit = AppBloc.get(context);
         return Material(
-          color: AppBloc.get(context).isDark
+          color:AppBloc.get(context). isDark
               ? darkScafoldColor
               : whiteScafoldColor,
           elevation: 2.0,

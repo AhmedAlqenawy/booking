@@ -34,12 +34,29 @@
   "about.Help":   "Help Center",
   "about.pay":   "Payment",
   "about.lang":   "Language",
-  "about.out":   "Log Out",
+  "explore": "Explore",
+  "trips": "Trips",
+  "profile": "Profile",
+  "upcoming": "Upcoming",
+  "finished": "Finished",
+  "cancelled": "Cancelled",
+  "best.deals": "Best Deals",
+  "view.hotels": "View Hotels",
+  "per.night": "Per night",
+  "book.now": "Book Now",
+  "more.details": "More Details",
+  "summary": "Summary",
+  "facilities": "Facilities",
+  "photos": "Photos",
+  "room.people":"1 room 2 people",
+  "complete.reservation": "Complete reservation",
+  "cancel.reservation": "Cancel reservation",
+  "mode": "Mode",
+  "about.out":   " Log out"
+
   "": "",
   "": "",
   "": "",
   "": "",
   "": ""
-
-
 }
