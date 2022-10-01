@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/util/widget_functions.dart';
+import '../../../../core/util/widgets/no_data.dart';
 import '../cubit/hotels_cubit.dart';
 import '../widgets/images_slider.dart';
 import '../widgets/upcoming_booking_item.dart';
@@ -51,10 +52,7 @@ class UpCommingBookingScreen extends StatelessWidget {
               ),
             );
           } else {
-            return Center(
-              child: Text('No Trips',
-                  style: openSans(16.sp, Colors.black, FontWeight.w400)),
-            );
+            return NoData(title: 'No upcoming trips');
           }
         } else if (state is GetBookingErrorState) {
           return Center(
@@ -62,7 +60,9 @@ class UpCommingBookingScreen extends StatelessWidget {
           );
         } else {
           return const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              color: Colors.teal,
+            ),
           );
         }
       }),

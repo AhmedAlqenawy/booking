@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/util/constants.dart';
 import '../widgets/about_widget.dart';
 
 class AboutPage extends StatelessWidget {
