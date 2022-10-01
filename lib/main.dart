@@ -12,7 +12,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/di/injection.dart';
 import 'core/util/blocs/app/cubit.dart';
 import 'core/util/blocs/app/states.dart';
-import 'core/util/constants.dart';
 import 'core/util/routes.dart';
 
 void main() async {

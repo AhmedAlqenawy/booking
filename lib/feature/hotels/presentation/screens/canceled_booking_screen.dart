@@ -1,3 +1,4 @@
+import 'package:booking/core/util/widgets/no_data.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,17 +53,17 @@ class CanceledBookingScreen extends StatelessWidget {
               ),
             );
           } else {
-            return Center(
-              child: Text('No Trips',
-                  style: openSans(16.sp, Colors.black, FontWeight.w400)),
-            );
+            return NoData(title: 'No canceled trips');
           }
         } else if (state is GetCancelledBookingErrorState) {
           return Center(
             child: Text(state.message),
           );
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator(
+                          color: Colors.teal,
+
+          ));
         }
       }),
     );

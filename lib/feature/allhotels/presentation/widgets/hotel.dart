@@ -8,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/util/constants.dart';
 
 class Hotel extends StatelessWidget {
   Hotel({Key? key, required this.index}) : super(key: key);
