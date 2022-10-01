@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/util/constants.dart';
+import '../../../../core/util/constants/constants.dart';
 import '../../../../core/util/widget_functions.dart';
 import '../../../../core/util/widgets/default_button.dart';
 import '../../../allhotels/presentation/hotels_page.dart';
