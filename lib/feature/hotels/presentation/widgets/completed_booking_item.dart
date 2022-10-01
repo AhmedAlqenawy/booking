@@ -1,5 +1,6 @@
 import 'package:booking/feature/hotels/presentation/widgets/rating_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
@@ -41,8 +42,9 @@ class CompletedBookingItem extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.4,
                     height: MediaQuery.of(context).size.height * 0.2,
                   ),
+                  SizedBox(width: 16.w,),
                   Padding(
-                    padding: const EdgeInsets.only(top: 8, left: 16.0),
+                    padding: const EdgeInsets.only(top: 8,),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -51,28 +53,25 @@ class CompletedBookingItem extends StatelessWidget {
                           child: Text(hotelName,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: openSans(
-                                  18.sp, Colors.black, FontWeight.bold)),
+                              style: Theme.of(context).textTheme.headline1),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: Text(hotelAddress,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: openSans(
-                                  16.sp, Colors.black, FontWeight.w400)),
+                              style: Theme.of(context).textTheme.headline2),
                         ),
                         Text(
                             '${DateFormat('MMM dd').format(DateTime.parse(startDate))} - ${DateFormat('MMM dd').format(DateTime.parse(endDate))}',
                             style:
                                 openSans(14.sp, Colors.grey, FontWeight.w100)),
-                        Text('1 room 2 people',
+                        Text( "people.room".tr(),
                             style:
                                 openSans(16.sp, Colors.grey, FontWeight.w300)),
                         CustomRatingBar(rate: hotelRate),
-                        Text('$price /per night',
-                            style:
-                                openSans(18.sp, Colors.black, FontWeight.bold)),
+                        Text( '$price'+ ' '+ "per.night".tr(),
+                            style: Theme.of(context).textTheme.headline1),
                       ],
                     ),
                   )
@@ -81,7 +80,7 @@ class CompletedBookingItem extends StatelessWidget {
             : Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 8, left: 16.0),
+                    padding: const EdgeInsets.only(top: 8,),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -90,18 +89,15 @@ class CompletedBookingItem extends StatelessWidget {
                           child: Text(hotelName,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: openSans(
-                                  18.sp, Colors.black, FontWeight.bold)),
+                              style: Theme.of(context).textTheme.headline1),
                         ),
-                           SizedBox(
+                        SizedBox(
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: Text(hotelAddress,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: openSans(
-                                  16.sp, Colors.black, FontWeight.w400)),
+                              style: Theme.of(context).textTheme.headline2),
                         ),
-                     
                         Text(
                             '${DateFormat('MMM dd').format(DateTime.parse(startDate))} - ${DateFormat('MMM dd').format(DateTime.parse(endDate))}',
                             style:
@@ -110,12 +106,13 @@ class CompletedBookingItem extends StatelessWidget {
                             style:
                                 openSans(14.sp, Colors.grey, FontWeight.w300)),
                         CustomRatingBar(rate: hotelRate),
-                        Text('$price /per night',
-                            style:
-                                openSans(18.sp, Colors.black, FontWeight.bold)),
+                        Text( '$price'+ ' '+ "per.night".tr(),
+                            style: Theme.of(context).textTheme.headline1),
                       ],
                     ),
                   ),
+                                    SizedBox(width: 16.w,),
+
                   CustomImage(
                     images: images,
                     width: MediaQuery.of(context).size.width * 0.4,

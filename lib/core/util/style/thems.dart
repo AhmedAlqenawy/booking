@@ -1,16 +1,19 @@
 import 'package:booking/core/util/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../core/util/widget_functions.dart';
 ThemeData darkTheme = ThemeData(
   primarySwatch: defaultColor,
+  
   scaffoldBackgroundColor: darkScafoldColor,
+  
   appBarTheme: const AppBarTheme(
     titleSpacing: 20.0,
-    systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarColor: const Color(0xff1a1a1a),
-      statusBarIconBrightness: Brightness.light,
-    ),
+    // systemOverlayStyle: SystemUiOverlayStyle(
+    //   statusBarColor: const Color(0xff1a1a1a),
+    //   statusBarIconBrightness: Brightness.light,
+    // ),
     backgroundColor: const Color(0xff1a1a1a),
     elevation: 0.0,
     titleTextStyle: TextStyle(
@@ -27,9 +30,9 @@ ThemeData darkTheme = ThemeData(
     selectedItemColor: defaultColor,
     unselectedItemColor: Colors.grey,
     elevation: 20.0,
-    backgroundColor: Color(0xff333739),
+    backgroundColor: darkGrey,
   ),
-  textTheme: const TextTheme(
+  textTheme:  TextTheme(
     bodyText2: TextStyle(
       fontSize: 14.0,
       fontWeight: FontWeight.w600,
@@ -46,6 +49,12 @@ ThemeData darkTheme = ThemeData(
       color: Colors.white,
       height: 1.3,
     ),
+        headline1:openSans( 18.sp, Colors.white, FontWeight.bold),
+     headline2:openSans( 16.sp, Colors.white, FontWeight.w300),
+             headline3: openSans(14.sp, Colors.white, FontWeight.w100),
+             headline4: openSans(14.sp, Colors.white, FontWeight.w400),
+
+
   ),
 );
 
@@ -55,10 +64,7 @@ ThemeData lightTheme = ThemeData(
   appBarTheme: const AppBarTheme(
     actionsIconTheme: IconThemeData(color: Colors.black),
     titleSpacing: 20.0,
-    systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarColor: Colors.white,
-      statusBarIconBrightness: Brightness.dark,
-    ),
+  
     backgroundColor: Colors.white,
     elevation: 0.0,
     titleTextStyle: TextStyle(
@@ -77,7 +83,7 @@ ThemeData lightTheme = ThemeData(
     elevation: 20.0,
     backgroundColor: Colors.white,
   ),
-  textTheme: const TextTheme(
+  textTheme:  TextTheme(
     bodyText2: TextStyle(
       fontSize: 14.0,
       fontWeight: FontWeight.w600,
@@ -94,5 +100,12 @@ ThemeData lightTheme = ThemeData(
       color: Colors.black,
       height: 1.3,
     ),
+
+    headline1:openSans( 18.sp, Colors.black, FontWeight.bold),
+    headline2: openSans( 16.sp, Colors.black, FontWeight.w300),
+        headline3: openSans(14.sp, Colors.black, FontWeight.w100),
+                     headline4: openSans(14.sp, Colors.black, FontWeight.w400),
+
+
   ),
 );

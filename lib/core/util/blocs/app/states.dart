@@ -59,3 +59,4 @@ class RemoveCounterSuccessState extends AppStates {
 
   RemoveCounterSuccessState({required this.counter});
 }
+class hangeAppThemeState extends AppStates {}

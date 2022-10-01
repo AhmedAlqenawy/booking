@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -37,7 +38,7 @@ class HomeSliverBar extends StatelessWidget {
               left: 20.w,
               bottom: 20.h,
               child: DefaultButton(
-                title: 'View Hotels',
+                title: "view.hotels".tr(),
                 onTap: () => navigateTo(context: context, widget: HotelsPage()),
                 height: 40.h,
                 width: 120.w,

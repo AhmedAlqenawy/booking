@@ -1,18 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/util/network/remote/end_points.dart';
 import '../../domain/entities/trip.dart';
 
 class CustomImage extends StatelessWidget {
-  const CustomImage({super.key, required this.images, required this.width, required this.height,  this.isRounded=true,  this.halfRounded=false});
+  const CustomImage(
+      {super.key,
+      required this.images,
+      required this.width,
+      required this.height,
+      this.isRounded = true,
+      this.halfRounded = false});
   final List<HotelImages> images;
   final double width;
   final double height;
- final bool isRounded;
- final bool halfRounded;
+  final bool isRounded;
+  final bool halfRounded;
   @override
   Widget build(BuildContext context) {
+    print(context.locale  ==Locale('ar'));
     return Container(
         width: width,
         height: height,
@@ -23,16 +31,29 @@ class CustomImage extends StatelessWidget {
           imageBuilder: (context, imageProvider) => Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              border: Border.all(
-                color: !isRounded ?Colors.transparent:Colors.grey
-              ),
-                borderRadius: isRounded?BorderRadius.circular(20):halfRounded?const BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  bottomLeft: Radius.circular(20),
-                ): const BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
+                border: Border.all(
+                    color: !isRounded ? Colors.transparent : Colors.grey),
+                borderRadius: isRounded
+                    ? BorderRadius.circular(20)
+                    : halfRounded
+                        ? BorderRadius.only(
+                            topLeft: context.locale == const Locale('ar')
+                                ? const Radius.circular(0)
+                                : const Radius.circular(20),
+                            bottomLeft: context.locale ==const Locale('ar')
+                                ? const Radius.circular(0)
+                                : const Radius.circular(20),
+                            topRight: context.locale == const Locale('ar')
+                                ? const Radius.circular(20)
+                                : const Radius.circular(0),
+                                bottomRight: context.locale ==const Locale('ar')
+                                ? const Radius.circular(20)
+                                : const Radius.circular(0),
+                          )
+                        : const BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                          ),
                 image: DecorationImage(image: imageProvider, fit: BoxFit.fill)),
           ),
           imageUrl: images.isNotEmpty

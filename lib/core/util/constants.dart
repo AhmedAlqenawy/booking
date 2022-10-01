@@ -7,6 +7,8 @@
    String local = 'local';
 }*/
 String token = '';
+
+
 List<String> homeImages = [
   'https://images.unsplash.com/photo-1623697443281-8ed5ddfee7c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
 'https://images.unsplash.com/photo-1591448764624-d7973a442bff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',

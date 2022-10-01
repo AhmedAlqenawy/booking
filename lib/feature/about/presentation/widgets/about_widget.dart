@@ -3,6 +3,7 @@ import 'package:booking/core/util/network/local/Cach_Helper.dart';
 import 'package:booking/core/util/widget_functions.dart';
 import 'package:booking/feature/about/model/profile_model.dart';
 import 'package:booking/feature/about/presentation/widgets/profile_item.dart';
+import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -94,6 +95,23 @@ class _AboutWidgetState extends State<AboutWidget> {
                         icon: Icons.language_outlined,
                       ),
                     ),
+                    Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('mode'.tr(),
+                style: Theme.of(context).textTheme.headline4,
+              ),
+             DayNightSwitcher(
+              dayBackgroundColor: Colors.teal,
+              isDarkModeEnabled:  AppBloc.get(context).getMode()!,
+             onStateChanged: (value){
+              AppBloc.get(context).changeAppTheme(sharedValue: value);
+             },
+             ),
+            ],
+          ),
+      
+                    
                     /*MaterialButton(
                       onPressed: () {
                      //   AppBloc.get(context).userLogin();

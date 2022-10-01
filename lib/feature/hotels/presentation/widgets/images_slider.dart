@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_brace_in_string_interps
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/util/network/remote/end_points.dart';
@@ -55,9 +56,9 @@ class _ImagesSliderState extends State<ImagesSlider> {
                   }),
             ),
             Padding(
-                  padding: const EdgeInsets.only(right:8.0),
+                  padding: const EdgeInsets.only(right:8.0,left: 8),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment:context.locale == Locale('ar')?MainAxisAlignment.start:MainAxisAlignment.end,
                 children: widget.imagePath != null?widget.imagePath!.asMap().entries.map((entry) {
                   return GestureDetector(
                     onTap: () => controller.animateToPage(entry.key),

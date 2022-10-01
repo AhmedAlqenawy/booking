@@ -1,5 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/util/blocs/app/cubit.dart';
+import '../../../../core/util/style/colors.dart';
 import '../cubit/hotels_cubit.dart';
 import 'canceled_booking_screen.dart';
 import 'completed_booking_screen.dart';
@@ -28,7 +31,7 @@ class _GetBookingScreenState extends State<GetBookingScreen>
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Trips', style: TextStyle(color: Colors.black)),
+        title:  Text("trips".tr(), style: Theme.of(context).textTheme.headline1),
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
@@ -37,15 +40,18 @@ class _GetBookingScreenState extends State<GetBookingScreen>
           padding: const EdgeInsets.all(8.0),
           child: Card(
               elevation: 2,
+              color: AppBloc.get(context).isDark ? darkGrey : whiteScafoldColor,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppBloc.get(context).isDark
+                        ? darkGrey
+                        : whiteScafoldColor,
                     borderRadius: BorderRadius.circular(20)),
                 child: TabBar(
-                  isScrollable:false,
+                  isScrollable: false,
                   controller:
                       BlocProvider.of<HotelsCubit>(context).tabController,
                   labelColor: Colors.teal,
@@ -74,15 +80,15 @@ class _GetBookingScreenState extends State<GetBookingScreen>
                           .getAllUpcommingBooking();
                     }
                   },
-                  tabs: const [
+                  tabs:  [
                     Tab(
-                      text: 'Upcoming',
+                      text: "upcoming".tr(),
                     ),
                     Tab(
-                      text: 'Finished',
+                      text: 'finished'.tr(),
                     ),
                     Tab(
-                      text: 'Canceled',
+                      text: 'cancelled'.tr(),
                     ),
                   ],
                 ),
@@ -91,7 +97,7 @@ class _GetBookingScreenState extends State<GetBookingScreen>
         Expanded(
           child: TabBarView(
               controller: BlocProvider.of<HotelsCubit>(context).tabController,
-              physics:NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               children: const [
                 UpCommingBookingScreen(),
                 CompletedBookingScreen(),

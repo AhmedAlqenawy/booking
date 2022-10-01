@@ -11,6 +11,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/di/injection.dart';
 import 'core/util/blocs/app/cubit.dart';
+import 'core/util/blocs/app/states.dart';
+import 'core/util/constants.dart';
 import 'core/util/routes.dart';
 
 void main() async {
@@ -21,12 +23,14 @@ void main() async {
   // CacheHelper.init();
 
   init();
+
   runApp(EasyLocalization(
-            supportedLocales: const [
-              Locale('ar'),
-              Locale('en'),
-            ],
-            //assetLoader: const CodegenLoader(),
+      supportedLocales: const [
+        Locale('ar'),
+        Locale('en'),
+        Locale.fromSubtags(languageCode: 'ar')
+      ],
+      //assetLoader: const CodegenLoader(),
 
       path: "assets/lang",
       child: Phoenix(child: const MyApp())));
@@ -52,6 +56,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+ 
     return MultiBlocProvider(
         providers: [
           BlocProvider<AppBloc>(
@@ -63,31 +68,32 @@ class _MyAppState extends State<MyApp> {
             create: (context) => sl<HotelsCubit>(),
           ),
         ],
-        child: ScreenUtilInit(
-          designSize: const Size(375, 812),
-          builder: (context, child) => MaterialApp(
-         localizationsDelegates: context.localizationDelegates,
-                    supportedLocales: context.supportedLocales,
-                    locale: context.locale,
-                    // localeResolutionCallback: (locale, supportedLocales) {
-                    //   for (var supportedLocale in supportedLocales) {
-                    //     if (supportedLocale.languageCode == locale?.languageCode) {
-                    //       return supportedLocale;
-                    //     }
-                    //   }
-                    //   return supportedLocales.first;
-                    // },
-
-            title: 'Flutter Demo',
-            debugShowCheckedModeBanner: false,
-            darkTheme: darkTheme,
-            theme: lightTheme,
-            themeMode:ThemeMode.light,
-                // AppBloc.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
-            routes: Routes.routes,
-            initialRoute: Routes.splash,
-          ),
-        ));
+        child: BlocConsumer<AppBloc, AppStates>(
+            listener: (context, state) {},
+            builder: (context, state) {
+                 if (CacheHelper.getData(key: "isDark") == null) {
+         BlocProvider.of<AppBloc>(context).isDark = false;
+    } else {
+     BlocProvider.of<AppBloc>(context).isDark = CacheHelper.getData(key: "isDark");
+    }
+              return ScreenUtilInit(
+                designSize: const Size(375, 812),
+                builder: (context, child) => MaterialApp(
+                  localizationsDelegates: context.localizationDelegates,
+                  supportedLocales: context.supportedLocales,
+                  locale: context.locale,
+                  title: 'Flutter Demo',
+                  debugShowCheckedModeBanner: false,
+                  darkTheme: darkTheme,
+                  theme: lightTheme,
+                  themeMode: AppBloc.get(context).isDark
+                      ? ThemeMode.dark
+                      : ThemeMode.light,
+                  routes: Routes.routes,
+                  initialRoute: Routes.splash,
+                ),
+              );
+            }));
   }
 }
 

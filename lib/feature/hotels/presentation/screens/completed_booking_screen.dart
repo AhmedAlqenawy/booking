@@ -25,32 +25,35 @@ class CompletedBookingScreen extends StatelessWidget {
 
         if (state is GetCompletedBookingLoadedState) {
           if (cubit.completedBooking.isNotEmpty) {
-            return ListView.separated(
-              itemBuilder: (BuildContext context, int index) => InkWell(
-                onTap: () {
-                  navigateTo(
-                      context: context,
-                      widget: BookingDetailsScreen(
-                          type: 'complete',
-                          userId: cubit.completedBooking[index].user.id!,
-                          bookingId: cubit.completedBooking[index].id,
-                          hotel: cubit.completedBooking[index].hotel));
-                },
-                child: CompletedBookingItem(
-                  images: cubit.completedBooking[index].hotel.hotelImages!,
-                  price: cubit.completedBooking[index].hotel.price!,
-                  hotelName: cubit.completedBooking[index].hotel.name!,
-                  hotelRate: cubit.completedBooking[index].hotel.rate!,
-                  hotelAddress: cubit.completedBooking[index].hotel.address!,
-                  startDate: cubit.completedBooking[index].createdAt,
-                  endDate: cubit.completedBooking[index].updatedAt,
-                  index: index,
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView.separated(
+                itemBuilder: (BuildContext context, int index) => InkWell(
+                  onTap: () {
+                    navigateTo(
+                        context: context,
+                        widget: BookingDetailsScreen(
+                            type: 'complete',
+                            userId: cubit.completedBooking[index].user.id!,
+                            bookingId: cubit.completedBooking[index].id,
+                            hotel: cubit.completedBooking[index].hotel));
+                  },
+                  child: CompletedBookingItem(
+                    images: cubit.completedBooking[index].hotel.hotelImages!,
+                    price: cubit.completedBooking[index].hotel.price!,
+                    hotelName: cubit.completedBooking[index].hotel.name!,
+                    hotelRate: cubit.completedBooking[index].hotel.rate!,
+                    hotelAddress: cubit.completedBooking[index].hotel.address!,
+                    startDate: cubit.completedBooking[index].createdAt,
+                    endDate: cubit.completedBooking[index].updatedAt,
+                    index: index,
+                  ),
                 ),
-              ),
-              itemCount: cubit.completedBooking.length,
-              separatorBuilder: (BuildContext context, int index) =>
-                  const SizedBox(
-                height: 12,
+                itemCount: cubit.completedBooking.length,
+                separatorBuilder: (BuildContext context, int index) =>
+                     SizedBox(
+                  height: 20.h,
+                ),
               ),
             );
           } else {
