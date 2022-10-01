@@ -8,6 +8,7 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+        resizeToAvoidBottomInset:false,
       backgroundColor:  Theme.of(context).scaffoldBackgroundColor,
       body: AboutWidget(),
     );

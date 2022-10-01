@@ -15,6 +15,12 @@ class FiltterPage extends StatefulWidget {
 
 class _FiltterPageState extends State<FiltterPage> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    AppBloc.get(context).getAllFacilities();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -61,7 +67,8 @@ class _FiltterPageState extends State<FiltterPage> {
                     borderRadius: BorderRadius.circular(20)),
                 child: MaterialButton(
                   onPressed: () {
-print(AppBloc.get(context).facilitiesIds.length);
+
+
                     AppBloc.get(context).getfiltterHotel(
                       startDistanc: AppBloc.get(context).startDistanc.toInt(),
                       start: AppBloc.get(context).start,

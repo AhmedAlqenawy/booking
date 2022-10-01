@@ -16,7 +16,7 @@ class MyFormLogin extends StatelessWidget {
     required this.type,
     required this.controller,
     this.radius = 15.0,
-    this.isPassword = true,
+    this.isPassword = false,
   }) : super(key: key);
 
   @override

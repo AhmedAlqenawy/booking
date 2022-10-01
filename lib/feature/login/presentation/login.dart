@@ -57,11 +57,11 @@ class _LoginScreenState extends State<LoginScreen> {
         }
       },
       builder: (context, state) {
-        return state.toString() == UserLoginLoadingState().toString()
-            ? Center(child: const CircularProgressIndicator(color: Color(0xff57B098),))
-            : Scaffold(
+        return Scaffold(
                 backgroundColor: Color(0xFFffffffff),
-                body: SingleChildScrollView(
+                body: state.toString() == UserLoginLoadingState().toString()
+                    ? Center(child: const CircularProgressIndicator(color: Color(0xff57B098),))
+                    : SingleChildScrollView(
                   child: Form(
                     key: _formKey,
                     child: Column(
@@ -172,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             MyFormLogin(
                               label: 'login_title6'.tr(),
                               validation: 'required password',
-                              controller: controller_password,
+                              controller: controller_password,isPassword:true,
                               type: TextInputType.visiblePassword,
                             ),
                             space(10.h, 0),

@@ -1,4 +1,5 @@
 import 'package:booking/core/util/widget_functions.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../main.dart';
@@ -20,7 +21,7 @@ class AboutMainWidget extends StatelessWidget {
           children: [
             Text(
               name,
-              style: openSans(18.sp, Colors.black, FontWeight.bold),
+              style: Theme.of(context).textTheme.headline1,
             ),
             space(8.h, 0),
             GestureDetector(
@@ -28,7 +29,7 @@ class AboutMainWidget extends StatelessWidget {
                 NavigationContext(context).push = Routes.editAbout;
               },
               child: Text(
-                "View and Edit profile",
+                "View and Edit profile".tr(),
                 style:
                     openSans(15.sp, const Color(0xffc3c3c3), FontWeight.w400),
               ),

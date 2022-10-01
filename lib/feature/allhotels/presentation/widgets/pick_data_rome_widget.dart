@@ -139,7 +139,7 @@ class _PickDataAndRomeState extends State<PickDataAndRome> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Text('${cubit.rooms} Room' '' '${cubit.people} people '),
+                  Text('${cubit.rooms} Room' '   ' '${cubit.people} people '),
                 ],
               ),
             ),

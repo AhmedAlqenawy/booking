@@ -154,7 +154,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen>
                                   width:
                                       MediaQuery.of(context).size.width * 0.4,
                                   height: MediaQuery.of(context).size.height *
-                                      0.052,
+                                      0.055,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
                                       color: Colors.black.withOpacity(0.5)),

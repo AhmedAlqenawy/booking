@@ -48,15 +48,11 @@
   "summary": "Summary",
   "facilities": "Facilities",
   "photos": "Photos",
-  "room.people":"1 room 2 people",
+  "room.people": "1 room 2 people",
   "complete.reservation": "Complete reservation",
   "cancel.reservation": "Cancel reservation",
   "mode": "Mode",
-  "about.out":   " Log out",
+  "about.out": " Log out",
+  "View and Edit profile": "View and Edit profile"
 
-  "": "",
-  "": "",
-  "": "",
-  "": "",
-  "": ""
 }

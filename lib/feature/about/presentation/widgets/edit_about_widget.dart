@@ -128,8 +128,12 @@ class _EditAboutWidgetState extends State<EditAboutWidget> {
                                   image: DecorationImage(
                                     fit: BoxFit.fill,
                                     image: NetworkImage(profileModel!
-                                            .data!.image ??
-                                        "https://cdn-icons-png.flaticon.com/512/17/17004.png"),
+                                                    .data!.image ==
+                                                null ||
+                                            profileModel!.data!.image ==
+                                                "http://api.mahmoudtaha.com/images"
+                                        ? "https://cdn-icons-png.flaticon.com/512/17/17004.png"
+                                        : profileModel!.data!.image!),
                                   ),
                                 ),
                         ),

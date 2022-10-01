@@ -27,7 +27,7 @@ class HotelsWidget extends StatelessWidget {
               ));
         } else if (state is FiltterSuccessState) {
           return SizedBox(
-              height: 400,
+              height: 1200,
               width: double.infinity,
               child: ListView.separated(
                 separatorBuilder: (context, index) => const SizedBox(
@@ -38,7 +38,7 @@ class HotelsWidget extends StatelessWidget {
               ));
         } else if (state is SearchSuccessState) {
           return SizedBox(
-              height: 400,
+              height: 1200,
               width: double.infinity,
               child: ListView.separated(
                 separatorBuilder: (context, index) => const SizedBox(

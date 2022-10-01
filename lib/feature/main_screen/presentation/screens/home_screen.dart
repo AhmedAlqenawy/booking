@@ -58,6 +58,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     ));
     return Scaffold(
       extendBodyBehindAppBar: true,
+      resizeToAvoidBottomInset:false,
       body: NestedScrollView(
         // floatHeaderSlivers: true,
         controller: scrollController,

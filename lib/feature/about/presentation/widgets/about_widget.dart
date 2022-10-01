@@ -1,5 +1,4 @@
 import 'package:booking/core/util/constants/constants.dart';
-import 'package:booking/core/util/mangerLang/manger_languge.dart';
 import 'package:booking/core/util/network/local/Cach_Helper.dart';
 import 'package:booking/core/util/widget_functions.dart';
 import 'package:booking/feature/about/model/profile_model.dart';
@@ -8,8 +7,8 @@ import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../core/util/blocs/app/cubit.dart';
 import '../../../../core/util/blocs/app/states.dart';
 import '../../../../core/util/widgets/default_button.dart';
@@ -53,7 +52,11 @@ class _AboutWidgetState extends State<AboutWidget> {
                     space(50.h, 0),
                     AboutMainWidget(
                       name: profileModel.data?.name ?? "",
-                      imgUrl: profileModel.data?.image ?? "https://cdn-icons-png.flaticon.com/512/17/17004.png",
+                      imgUrl: profileModel.data!.image == null ||
+                              profileModel.data?.image ==
+                                  "http://api.mahmoudtaha.com/images"
+                          ? "https://cdn-icons-png.flaticon.com/512/17/17004.png"
+                          : profileModel.data!.image!,
                     ),
                     space(32.h, 0),
                      ProfileItem(
@@ -100,17 +103,23 @@ class _AboutWidgetState extends State<AboutWidget> {
                     Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('mode'.tr(),
-                style: Theme.of(context).textTheme.headline4,
-              ),
-             DayNightSwitcher(
-              dayBackgroundColor: Colors.teal,
-              isDarkModeEnabled:  AppBloc.get(context).getMode()!,
-             onStateChanged: (value){
-              AppBloc.get(context).changeAppTheme(sharedValue: value);
-             },
-             ),
-            ],
+                        Text(
+                          'mode'.tr(),
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                        SizedBox(
+                          width: 70.w,
+                          height: 50.w,
+                          child: DayNightSwitcher(
+                            dayBackgroundColor: Colors.teal,
+                            isDarkModeEnabled: AppBloc.get(context).getMode()!,
+                            onStateChanged: (value) {
+                              AppBloc.get(context)
+                                  .changeAppTheme(sharedValue: value);
+                            },
+                          ),
+                        ),
+                      ],
           ),
          space(100.h, 0),
 

@@ -5,6 +5,7 @@ import 'package:booking/core/util/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SearchHotel extends StatelessWidget {
   SearchHotel({Key? key, required this.index}) : super(key: key);
@@ -67,10 +68,15 @@ class SearchHotel extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            cubit.search[index].address,
-                            style: const TextStyle(
-                              fontSize: 15,
+                          SizedBox(
+                            width:200.w,
+                            child: Text(
+                              cubit.search[index].address,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: const TextStyle(
+                                fontSize: 15,
+                              ),
                             ),
                           ),
                           const Text(

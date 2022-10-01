@@ -24,7 +24,7 @@ class FacilitiesWidget extends StatelessWidget {
                   //crossAxisSpacing: 5.0,
                   //mainAxisSpacing: 5.0,
               ),
-                itemCount: AppBloc.get(context).allFacilities!.data!.length,
+                itemCount: AppBloc.get(context).allFacilities?.data!.length,
                 itemBuilder: (context, ind) => asd(
                       facility: AppBloc.get(context).allFacilities!.data![ind],
                     )),
