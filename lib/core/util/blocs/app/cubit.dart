@@ -137,8 +137,11 @@ class AppBloc extends Cubit<AppStates> {
       },
       (s) {
         registerModel = s;
+        token = s.data!.apiToken;
+        constants.token = token!;
+        CacheHelper.saveData(key: 'fristLogin', value: false);
+        CacheHelper.saveData(key: 'token', value: token);
         CacheHelper.saveData(key: 'userId', value: s.data!.id!);
-
         emit(UserRegisterSuccessState());
       },
     );

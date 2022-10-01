@@ -86,8 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: Text(
                                   'login_title1'.tr(),
                                   style: const TextStyle(
-                                      fontFamily: 'AbrilFatface',
-                                      fontWeight: FontWeight.w200,
+                                      fontWeight: FontWeight.w500,
                                       fontSize: 20),
                                 ),
                               ),
@@ -215,6 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 },
                               ),
                             ),
+                            space(8.h, 0),
                             Padding(
                               padding: const EdgeInsets.only(left: 220.0),
                               child: InkWell(

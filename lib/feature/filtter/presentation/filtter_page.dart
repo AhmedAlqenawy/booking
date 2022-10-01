@@ -39,7 +39,7 @@ class _FiltterPageState extends State<FiltterPage> {
             const SizedBox(
               height: 20,
             ),
-            const FacilitiesWidget(),
+            AppBloc.get(context).allFacilities==null?CircularProgressIndicator():const FacilitiesWidget(),
             Container(
               color: Colors.grey,
               width: double.infinity,

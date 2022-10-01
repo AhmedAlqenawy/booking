@@ -54,7 +54,7 @@ class _RangSliderWidgetState extends State<RangSliderWidget> {
             min: 10,
             values: RangeValues(
                 AppBloc.get(context).start, AppBloc.get(context).end),
-            divisions: 20,
+            divisions: 200,
             labels: RangeLabels(AppBloc.get(context).start.toString(),
                 AppBloc.get(context).end.toString()),
             onChanged: (values) {

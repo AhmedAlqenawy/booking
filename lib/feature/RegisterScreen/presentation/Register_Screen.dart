@@ -1,5 +1,4 @@
 import 'package:booking/feature/login/presentation/login.dart';
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +12,7 @@ import '../../../core/util/widget_functions.dart';
 import '../../../core/util/widgets/Icon_Botton.dart';
 import '../../../core/util/widgets/default_button.dart';
 import '../../../core/util/widgets/formField/Form.dart';
-import '../../home/presentation/pages/home_page.dart';
+import '../../main_screen/presentation/screens/main_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -36,15 +35,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<AppBloc, AppStates>(
   listener: (context, state) {
-      if(state is UserRegisterSuccessState){
-        print('lalalalalalaaaa');
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) => const HomePage()));
-      }
+      if(state is UserRegisterSuccessState) {
+          print('lalalalalalaaaa');
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => MainScreen()));
+        }
 
-      if(state is ErrorState){
+        if(state is ErrorState){
         print(state.exception.error);
         print('omnufnfhdfhdffdf');
         Fluttertoast.showToast(
@@ -58,34 +57,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
       }},
 
   builder: (context, state) {
-    return
-      state.toString() == UserRegisterLoadingState().toString()
-          ? const Center(child: CircularProgressIndicator(color: Color(0xff57B098),))
-          :SafeArea(
-            child: Scaffold(
-      body: SingleChildScrollView(
-        child: Form(
-            key: formKey,
-            child: Column(
-              children:  [
-
-                 Padding(
-                  padding: EdgeInsets.all(25.0),
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Text('register_title'.tr(),style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20
-                    ),),
-                  ),
-                ),
-                space(20.h, 0),
-                Row(
-                  children: [
-                    Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 20.0),
-                          child: IconDButton(
+    return SafeArea(
+          child: Scaffold(
+            body: state.toString() == UserRegisterLoadingState().toString()
+                ? const Center(
+                    child: CircularProgressIndicator(
+                    color: Color(0xff57B098),
+                  ))
+                : SingleChildScrollView(
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(25.0),
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                'register_title'.tr(),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ),
+                          ),
+                          space(20.h, 0),
+                          Row(
+                            children: [
+                              Expanded(
+                                  child: Padding(
+                                padding: EdgeInsets.only(left: 20.0),
+                                child: IconDButton(
                             bgColor: Colors.indigo,
                             textColor: Colors.white,
                             title: 'FaceBook',
@@ -171,7 +172,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
 
-                MyFormLogin(label: 'login_title6'.tr(), validation: 'required password',  controller: controller_password,type: TextInputType.visiblePassword,),
+                MyFormLogin(label: 'login_title6'.tr(), validation: 'required password', isPassword: true, controller: controller_password,type: TextInputType.visiblePassword,),
                 space(30.h, 0),
                  Padding(
                   padding: EdgeInsets.only(left: 25.0,bottom: 5,),
@@ -183,7 +184,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),),
                   ),
                 ),
-                MyFormLogin(label: 'register_title7'.tr(), validation: 'required password',  controller: controller_configPassword,type: TextInputType.visiblePassword,),
+                MyFormLogin(label: 'register_title7'.tr(), validation: 'required password', isPassword: true, controller: controller_configPassword,type: TextInputType.visiblePassword,),
                 space(10.h, 0),
 
                 Padding(
@@ -207,7 +208,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           controller_email.text,
                           controller_password.text,
                         controller_Fname.text,
-                          controller_configPassword.text
+                          controller_configPassword.text,
                       );
 
                     }

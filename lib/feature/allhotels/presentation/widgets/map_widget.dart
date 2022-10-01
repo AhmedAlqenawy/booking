@@ -37,7 +37,7 @@ class _MapWidgetState extends State<MapWidget> {
   final Completer<GoogleMapController> _controller = Completer();
 
   List<CameraPosition> latlonglist = [
-    const CameraPosition(
+    /*const CameraPosition(
         bearing: 192.8334901395799,
         target: LatLng(27.049302, 33.900214),
         tilt: 59.440717697143555,
@@ -70,6 +70,41 @@ class _MapWidgetState extends State<MapWidget> {
     const CameraPosition(
         bearing: 192.8334901395799,
         target: LatLng(27.259102, 33.812999),
+        tilt: 59.440717697143555,
+        zoom: 15.151926040649414),*/
+    const CameraPosition(
+        bearing: 192.8334901395799,
+        target: LatLng(27.259102, 33.812999),
+        tilt: 59.440717697143555,
+        zoom: 15.151926040649414),
+    const CameraPosition(
+        bearing: 192.8334901395799,
+        target: LatLng(27.135312, 33.8116368),
+        tilt: 59.440717697143555,
+        zoom: 15.151926040649414),
+    const CameraPosition(
+        bearing: 192.8334901395799,
+        target: LatLng(27.150182, 33.826711),
+        tilt: 59.440717697143555,
+        zoom: 15.151926040649414),
+    const CameraPosition(
+        bearing: 192.8334901395799,
+        target: LatLng(27.049302, 33.900214),
+        tilt: 59.440717697143555,
+        zoom: 15.151926040649414),
+    const CameraPosition(
+        bearing: 192.8334901395799,
+        target: LatLng(27.049302, 33.900214),
+        tilt: 59.440717697143555,
+        zoom: 15.151926040649414),
+    const CameraPosition(
+        bearing: 192.8334901395799,
+        target: LatLng(27.049302, 33.900214),
+        tilt: 59.440717697143555,
+        zoom: 15.151926040649414),
+    const CameraPosition(
+        bearing: 192.8334901395799,
+        target: LatLng(27.049302, 33.900214),
         tilt: 59.440717697143555,
         zoom: 15.151926040649414),
   ];

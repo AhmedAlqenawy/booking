@@ -26,8 +26,9 @@ class _MainScreenState extends State<MainScreen> {
   @override
   initState(){
     super.initState();
-    
+
     AppBloc.get(context).getAllHotels();
+    AppBloc.get(context).getAllFacilities();
   }
   @override
   Widget build(BuildContext context) {

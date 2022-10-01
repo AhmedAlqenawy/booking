@@ -16,6 +16,7 @@ class FacilitiesWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const Text('Populer filtter ', style: TextStyle(color: Colors.grey)),
+
           Expanded(
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
