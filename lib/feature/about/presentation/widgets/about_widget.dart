@@ -97,7 +97,6 @@ class _AboutWidgetState extends State<AboutWidget> {
                         icon: Icons.language_outlined,
                       ),
                     ),
-
                     Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -114,6 +113,7 @@ class _AboutWidgetState extends State<AboutWidget> {
             ],
           ),
          space(100.h, 0),
+
                     Padding(
                       padding: const EdgeInsets.all(18.0),
                       child: DefaultButton(

@@ -35,8 +35,6 @@
   "about.pay":   "دفع",
   "about.lang":   "اللغه",
   "about.out":   "تسجيل الخروج",
-
-
   "explore": "اكتشف",
   "trips": "رحلاتى",
   "profile": "الملف الشخصى",
@@ -55,8 +53,5 @@
   "complete.reservation": "اكمال الحجز",
   "cancel.reservation": "الغاء الحجز",
   "mode": "المظهر"
-
-
-
 
 }
